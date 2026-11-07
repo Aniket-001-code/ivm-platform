@@ -5,7 +5,7 @@ import time
 
 import httpx
 
-BASE = "http://localhost:8000/api/v1"
+BASE = "http://127.0.0.1:8000/api/v1"
 with httpx.Client(timeout=20) as client:
     login = client.post(
         f"{BASE}/auth/login",

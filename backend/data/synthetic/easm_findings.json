@@ -1,0 +1,500 @@
+[
+  {
+    "url": "https://host005.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-28"
+  },
+  {
+    "fqdn": "host005.bank.local",
+    "cve_id": "CVE-2022-22965",
+    "issue_type": "Synthetic vulnerability record 5",
+    "risk": "High",
+    "cvss_score": 4.4,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host016.bank.local:443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-13"
+  },
+  {
+    "url": "https://host030.bank.local:8443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-20"
+  },
+  {
+    "url": "https://host036.bank.local:8443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-24"
+  },
+  {
+    "url": "https://host048.bank.local:443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-16"
+  },
+  {
+    "fqdn": "host048.bank.local",
+    "cve_id": "CVE-2024-10047",
+    "issue_type": "Synthetic vulnerability record 48",
+    "risk": "High",
+    "cvss_score": 10.0,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host051.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2025-01-01"
+  },
+  {
+    "url": "https://host053.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-27"
+  },
+  {
+    "url": "https://host059.bank.local:443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-14"
+  },
+  {
+    "url": "https://host075.bank.local:8443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-29"
+  },
+  {
+    "fqdn": "host075.bank.local",
+    "cve_id": "CVE-2021-10074",
+    "issue_type": "Synthetic vulnerability record 75",
+    "risk": "High",
+    "cvss_score": 7.5,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host082.bank.local:443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-28"
+  },
+  {
+    "url": "https://host084.bank.local:443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-27"
+  },
+  {
+    "url": "https://host085.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-29"
+  },
+  {
+    "url": "https://host086.bank.local:443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-10"
+  },
+  {
+    "fqdn": "host086.bank.local",
+    "cve_id": "CVE-2020-10085",
+    "issue_type": "Synthetic vulnerability record 86",
+    "risk": "High",
+    "cvss_score": 9.8,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host088.bank.local:443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-05"
+  },
+  {
+    "url": "https://host089.bank.local:443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-03"
+  },
+  {
+    "url": "https://host103.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-31"
+  },
+  {
+    "url": "https://host107.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-22"
+  },
+  {
+    "fqdn": "host107.bank.local",
+    "cve_id": "CVE-2023-10106",
+    "issue_type": "Synthetic vulnerability record 107",
+    "risk": "High",
+    "cvss_score": 5.9,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host113.bank.local:443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-22"
+  },
+  {
+    "url": "https://host139.bank.local:443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-16"
+  },
+  {
+    "url": "https://host140.bank.local:8443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-11"
+  },
+  {
+    "url": "https://host143.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-13"
+  },
+  {
+    "fqdn": "host143.bank.local",
+    "cve_id": "CVE-2023-10022",
+    "issue_type": "Synthetic vulnerability record 23",
+    "risk": "High",
+    "cvss_score": 2.1,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host146.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-20"
+  },
+  {
+    "url": "https://host151.bank.local:8443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-09"
+  },
+  {
+    "url": "https://host153.bank.local:8443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-07"
+  },
+  {
+    "url": "https://host158.bank.local:443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-21"
+  },
+  {
+    "fqdn": "host158.bank.local",
+    "cve_id": "CVE-2020-10037",
+    "issue_type": "Synthetic vulnerability record 38",
+    "risk": "High",
+    "cvss_score": 5.7,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host159.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-24"
+  },
+  {
+    "url": "https://host160.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-30"
+  },
+  {
+    "url": "https://host164.bank.local:8443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-24"
+  },
+  {
+    "url": "https://host167.bank.local:443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-13"
+  },
+  {
+    "fqdn": "host167.bank.local",
+    "cve_id": "CVE-2023-10046",
+    "issue_type": "Synthetic vulnerability record 47",
+    "risk": "High",
+    "cvss_score": 7.4,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host172.bank.local:443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-03"
+  },
+  {
+    "url": "https://host175.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-17"
+  },
+  {
+    "url": "https://host180.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-03"
+  },
+  {
+    "url": "https://host183.bank.local:443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-04"
+  },
+  {
+    "fqdn": "host183.bank.local",
+    "cve_id": "CVE-2021-10062",
+    "issue_type": "Synthetic vulnerability record 63",
+    "risk": "High",
+    "cvss_score": 9.0,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host187.bank.local:443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-09"
+  },
+  {
+    "url": "https://host196.bank.local:8443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-06"
+  },
+  {
+    "url": "https://host201.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-11"
+  },
+  {
+    "url": "https://host214.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-17"
+  },
+  {
+    "fqdn": "host214.bank.local",
+    "cve_id": "CVE-2022-10093",
+    "issue_type": "Synthetic vulnerability record 94",
+    "risk": "High",
+    "cvss_score": 9.2,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host215.bank.local:443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-17"
+  },
+  {
+    "url": "https://host217.bank.local:443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-29"
+  },
+  {
+    "url": "https://host218.bank.local:8443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-19"
+  },
+  {
+    "url": "https://host219.bank.local:8443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-25"
+  },
+  {
+    "fqdn": "host219.bank.local",
+    "cve_id": "CVE-2021-10098",
+    "issue_type": "Synthetic vulnerability record 99",
+    "risk": "High",
+    "cvss_score": 7.4,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host227.bank.local:443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-21"
+  },
+  {
+    "url": "https://host230.bank.local:443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2024-12-16"
+  },
+  {
+    "url": "https://host238.bank.local:8443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-30"
+  },
+  {
+    "url": "https://host245.bank.local:8443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-04"
+  },
+  {
+    "fqdn": "host245.bank.local",
+    "cve_id": "CVE-2022-22965",
+    "issue_type": "Synthetic vulnerability record 5",
+    "risk": "High",
+    "cvss_score": 4.4,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host250.bank.local:443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-15"
+  },
+  {
+    "url": "https://host268.bank.local:443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-29"
+  },
+  {
+    "url": "https://host279.bank.local:8443/",
+    "issue_type": "Outdated web server banner",
+    "risk": "Low",
+    "evidence": "Server banner discloses an outdated software version.",
+    "observed_at": "2025-01-01"
+  },
+  {
+    "url": "https://host281.bank.local:443/",
+    "issue_type": "Remote access service exposed",
+    "risk": "High",
+    "evidence": "SSH/RDP reachable from the internet.",
+    "observed_at": "2024-12-09"
+  },
+  {
+    "fqdn": "host281.bank.local",
+    "cve_id": "CVE-2023-10040",
+    "issue_type": "Synthetic vulnerability record 41",
+    "risk": "High",
+    "cvss_score": 5.1,
+    "evidence": "Externally observed vulnerable service version."
+  },
+  {
+    "url": "https://host282.bank.local:8443/",
+    "issue_type": "Missing HTTP security headers",
+    "risk": "Low",
+    "evidence": "HSTS and CSP headers are absent on the public site.",
+    "observed_at": "2024-12-13"
+  },
+  {
+    "url": "https://host295.bank.local:443/",
+    "issue_type": "Expired TLS certificate",
+    "risk": "Medium",
+    "evidence": "Certificate presented on the public endpoint has expired.",
+    "observed_at": "2024-12-07"
+  },
+  {
+    "url": "https://host299.bank.local:8443/",
+    "issue_type": "Administrative login page exposed to the internet",
+    "risk": "High",
+    "evidence": "Admin console reachable without network restriction.",
+    "observed_at": "2024-12-10"
+  },
+  {
+    "fqdn": "shadow-it-00.bank.example",
+    "issue_type": "Unknown internet-facing host",
+    "risk": "Medium",
+    "evidence": "Discovered by external scan; not in asset inventory."
+  },
+  {
+    "fqdn": "shadow-it-01.bank.example",
+    "issue_type": "Unknown internet-facing host",
+    "risk": "Medium",
+    "evidence": "Discovered by external scan; not in asset inventory."
+  },
+  {
+    "fqdn": "shadow-it-02.bank.example",
+    "issue_type": "Unknown internet-facing host",
+    "risk": "Medium",
+    "evidence": "Discovered by external scan; not in asset inventory."
+  },
+  {
+    "fqdn": "shadow-it-03.bank.example",
+    "issue_type": "Unknown internet-facing host",
+    "risk": "Medium",
+    "evidence": "Discovered by external scan; not in asset inventory."
+  },
+  {
+    "fqdn": "shadow-it-04.bank.example",
+    "issue_type": "Unknown internet-facing host",
+    "risk": "Medium",
+    "evidence": "Discovered by external scan; not in asset inventory."
+  }
+]
