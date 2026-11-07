@@ -19,20 +19,12 @@ export function setSessionHandlers(handlers: {
   onTokenRefreshed = handlers.refreshed
 }
 
-export function storeRefreshToken(token: string | null) {
+/** Clears any refresh token left in storage by older versions (it now lives in an HttpOnly cookie). */
+export function clearLegacyRefreshToken() {
   try {
-    if (token) sessionStorage.setItem(REFRESH_KEY, token)
-    else sessionStorage.removeItem(REFRESH_KEY)
+    sessionStorage.removeItem(REFRESH_KEY)
   } catch {
-    /* storage unavailable: session ends when the access token expires */
-  }
-}
-
-function readRefreshToken(): string | null {
-  try {
-    return sessionStorage.getItem(REFRESH_KEY)
-  } catch {
-    return null
+    /* storage unavailable */
   }
 }
 
@@ -42,17 +34,11 @@ const url = (path: string) => (path.startsWith('/api') ? path : `/api/v1${path}`
 function refreshAccessToken(): Promise<boolean> {
   if (!refreshInFlight) {
     refreshInFlight = (async () => {
-      const refreshToken = readRefreshToken()
-      if (!refreshToken) return false
-      const response = await fetch(url('/auth/refresh'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ refresh_token: refreshToken }),
-      })
+      // The refresh token travels only as an HttpOnly, SameSite=Strict cookie set by the API.
+      const response = await fetch(url('/auth/refresh'), { method: 'POST', credentials: 'same-origin' })
       if (!response.ok) return false
-      const data = (await response.json()) as { access_token: string; refresh_token: string }
+      const data = (await response.json()) as { access_token: string }
       accessToken = data.access_token
-      storeRefreshToken(data.refresh_token)
       onTokenRefreshed?.(data.access_token)
       return true
     })().finally(() => {

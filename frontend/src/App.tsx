@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from
 import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { useQueryClient } from '@tanstack/react-query'
 import { ChevronDown, CircleHelp, LogOut, Search, Shield } from 'lucide-react'
-import { api, setAccessToken, setSessionHandlers, storeRefreshToken } from './api/client'
+import { api, setAccessToken, setSessionHandlers, clearLegacyRefreshToken } from './api/client'
 import { NAV, can, label } from './access'
 import type { User } from './types'
 import { Login } from './pages/Login'
@@ -20,7 +20,6 @@ import { AdminPage } from './pages/Admin'
 import { ReportsPage } from './pages/Reports'
 import { AccountPage } from './pages/Account'
 import { NotificationBell } from './components/Notifications'
-import './additions.css'
 
 const USER_KEY = 'ivm.user'
 const TOKEN_KEY = 'ivm.token'
@@ -59,7 +58,7 @@ function App() {
   const clearSession = useCallback(() => {
     writeStored(USER_KEY, null)
     writeStored(TOKEN_KEY, null)
-    storeRefreshToken(null)
+    clearLegacyRefreshToken()
     setUser(null)
     setToken(null)
     setAccessToken(null)
@@ -82,7 +81,7 @@ function App() {
   function login(result: { access_token: string; refresh_token: string; user: User }) {
     writeStored(USER_KEY, JSON.stringify(result.user))
     writeStored(TOKEN_KEY, result.access_token)
-    storeRefreshToken(result.refresh_token)
+    clearLegacyRefreshToken()
     setExpiredNotice(false)
     setUser(result.user)
     setToken(result.access_token)

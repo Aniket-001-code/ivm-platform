@@ -181,8 +181,8 @@ Non-functional acceptance measures:
 | Requirement | Target | Measured |
 |---|---|---|
 | Dashboard response | < 3 s | Mean 0.500 s, p95 0.514 s over 10 samples (`docs/evidence/dashboard-latency.txt`) |
-| Unit test coverage | >= 70% | 85% whole-backend coverage, 113 pytest tests; 12 Vitest tests |
-| End-to-end workflows | Key journeys automated | 13 Playwright workflows pass (`e2e/workflows.spec.ts`) |
+| Unit test coverage | >= 70% | 85% whole-backend coverage, 114 pytest tests; 12 Vitest tests |
+| End-to-end workflows | Key journeys automated | 14 Playwright workflows pass (`e2e/workflows.spec.ts`) |
 | Dependency and static security scans | No known issues | bandit 0 issues, pip-audit and npm audit 0 known vulnerabilities |
 
 ## 9. Assumptions
@@ -199,5 +199,5 @@ Non-functional acceptance measures:
 - Docker was not installed on the development machine. The PostgreSQL and container runtime paths are verified only by CI jobs (docker build, compose config). Local development and tests use SQLite.
 - The Kubernetes manifests in `deploy/k8s` have been parsed as YAML but never applied to a cluster.
 - The optional Claude path has not been exercised because no API key was available. Gitleaks runs only in CI.
-- Known security limits that are accepted for the prototype: the refresh token is kept in browser `sessionStorage` rather than an HttpOnly cookie; rate limits are held per process and keyed on client IP; an access token stays valid for up to 15 minutes after logout; a database superuser could still drop the audit-immutability triggers.
+- Known security limits that are accepted for the prototype: rate limits are held per process and keyed on client IP; an access token stays valid for up to 15 minutes after logout; a database superuser could still drop the audit-immutability triggers.
 - Capstone timebox: a single team, with the delivery practices described in `CONTRIBUTING.md` and the test documents.

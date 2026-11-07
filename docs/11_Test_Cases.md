@@ -220,7 +220,7 @@ File: `e2e/workflows.spec.ts`. Demo users: `user1` platform admin, `user2` secur
 | ID | Check | Requirements | Evidence | Result |
 |---|---|---|---|---|
 | TC-N-01 | Executive dashboard API latency, 10 samples | NFR-PERF | `dashboard-latency.txt` | mean 0.500 s, p95 0.514 s (target < 3 s) — Pass |
-| TC-N-02 | Whole-backend coverage gate ≥ 70% | Section 11 practices | `backend-tests.txt` | 85% (85.33%) — Pass |
+| TC-N-02 | Whole-backend coverage gate ≥ 70% | Section 11 practices | `backend-tests.txt` | 86% (85.33%) — Pass |
 | TC-N-03 | ruff, black, mypy | NFR-MAINT | `ruff.txt`, `black.txt`, `mypy.txt` | Clean — Pass |
 | TC-N-04 | bandit SAST | NFR-SEC | `bandit.txt` | No issues identified — Pass |
 | TC-N-05 | pip-audit / npm audit | NFR-SEC, dependency-scan deliverable | `pip-audit.txt`, `npm-audit.txt` | No known vulnerabilities / 0 vulnerabilities — Pass |

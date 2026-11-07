@@ -7,7 +7,7 @@ business context and unclear ownership. This project delivers a working platform
 simulated sources, prioritises them with an explainable eight-factor risk model that includes threat intelligence and
 attack-path context, routes each fix to an accountable owner with an SLA, governs risk acceptance, and gives each of
 nine roles its own view, from analyst to CISO. On the deterministic synthetic dataset every one of the twelve success
-criteria is met and measured from live data. The codebase has 138 automated tests (85% backend coverage), zero known
+criteria is met and measured from live data. The codebase has 140 automated tests (86% backend coverage), zero known
 vulnerable dependencies and a dashboard p95 latency of 0.51 seconds.
 
 ## 1. Problem and business alignment
@@ -106,11 +106,54 @@ known vulnerabilities.
 ## 6. Testing and quality
 
 The strategy is in `10_Test_Plan.md` and the catalogue in `11_Test_Cases.md`. Results (`12_Test_Evidence.md`):
-113 backend tests (unit, integration, role-by-endpoint matrix, seeded smoke) with 85% line coverage against a 70% gate;
-12 frontend tests; 13 Playwright end-to-end workflows covering every role; ruff, black, mypy and ESLint clean; dashboard
+114 backend tests (unit, integration, role-by-endpoint matrix, seeded smoke) with 86% line coverage against a 70% gate;
+12 frontend tests; 14 Playwright end-to-end workflows covering every role; ruff, black, mypy and ESLint clean; dashboard
 p95 latency of 0.51 seconds against a 3-second target. Thirty-four defects were found and closed during hardening
 (`13_Defect_Summary.md`), fifteen of them high severity, including scope leaks through AI endpoints, an incomplete MFA
 flow, lost attack-path context on re-scoring, IP-address mis-matching and import rows being discarded.
+
+## 6a. Performance, scalability and accessibility
+
+**Performance.** A single dashboard request computes its aggregates in about half a second on a cold cache. The
+non-functional target is under three seconds, so the single-user case had ample headroom. Concurrency was a different
+story. The first load test (25 concurrent users, 600 mixed requests) exposed two real problems:
+
+1. SQLite's default journal mode let readers block writers, so concurrent sign-ins and audit writes failed with
+   "database is locked".
+2. Every dashboard request recomputed the six-month trend from about 93,000 score-history rows. Concurrent requests
+   competed for the Python interpreter, and some waited more than two minutes.
+
+The fixes were proportionate:
+
+- SQLite runs in write-ahead-log mode with a busy timeout, and PostgreSQL uses a sized connection pool.
+- Dashboard aggregates are cached per user scope for 30 seconds with single-flight semantics: one request computes,
+  and concurrent requests for the same scope wait for that result instead of repeating the work.
+- Because every state change in the platform is audited, the audit writer is the single place that invalidates the
+  cache. Dashboards therefore never show a change later than the action that caused it.
+
+After the fixes the same test completes with zero errors, about 65 requests per second and a p95 latency of
+1.5 seconds on one process (`docs/evidence/load-benchmark.txt`). The Kubernetes manifests scale this horizontally:
+the API is stateless, and scheduling runs in a dedicated single pod.
+
+**Accessibility.** The NFR asks for "basic accessibility considerations for UI contrast, labels, and keyboard
+navigation". Rather than assert this, the end-to-end suite runs the axe-core engine against the login page and all
+thirteen application pages for WCAG 2 A and AA rules. The first run found hundreds of contrast failures. The root
+cause was a stylesheet ordering bug that silently discarded the earlier contrast fixes, plus a heatmap that placed
+white text on light colours. After the fixes the audit reports no serious or critical violations, and it now runs
+on every CI build. Every form control is labelled, dialogs close with Escape, a skip link leads to the main content,
+and keyboard focus is always visible.
+
+**Session security.** The refresh token moved from browser storage to an HttpOnly, SameSite=Strict cookie scoped
+to the authentication endpoints. The test written for that change exposed a subtle replay weakness: two tokens issued
+in the same second were byte-identical, so a rotated-out token could be reused. Every token now carries a unique
+identifier, which closes it.
+
+## 6b. Completion verification
+
+`scripts/verify_completion.py` turns the capstone specification into 98 mechanically checked items: use cases,
+in-scope capabilities, dashboard requirements, non-functional requirements, success criteria, engineering practices,
+deliverables and bonus opportunities. It checks the repository, the OpenAPI contract, the tests and the evidence
+files. It writes `21_Completion_Checklist.md` and fails if any item is not met. At submission all 98 items pass.
 
 ## 7. Results against the success criteria
 
@@ -142,7 +185,7 @@ These figures are computed by `services/reports.py` and shown live on the Report
 - **UX:** role-specific dashboards, server-side search, filtering, sorting and paging, notifications and accessibility
   basics.
 - **Security:** layered controls, a tamper-evident audit trail, role-matrix tests and clean scans.
-- **Testing:** 138 automated tests at three levels, reproducible evidence and a defect log.
+- **Testing:** 140 automated tests at three levels, reproducible evidence and a defect log.
 - **Documentation:** the full deliverable set, with reference documents generated from code.
 - **AI and innovation:** a grounded conversational assistant, predictive breach model, remediation sequencing and
   review packs.
@@ -150,7 +193,7 @@ These figures are computed by `services/reports.py` and shown live on the Report
 
 ## 9. Limitations and future work
 
-- The refresh token is held in session storage. It should move to an HttpOnly cookie, and access tokens should be revocable.
+- Access tokens stay valid for up to 15 minutes after logout; token versioning would make revocation immediate.
 - Audit immutability is enforced in the database. Production needs external write-once storage and restricted database roles.
 - Rate limits are kept per process. A shared store is needed once there are several replicas.
 - Docker, PostgreSQL and Kubernetes were not run locally (no Docker on the development machine); CI builds the images.

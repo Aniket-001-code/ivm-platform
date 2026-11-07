@@ -1,7 +1,7 @@
 {
   "note": "Measured on a fresh seeded database (seed 42) at collection time.",
   "success_criteria": {
-    "generated_at": "2026-11-07 02:34:13.539786+00:00",
+    "generated_at": "2026-11-07 07:23:15.888917+00:00",
     "criteria": [
       {
         "id": "SC-1",

@@ -1,21 +1,22 @@
 $ npx playwright test --reporter=list
-# collected 2026-11-07T02:34:23Z
+# collected 2026-11-07T07:23:30Z
 
-Running 13 tests using 1 worker
+Running 14 tests using 2 workers
 
-  ✓   1 [chromium] › e2e/workflows.spec.ts:11:5 › analyst imports a scanner file and sees a batch result (1.4s)
-  ✓   2 [chromium] › e2e/workflows.spec.ts:20:5 › finding work can be closed with evidence (841ms)
-  ✓   3 [chromium] › e2e/workflows.spec.ts:36:5 › manager runs the SLA job and reviews escalation records (663ms)
-  ✓   4 [chromium] › e2e/workflows.spec.ts:44:5 › exception request is approved by a separate approver and appears in the audit trail (2.3s)
-  ✓   5 [chromium] › e2e/workflows.spec.ts:72:5 › analyst views attack paths and asks the offline assistant (1.4s)
-  ✓   6 [chromium] › e2e/workflows.spec.ts:86:5 › navigation shortcuts and a page refresh keep the signed-in session (564ms)
-  ✓   7 [chromium] › e2e/workflows.spec.ts:97:5 › finding detail sends its context to the assistant and chat follows new messages (2.4s)
-  ✓   8 [chromium] › e2e/workflows.spec.ts:118:5 › executive gets a portfolio dashboard and only the pages their role allows (1.3s)
-  ✓   9 [chromium] › e2e/workflows.spec.ts:131:5 › analyst filters, sorts and pages through findings on the server (1.3s)
-  ✓  10 [chromium] › e2e/workflows.spec.ts:149:5 › administrator registers an asset and reclassifies its criticality (1.5s)
-  ✓  11 [chromium] › e2e/workflows.spec.ts:168:5 › manager opens a task, raises a Jira ticket and sees it on the task (1.0s)
-  ✓  12 [chromium] › e2e/workflows.spec.ts:181:5 › executive reviews measured success criteria and downloads the board report (2.9s)
-  ✓  13 [chromium] › e2e/workflows.spec.ts:191:5 › auditor verifies the tamper-evident audit chain (707ms)
+  ✓   1 [chromium] › e2e/workflows.spec.ts:11:5 › analyst imports a scanner file and sees a batch result (1.6s)
+  ✓   3 [chromium] › e2e/workflows.spec.ts:20:5 › finding work can be closed with evidence (1.2s)
+  ✓   4 [chromium] › e2e/workflows.spec.ts:36:5 › manager runs the SLA job and reviews escalation records (765ms)
+  ✓   5 [chromium] › e2e/workflows.spec.ts:44:5 › exception request is approved by a separate approver and appears in the audit trail (2.5s)
+  ✓   6 [chromium] › e2e/workflows.spec.ts:72:5 › analyst views attack paths and asks the offline assistant (1.4s)
+  ✓   7 [chromium] › e2e/workflows.spec.ts:86:5 › navigation shortcuts and a page refresh keep the signed-in session (687ms)
+  ✓   8 [chromium] › e2e/workflows.spec.ts:97:5 › finding detail sends its context to the assistant and chat follows new messages (2.5s)
+  ✓   9 [chromium] › e2e/workflows.spec.ts:118:5 › executive gets a portfolio dashboard and only the pages their role allows (1.4s)
+  ✓  10 [chromium] › e2e/workflows.spec.ts:131:5 › analyst filters, sorts and pages through findings on the server (832ms)
+  ✓  11 [chromium] › e2e/workflows.spec.ts:149:5 › administrator registers an asset and reclassifies its criticality (1.2s)
+  ✓   2 [chromium] › e2e/accessibility.spec.ts:7:5 › main pages have no serious or critical WCAG A/AA violations (14.8s)
+  ✓  12 [chromium] › e2e/workflows.spec.ts:168:5 › manager opens a task, raises a Jira ticket and sees it on the task (1.0s)
+  ✓  13 [chromium] › e2e/workflows.spec.ts:181:5 › executive reviews measured success criteria and downloads the board report (1.4s)
+  ✓  14 [chromium] › e2e/workflows.spec.ts:191:5 › auditor verifies the tamper-evident audit chain (607ms)
 
-  13 passed (18.8s)
+  14 passed (17.6s)
 # exit code: 0

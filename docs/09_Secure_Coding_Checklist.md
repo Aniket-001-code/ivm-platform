@@ -7,7 +7,7 @@
 - [x] Account lockout and login rate limiting; unknown emails take the same time as known ones
 - [x] TOTP MFA; rotation/disable need a current code; secrets encrypted at rest (`core/security.py`)
 - [x] Refresh tokens rotated and stored hashed; revoked on logout, password change, deactivation
-- [~] Refresh token held in `sessionStorage` (HttpOnly cookie recommended)
+- [x] Refresh token only in an HttpOnly, SameSite=Strict cookie; unique `jti` per token (`routes/auth.py`, `common._token`)
 
 ## Authorization
 - [x] Central default-deny permission check for every authenticated route (`core/deps.py`)

@@ -531,7 +531,7 @@ These are observations from reading the code. They are recorded here for transpa
 
 ### 15.3 API client and session (`api/client.ts`)
 
-- The access token is held in a module variable, and `App.tsx` also mirrors the user, access token and refresh token in `sessionStorage` (`ivm.user`, `ivm.token`, `ivm.refresh`), so a page reload keeps the session.
+- The access token is held in a module variable, and `App.tsx` mirrors the user and access token in `sessionStorage` (`ivm.user`, `ivm.token`) so a page reload keeps the session. The refresh token is never visible to JavaScript: the API sets it as an HttpOnly, SameSite=Strict cookie (`ivm_refresh`, path `/api/v1/auth`; Secure outside development) and `/auth/refresh` reads the cookie; each token has a unique `jti`.
 - **Refresh:**
   - On a 401 from a non-`/auth/` path, the client calls `refreshAccessToken()` once and retries the request.
   - Refresh is **single-flight**: concurrent 401s share one `POST /auth/refresh` promise, because refresh tokens rotate on every use and a second parallel refresh would present an already-used token.

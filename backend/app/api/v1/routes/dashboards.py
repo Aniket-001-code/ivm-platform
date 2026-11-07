@@ -60,6 +60,13 @@ def dashboard(
 ):
     if view not in {"executive", "analyst", "manager", "auditor"}:
         raise HTTPException(status_code=404, detail="Dashboard not found")
+    return _dashboard_payload(db, user, view)
+
+
+@analytics.cached
+def _dashboard_payload(db: Session, user: User, view: str):
+    if view not in {"executive", "analyst", "manager", "auditor"}:
+        raise HTTPException(status_code=404, detail="Dashboard not found")
     data = analytics.summary(db, user)
     base_findings = analytics.finding_query(user).where(Finding.status == "open")
     top_findings = _finding_rows(

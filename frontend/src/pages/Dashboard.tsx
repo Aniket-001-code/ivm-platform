@@ -399,7 +399,7 @@ function Heatmap({ rows }: { rows: NonNullable<Dashboard['heatmap']> }) {
                 role="listitem"
                 key={`${row.business_unit}-${row.business_service}`}
                 className="heat-cell"
-                style={{ background: `rgba(214, 102, 80, ${0.08 + weight * 0.72})`, color: weight > 0.55 ? '#fff' : '#17273e' }}
+                style={{ background: `rgba(214, 102, 80, ${0.08 + weight * 0.42})`, color: '#17273e' }}
                 title={BANDS.map((b) => `${b}: ${row.risk_bands[b] ?? 0}`).join(' · ')}
               >
                 <strong>{row.business_service}</strong>

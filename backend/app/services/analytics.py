@@ -1,5 +1,9 @@
 """SQL-backed dashboard analytics with portable SQLite/PostgreSQL aggregation."""
 
+import functools
+import threading
+import time
+
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 
@@ -24,6 +28,55 @@ from app.models.entities import (
 
 MINUTES_PER_RAW_RECORD = 6
 GLOBAL_ROLES = scope.GLOBAL_ROLES
+
+
+# --- Short-lived result cache -------------------------------------------------------------
+# Dashboard aggregates scan the whole score history; they change slowly, so concurrent
+# dashboard requests share a result for a few seconds instead of recomputing it each time.
+_CACHE: dict[tuple, tuple[float, object]] = {}
+_CACHE_LOCK = threading.Lock()
+CACHE_SECONDS = 30.0
+
+
+def _scope_key(user: User) -> tuple:
+    role = canonical_role(user.role)
+    if role in GLOBAL_ROLES:
+        return (role,)
+    return (role, str(user.business_unit_id), str(user.id))
+
+
+_KEY_LOCKS: dict[tuple, threading.Lock] = {}
+
+
+def cached(fn):
+    """Cache per user scope for CACHE_SECONDS with single-flight: one thread computes a missing
+    value while concurrent callers for the same key wait for it (no thundering herd)."""
+
+    @functools.wraps(fn)
+    def wrapper(db: Session, user: User, *args, **kwargs):
+        key = (fn.__name__, _scope_key(user), args, tuple(sorted(kwargs.items())))
+        with _CACHE_LOCK:
+            hit = _CACHE.get(key)
+            if hit and time.monotonic() - hit[0] < CACHE_SECONDS:
+                return hit[1]
+            key_lock = _KEY_LOCKS.setdefault(key, threading.Lock())
+        with key_lock:
+            with _CACHE_LOCK:
+                hit = _CACHE.get(key)
+                if hit and time.monotonic() - hit[0] < CACHE_SECONDS:
+                    return hit[1]
+            value = fn(db, user, *args, **kwargs)
+            with _CACHE_LOCK:
+                _CACHE[key] = (time.monotonic(), value)
+            return value
+
+    wrapper.uncached = fn  # type: ignore[attr-defined]
+    return wrapper
+
+
+def clear_cache() -> None:
+    with _CACHE_LOCK:
+        _CACHE.clear()
 
 
 def asset_scope(user: User):
@@ -65,6 +118,7 @@ def risk_bands(db: Session, user: User) -> dict[str, int]:
     return {band: count for band, count in db.execute(base)}
 
 
+@cached
 def trend(db: Session, user: User, weeks: int = 26) -> list[dict]:
     """Weekly average of each finding's latest score in that week (open-portfolio risk)."""
     cutoff = datetime.now(timezone.utc) - timedelta(weeks=weeks)
@@ -346,6 +400,7 @@ def crown_jewel_paths(db: Session, user: User, limit: int = 8) -> list[dict]:
     ]
 
 
+@cached
 def summary(db: Session, user: User, baseline_days: int = 180) -> dict:
     findings = finding_query(user)
     task_base = task_query(user)

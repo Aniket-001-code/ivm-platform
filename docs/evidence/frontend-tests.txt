@@ -1,12 +1,12 @@
 $ npx vitest run
-# collected 2026-11-07T02:34:19Z
+# collected 2026-11-07T07:23:26Z
 
  RUN  v5.1.0 ./frontend
 
 
  Test Files  3 passed (3)
       Tests  12 passed (12)
-   Start at  08:04:19
-   Duration  535ms (environment 64%, setup 15%, import 11%, tests 6%, transform 3%, worker 1%)
+   Start at  12:53:26
+   Duration  609ms (environment 64%, setup 14%, import 11%, transform 6%, tests 5%)
 
 # exit code: 0

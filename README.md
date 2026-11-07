@@ -103,12 +103,12 @@ macOS/Linux (after `./scripts/dev.sh` has created `.venv`):
 ```bash
 cd backend
 ../.venv/bin/ruff check app tests && ../.venv/bin/black --check app tests && ../.venv/bin/mypy app
-../.venv/bin/python -m pytest --cov=app --cov-fail-under=70     # 113 tests, ~85% whole-backend coverage
+../.venv/bin/python -m pytest --cov=app --cov-fail-under=70     # 114 tests, ~86% whole-backend coverage
 cd ../frontend
 npm test && npm run lint && npm run build                        # 12 unit tests
 ```
 
-Browser tests (13 workflows) run against a running stack. Raise the login rate limit for the API process during the run, because the suite signs in more than ten times a minute:
+Browser tests (13 workflows + an axe-core accessibility audit) run against a running stack. Raise the login rate limit for the API process during the run, because the suite signs in more than ten times a minute:
 
 ```bash
 LOGIN_RATE_LIMIT=100 ./scripts/dev.sh          # in one terminal
@@ -145,9 +145,10 @@ Security scans: `bandit -r backend/app`, `pip-audit --skip-editable`, `npm audit
 | Presentation | `docs/presentation/IVM_Final_Presentation.pptx` (outline `docs/18_Presentation.md`) |
 | Project plan, traceability matrix | `docs/19_Project_Plan.md`, `docs/20_Requirements_Traceability_Matrix.md` |
 | Demonstration video | `docs/demo/ivm-demo.webm` |
+| Completion checklist (98 items, machine-verified) | `docs/21_Completion_Checklist.md` — regenerate with `.venv/bin/python scripts/verify_completion.py` |
 
 All twelve success criteria are measured live on **Reports & insights** (`GET /api/v1/reports/success-criteria`).
 
 ## Known limitations
 
-This is an educational prototype. It is not certified for production banking use. Business-unit row scoping needs a stakeholder-approved policy; refresh tokens are kept in browser session storage and should move to Secure HttpOnly cookies; audit rows need database/external immutability controls; a multi-replica deployment needs a distributed scheduler; and security findings from dependency scans require review and updates. Dashboard latency depends on machine capacity and has a measurement script rather than a guarantee.
+This is an educational prototype. It is not certified for production banking use. Business-unit row scoping needs a stakeholder-approved policy; audit rows need database/external immutability controls; and security findings from dependency scans require review and updates. Dashboard latency depends on machine capacity and has a measurement script rather than a guarantee.

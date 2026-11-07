@@ -40,17 +40,17 @@ but the runtime was unavailable locally). Test names refer to `backend/tests`, `
 
 | Category | Evidence | Status |
 |---|---|---|
-| Performance (< 3 s) | `dashboard-latency.txt`: p95 0.51 s | Done |
-| Scalability | Stateless API, paging, HPA manifests, separable scheduler | Partial (not load-tested at scale) |
+| Performance (< 3 s) | `dashboard-latency.txt`; `load-benchmark.txt` p95 under 3 s at 25 concurrent users | Done |
+| Scalability | Stateless API, paging, single-flight analytics cache, SQLite WAL / PostgreSQL pool, HPA manifests, separable scheduler; `load-benchmark.txt`: 600 requests from 25 concurrent users, 0 errors | Done |
 | Availability & backup | `backup.sh`/`restore.sh` (SQLite, PostgreSQL), health probes | Done |
 | Reliability | Failed rows kept and retryable; per-row savepoints | Done |
-| Security | RBAC, scope, MFA, TLS, Fernet secrets, secrets handling (`08`) | Partial (see `08` recommendations) |
+| Security | RBAC, scope, MFA, TLS, Fernet secrets, HttpOnly refresh cookie, secrets handling (`08`) | Done (production hardening items listed in `08`) |
 | Privacy | Synthetic data only | Done |
-| Maintainability | Modular services/routes/pages, config-driven scoring, 85% coverage | Done |
+| Maintainability | Modular services/routes/pages, config-driven scoring, 86% coverage | Done |
 | Usability | Search, filters, sorting, paging, role views, notifications | Done |
 | Auditability | Hash-chained append-only audit of imports, scoring, ownership, exceptions, approvals | Done |
 | Explainability | Factor reasons, path base → final, AI sources | Done |
-| Accessibility | Labels, keyboard focus, skip link, AA contrast for small text, Escape-closable dialogs | Partial (no formal audit tool run) |
+| Accessibility | Labels, keyboard focus, skip link, AA contrast, Escape-closable dialogs; axe-core WCAG 2 A/AA audit of 13 pages + login with 0 serious/critical violations (`e2e/accessibility.spec.ts`) | Done |
 
 ## Success criteria
 
@@ -96,7 +96,7 @@ category ✔ · exceptions nearing expiry ✔ · attack paths to crown jewels �
 | Layered, modular, API-first | `backend/app/{api,services,models,core}`, OpenAPI | Done |
 | Coding standards, static analysis | ruff, black, mypy, ESLint (evidence files) | Done |
 | Source control, branching, PRs | Git history, `CONTRIBUTING.md`, `19_Project_Plan.md` | Done (PRs need a hosted remote) |
-| Testing ≥ 70% + integration + E2E | 85%, 113 + 12 + 13 tests | Done |
+| Testing ≥ 70% + integration + E2E | 86%, 114 + 12 + 14 tests | Done |
 | DevSecOps | bandit, pip-audit, npm audit, gitleaks, CI | Done (gitleaks CI-only) |
 | Documentation | `docs/01`–`20`, diagrams | Done |
 | Agile project management | `19_Project_Plan.md` | Done |
