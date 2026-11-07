@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ivm-db
+  namespace: ivm
+spec:
+  serviceName: ivm-db
+  replicas: 1
+  selector:
+    matchLabels: { app: ivm-db }
+  template:
+    metadata:
+      labels: { app: ivm-db }
+    spec:
+      securityContext: { runAsNonRoot: true, runAsUser: 999, fsGroup: 999, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: postgres
+          image: postgres:15-alpine
+          env:
+            - { name: POSTGRES_DB, value: ivm }
+            - { name: POSTGRES_USER, value: ivm }
+            - name: POSTGRES_PASSWORD
+              valueFrom: { secretKeyRef: { name: ivm-secrets, key: POSTGRES_PASSWORD } }
+            - { name: PGDATA, value: /var/lib/postgresql/data/pgdata }
+          ports: [{ containerPort: 5432 }]
+          readinessProbe:
+            exec: { command: ["pg_isready", "-U", "ivm", "-d", "ivm"] }
+            periodSeconds: 5
+          resources:
+            requests: { cpu: 250m, memory: 512Mi }
+            limits: { cpu: "1", memory: 1Gi }
+          securityContext: { allowPrivilegeEscalation: false, capabilities: { drop: ["ALL"] } }
+          volumeMounts: [{ name: data, mountPath: /var/lib/postgresql/data }]
+  volumeClaimTemplates:
+    - metadata: { name: data }
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources: { requests: { storage: 10Gi } }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: ivm-db, namespace: ivm }
+spec:
+  selector: { app: ivm-db }
+  ports: [{ port: 5432, targetPort: 5432 }]

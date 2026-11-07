@@ -1,0 +1,12 @@
+# Non-secret configuration. Secrets live in secret.example.yaml (copy, fill, never commit).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ivm-config
+  namespace: ivm
+data:
+  APP_ENV: "production"
+  MFA_REQUIRED: "true"
+  LOGIN_RATE_LIMIT: "10"
+  AI_RATE_LIMIT: "20"
+  ANTHROPIC_MODEL: "claude-haiku-4-5-20251001"
