@@ -1,0 +1,4 @@
+$ ./.venv/bin/ruff check app tests
+# collected 2026-11-07T02:34:08Z
+All checks passed!
+# exit code: 0

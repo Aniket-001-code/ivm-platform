@@ -11,9 +11,26 @@
 - [x] Update vulnerable Python and frontend dependencies; `pip-audit` and `npm audit` report no known vulnerabilities.
 - [x] Backend tests: 42 passed. CI-selected coverage gate: 100% for normalization and risk engine. Frontend Vitest: 1 passed, lint/build pass.
 - [x] Ruff, Black, mypy (`--ignore-missing-imports`), Bandit, API smoke, and dashboard latency (<1 second p95) pass.
-- [x] Playwright workflow suite: 5/5 flows passed in final Playwright run.
-- [ ] Split backend API/model and frontend page monoliths into domain modules.
-- [ ] Complete full frontend route guard coverage, sorting/pagination/exports, admin editors, complete AI source reporting/tool use, and dashboard page specialization.
-- [ ] Add broad role-by-endpoint tests; whole-backend 70% coverage, gitleaks and Docker/PostgreSQL verification remain unavailable/incomplete.
+- [x] Playwright workflow suite: all flows pass (13 as of 2026-11-07).
+- [x] Split backend API/model and frontend page monoliths into domain modules.
+- [x] Complete full frontend route guard coverage, sorting/pagination/exports, admin editors, AI source reporting, and dashboard page specialization. (Claude tool-use mode remains out of scope.)
+- [x] Add broad role-by-endpoint tests and a whole-backend 70% coverage gate (now ≈82%).
+- [ ] Gitleaks and Docker/PostgreSQL verification (tools unavailable locally; covered by CI jobs).
 
 See `KNOWN_ISSUES.md` for the remaining limitations.
+
+## 2026-11-06 pass
+
+- Runs on macOS via `scripts/dev.sh`; CI workflow added.
+- Fixed: assistant stuck on "Thinking…", three inconsistent data-scope rule sets (now `core/scope.py`), unscoped AI explain/recommendations, exception request/review/revoke/export scope gaps, crashes comparing naive and aware timestamps (overdue tasks, account lockout), CSV formula injection, unvalidated user roles and finding statuses, unaudited SLA/ownership changes, Swagger blocked by CSP, access tokens never refreshed (15-minute logout), admin weights shown as 2500%, task filter text sent as update comment.
+- Tests: backend 79, frontend 12, Playwright 9 — all passing.
+
+## 2026-11-07 pass — full SPEC coverage
+
+- Implemented every remaining SPEC item: asset registration/criticality editing, survivorship and failed-row recovery,
+  EASM source, threat-feed rescoring, single scoring path, ownership routing with groups/tags, policy-driven
+  escalation with acknowledgement and inbox, task drawer/reassignment/tickets with signed webhook, MFA flow and
+  password change, hash-chained append-only audit, forecasting (breach likelihood, trend), remediation sequencing,
+  exception review packs, executive board report, success-criteria scorecard, Kubernetes manifests, graph export.
+- Deliverables: all docs 01–20, evidence, demo video, presentation deck.
+- Tests: backend 113 (85% coverage), frontend 12, Playwright 13 — all passing; 34 defects closed (`docs/13_Defect_Summary.md`).

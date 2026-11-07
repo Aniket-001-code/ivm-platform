@@ -1,45 +1,109 @@
 # Requirements Traceability Matrix
 
-Use cases: UC-1 inventory; UC-2 import findings; UC-3 normalize/deduplicate; UC-4 enrich threat data; UC-5 score/explain risk; UC-6 inspect paths; UC-7 assign work; UC-8 update remediation; UC-9 escalate SLA; UC-10 request exception; UC-11 approve/reject exception; UC-12 review dashboards; UC-13 ask AI; UC-14 create simulated ticket.
+Status: **Done** (implemented and verified), **Partial** (implemented with a stated limit), **Not verified** (built,
+but the runtime was unavailable locally). Test names refer to `backend/tests`, `frontend/src/*.test.*` and
+`e2e/workflows.spec.ts`; evidence files are in `docs/evidence/`.
 
-| Use case | Modules / APIs | Screen | Verification |
-|---|---|---|---|
-| UC-1 Inventory assets | seed, `/assets`, `/assets/{id}` | Asset inventory/profile | TC-001–006 |
-| UC-2 Import source records | ingestion, `/imports/{source}` | Data imports | TC-009–015 |
-| UC-3 Normalize and deduplicate | normalization, `/findings` | Import summary/register | TC-016–022 |
-| UC-4 Enrich threat data | catalog, `/threat-intel/{cve}` | Finding context | TC-026–027 |
-| UC-5 Calculate explainable risk | risk engine, `/risk/*` | Finding detail/Admin | TC-023–030 |
-| UC-6 Inspect attack route | attack_path, `/attack-paths*` | Attack paths | TC-031–033 |
-| UC-7 Assign remediation | ownership/remediation, `/tasks` | Remediation | TC-034–035 |
-| UC-8 Update remediation evidence | task update service, `PATCH /tasks/{id}` | Remediation | TC-036–038 |
-| UC-9 Escalate SLA breach | scheduler, `/jobs/run`, `/escalations` | Admin/manager | TC-039–040 |
-| UC-10 Request risk exception | exception API | Risk exceptions | TC-041, TC-045 |
-| UC-11 Review exception | approve/reject/revoke APIs | Risk exceptions | TC-042–046 |
-| UC-12 Review portfolio | dashboards API | Overview / auditor | TC-054–055 |
-| UC-13 Ask risk assistant | AI intent/fallback, `/ai/ask` | AI assistant | TC-056–057 |
-| UC-14 Create/transition ticket | ticket simulation APIs | Remediation | TC-058–059 |
+## Use cases
 
-| Criterion | Use case | Service/API | Screen | Test evidence |
+| ID | Requirement | Implementation | Verification | Status |
 |---|---|---|---|---|
-| SC-1 all dataset assets | UC-1 | seed, `/assets` | Asset inventory/detail | TC-001–006 |
-| SC-2 3+ source types | UC-2 | ingestion, `/imports/{source}` | Data imports | TC-009–012 |
-| SC-3 automatic dedup | UC-3 | normalization, fingerprint | Import result / findings | TC-016–022 |
-| SC-4 severity + business context | UC-5 | risk engine, `/risk/findings/{id}/explain` | Finding detail | TC-023–029 |
-| SC-5 threat intel changes priority | UC-4/5 | vulnerability catalog, threat route | Finding detail | TC-026–027 |
-| SC-6 owner accuracy >90% | UC-7 | seed owner assignment and asset fallback | Remediation | Evaluate generated ownership ground truth; see limitation |
-| SC-7 detect/escalate SLA | UC-9 | APScheduler, `/jobs/run`, `/escalations` | Admin/manager dashboard | TC-035–040 |
-| SC-8 exception E2E + audit | UC-10/11 | exception routes + audit | Risk exceptions, audit trail | TC-041–046 |
-| SC-9 path changes priority | UC-6/5 | NetworkX, attack path recalculate | Attack paths/finding detail | TC-031–033 |
-| SC-10 operational/executive dashboards | UC-12 | `/dashboards/{view}` | Overview, tasks, audit | TC-054 |
-| SC-11 API + simulated ticketing | UC-14 | `/ticketing/{system}/issues` | Remediation workflow | TC-058–059 |
-| SC-12 triage effort estimate | UC-12 | dashboard formula and six-minute assumption | Executive overview | TC-055 |
+| UC-1 | Asset registration | `POST/PATCH /assets`, bulk import, Assets page + editor | `test_asset_registration_validates_and_audits`, E2E "administrator registers an asset" | Done |
+| UC-2 | Criticality assignment | Tier, crown jewel, customer-facing, sensitive data, regulatory tags, exposure, environment, BU/service, owner; rescoring on change | `test_criticality_change_rescores_findings_and_is_audited` | Done |
+| UC-3 | Vulnerability import | Scanner, CSPM, pentest, container/K8s, identity, EASM, threat-intel feed | E2E import test; `test_seeded_smoke`; SC-2 | Done |
+| UC-4 | Correlation | Fingerprint de-duplication, asset matching (host/FQDN/URL/IP), survivorship, reopen | `test_survivorship_…`, `test_closed_finding_is_reopened_…`; SC-3 | Done |
+| UC-5 | Threat enrichment | Catalog EPSS/KEV/exploit/ransomware; feed import rescoring | `test_threat_feed_…`; SC-5 | Done |
+| UC-6 | Risk scoring | 8-factor engine, bands, versioned weights, what-if, explanations | `test_risk_engine.py`; SC-4 | Done |
+| UC-7 | Attack path analysis | networkx paths, path influence, impact report, graph export | `test_rescoring_preserves_attack_path_influence`, `test_attack_path_impact_…`; SC-9 | Done |
+| UC-8 | Ownership assignment | Rules (BU/service/type/env/tag, user/group), fallbacks, audited, reassignment | `test_ownership_rules_…`, `test_reassignment_…`; SC-6 | Done |
+| UC-9 | Remediation tracking | Status machine, evidence to close, finding sync, timeline, tickets | `test_closing_a_task_closes_its_finding`, E2E close task | Done |
+| UC-10 | SLA monitoring | Policy-driven 3-level escalation, acknowledgement, inbox, breach forecast | `test_escalation_thresholds_follow_sla_policy`, `test_escalation_acknowledgement_…`; SC-7 | Done |
+| UC-11 | Exception management | Temporary/long-term, SoD, revoke, expiry + warnings, review packs | E2E exception test, `test_exception_review_pack_…`; SC-8 | Done |
+| UC-12 | Executive reporting | Role dashboards, heatmap, trend, MTTR, SLA, forecasts, board report HTML | `test_reports_endpoints_respond`, E2E executive tests | Done |
+| UC-13 | AI recommendations | Remediation plan (effort-weighted), explanations, executive summary | `test_assistant_understands_entities_and_follow_ups` | Done |
+| UC-14 | Natural language querying | Entity + intent NLQ, follow-ups, sources, optional Claude | Same + E2E assistant tests | Done (Claude path not verified: no key) |
 
-SC-6 is not certified by the current implementation: generated asset owners are assigned deterministically, but there is no separate holdout ground-truth evaluation/report yet. Treat the >90% target as unverified until that evaluation is added.
+## Business and technical objectives
 
+| ID | Delivered by | Status |
+|---|---|---|
+| BO-1 visibility | Inventory, unified findings, dashboards | Done |
+| BO-2 business/threat-aware prioritisation | Risk engine + threat intel + paths | Done |
+| BO-3 remediation efficiency & ownership | Ownership routing, tasks, reassignment | Done |
+| BO-4 SLA compliance | SLA policy, escalation, compliance KPI | Done |
+| BO-5 executive reporting | Executive dashboard, board report, forecasts | Done |
+| BO-6 less manual effort | De-duplication, auto-assignment, AI, automation-impact report (SC-12) | Done |
+| BO-7 measurable indicators | SLA compliance, MTTR, overdue, BU trends, risk reduction | Done |
+| TO-1..TO-10 | Map to UC-3; UC-1/2; UC-4; UC-6; UC-8/10; UC-11; API (104 ops); UC-12; UC-7; UC-13/14 | Done |
 
-## Verification update (2026-11-03)
+## Non-functional requirements
 
-- `GET /api/v1/health`, analyst login, `/dashboards/analyst`, and `/attack-paths` were exercised against the final seeded SQLite run. It returned 3,532 open findings, 156 Critical, 434 High, 26 weekly history points, and 109 attack paths.
-- Seed inspection confirmed six pending and four approved exceptions and three escalation records at each of levels 1, 2, and 3.
-- `pytest` passes 42 tests. The CI-selected risk engine and normalization modules report 100% coverage. Frontend currently has one Vitest test.
-- Detailed mapping and uncovered acceptance items are listed in `KNOWN_ISSUES.md`; this traceability document is not claiming every SPEC criterion is complete.
+| Category | Evidence | Status |
+|---|---|---|
+| Performance (< 3 s) | `dashboard-latency.txt`: p95 0.51 s | Done |
+| Scalability | Stateless API, paging, HPA manifests, separable scheduler | Partial (not load-tested at scale) |
+| Availability & backup | `backup.sh`/`restore.sh` (SQLite, PostgreSQL), health probes | Done |
+| Reliability | Failed rows kept and retryable; per-row savepoints | Done |
+| Security | RBAC, scope, MFA, TLS, Fernet secrets, secrets handling (`08`) | Partial (see `08` recommendations) |
+| Privacy | Synthetic data only | Done |
+| Maintainability | Modular services/routes/pages, config-driven scoring, 85% coverage | Done |
+| Usability | Search, filters, sorting, paging, role views, notifications | Done |
+| Auditability | Hash-chained append-only audit of imports, scoring, ownership, exceptions, approvals | Done |
+| Explainability | Factor reasons, path base → final, AI sources | Done |
+| Accessibility | Labels, keyboard focus, skip link, AA contrast for small text, Escape-closable dialogs | Partial (no formal audit tool run) |
+
+## Success criteria
+
+| ID | Measured value (fresh seed) | Status |
+|---|---|---|
+| SC-1 | 300 of 300 dataset assets | Done |
+| SC-2 | 5 import sources (+ EASM, threat intel) | Done |
+| SC-3 | 714 duplicates merged (28.6%), 500 multi-source findings | Done |
+| SC-4 | 2,588 of 3,454 open findings re-banded by context | Done |
+| SC-5 | 444 findings would drop a band without threat signals | Done |
+| SC-6 | 100% of 393 tasks match dataset owner (target 90%) | Done |
+| SC-7 | All overdue tasks without an exception escalated | Done |
+| SC-8 | All reviewed exceptions have audit evidence | Done |
+| SC-9 | 300 findings raised a band; +9.67 average | Done |
+| SC-10 | Four role dashboards + reports | Done |
+| SC-11 | Jira/ServiceNow simulators + signed webhook | Done |
+| SC-12 | ≈ 99 analyst hours saved (stated assumptions) | Done |
+
+## Dashboard requirements (section 13)
+
+Top risky assets ✔ · critical by business unit ✔ · internet-facing high-risk assets ✔ · overdue by owner and SLA
+category ✔ · exceptions nearing expiry ✔ · attack paths to crown jewels ✔ · risk trend ✔ · risk reduction % ✔ · MTTR ✔
+· executive heatmap by service ✔ — all in `frontend/src/pages/Dashboard.tsx` and the board report. **Done**
+
+## Bonus items (section 17)
+
+| Item | Implementation | Status |
+|---|---|---|
+| Predictive risk modelling | `services/forecasting.py` breach likelihood from closed-task history | Done |
+| Advanced conversational assistant | Entities, follow-ups, sources | Done |
+| Executive heatmaps & board summaries | Heatmap, `reports/executive?format=html` | Done |
+| Cloud-native containers | Dockerfiles, Compose, `deploy/k8s` | Not verified (no Docker/cluster locally; CI builds images) |
+| Simulated ServiceNow/JIRA | `routes/ticketing.py` + webhook | Done |
+| Graph database for attack paths | Cypher/GraphML export for Neo4j (`/attack-paths/export`); in-process networkx | Partial (export, not a running graph DB) |
+| Risk forecast from SLA breach likelihood | `/tasks/breach-forecast`, `/analytics/forecast` | Done |
+| Remediation sequencing by effort and risk | `/reports/remediation-plan` | Done |
+| Automated exception review packs | `/exceptions/{id}/review-pack` | Done |
+
+## Mandatory practices (section 11) and deliverables (section 10)
+
+| Item | Where | Status |
+|---|---|---|
+| Layered, modular, API-first | `backend/app/{api,services,models,core}`, OpenAPI | Done |
+| Coding standards, static analysis | ruff, black, mypy, ESLint (evidence files) | Done |
+| Source control, branching, PRs | Git history, `CONTRIBUTING.md`, `19_Project_Plan.md` | Done (PRs need a hosted remote) |
+| Testing ≥ 70% + integration + E2E | 85%, 113 + 12 + 13 tests | Done |
+| DevSecOps | bandit, pip-audit, npm audit, gitleaks, CI | Done (gitleaks CI-only) |
+| Documentation | `docs/01`–`20`, diagrams | Done |
+| Agile project management | `19_Project_Plan.md` | Done |
+| Operational readiness | JSON logging, error envelope, audit, config, backup/restore | Done |
+| Design deliverables | `01`–`06` | Done |
+| Security deliverables | `07`–`09`, evidence scans, RBAC | Done |
+| Testing deliverables | `10`–`13`, `docs/evidence/` | Done |
+| Final report, user manual, admin guide | `16`, `14`, `15` | Done |
+| Demonstration video | `docs/demo/ivm-demo.webm` | Done |
+| Final presentation | `docs/presentation/IVM_Final_Presentation.pptx`, `18` | Done |
