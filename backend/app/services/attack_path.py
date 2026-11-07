@@ -11,28 +11,15 @@ from app.models.entities import (
     Finding,
     RiskScoreHistory,
     ScoringConfig,
-    VulnerabilityCatalog,
 )
+from app.services.scoring import intel_for
 from app.services.risk_engine import (
     DEFAULT_MAX_POINTS,
     DEFAULT_THRESHOLDS,
     score_finding,
 )
 
-
-def _intel(db: Session, finding: Finding) -> dict:
-    if not finding.vulnerability_id:
-        return {}
-    item = db.get(VulnerabilityCatalog, finding.vulnerability_id)
-    if not item:
-        return {}
-    return {
-        "epss_score": item.epss_score,
-        "exploit_maturity": item.exploit_maturity,
-        "in_kev_list": item.in_kev_list,
-        "ransomware_used": item.ransomware_used,
-        "actively_exploited": item.actively_exploited,
-    }
+_intel = intel_for
 
 
 def recalculate_paths(db: Session) -> list[AttackPath]:

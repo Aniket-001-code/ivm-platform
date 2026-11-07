@@ -1,4 +1,6 @@
 import logging
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -19,17 +21,34 @@ from app.jobs.scheduler import start_scheduler, stop_scheduler
 configure_logging()
 logger = logging.getLogger(__name__)
 settings = get_settings()
-app = FastAPI(title=settings.app_name, version="0.1.0")
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    with SessionLocal() as db:
+        seed_demo(db)
+    if settings.scheduler_enabled:
+        start_scheduler()
+    try:
+        yield
+    finally:
+        if settings.scheduler_enabled:
+            stop_scheduler()
+
+
+app = FastAPI(title=settings.app_name, version="0.1.0", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "http://127.0.0.1:5173",
         "http://localhost:8080",
         "https://localhost:8443",
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PATCH", "PUT", "DELETE"],
     allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+    expose_headers=["X-Total-Count", "X-Request-ID"],
 )
 app.include_router(api_router)
 
@@ -71,6 +90,9 @@ async def validation_error(_request: Request, exc: RequestValidationError):
     )
 
 
+DOCS_PATHS = {"/docs", "/redoc", "/docs/oauth2-redirect"}
+
+
 @app.middleware("http")
 async def request_context(request: Request, call_next):
     request_id = request.headers.get("X-Request-ID") or new_request_id()
@@ -92,9 +114,18 @@ async def request_context(request: Request, call_next):
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-    response.headers["Content-Security-Policy"] = (
-        "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'"
-    )
+    if request.url.path in DOCS_PATHS:
+        # Swagger UI / ReDoc load their assets from the jsDelivr CDN.
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
+            "img-src 'self' data: https://fastapi.tiangolo.com; frame-ancestors 'none'"
+        )
+    else:
+        response.headers["Content-Security-Policy"] = (
+            "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; "
+            "connect-src 'self'; frame-ancestors 'none'; base-uri 'self'"
+        )
     return response
 
 
@@ -103,15 +134,3 @@ def health() -> dict[str, str]:
     with engine.connect() as connection:
         connection.execute(text("SELECT 1"))
     return {"status": "ok", "database": "ok"}
-
-
-@app.on_event("startup")
-def seed_empty_database() -> None:
-    with SessionLocal() as db:
-        seed_demo(db)
-    start_scheduler()
-
-
-@app.on_event("shutdown")
-def shutdown_jobs() -> None:
-    stop_scheduler()

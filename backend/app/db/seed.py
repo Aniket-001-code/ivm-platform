@@ -3,16 +3,19 @@
 import csv
 import json
 from datetime import datetime, timedelta, timezone
+from uuid import uuid4
 from pathlib import Path
 
 import bcrypt
-from sqlalchemy import select
+from sqlalchemy import insert, select
 from sqlalchemy.orm import Session
 
+from app.core.timeutil import as_utc
+from app.services.audit import record_audit
 from app.models.entities import (
+    TaskUpdate,
     Asset,
     AssetConnection,
-    AuditLog,
     BusinessService,
     BusinessUnit,
     Escalation,
@@ -315,6 +318,42 @@ def seed_demo(db: Session) -> None:
                 )
             )
 
+    # Six months of remediation history: every fifth remaining task was fixed in the past,
+    # mostly within SLA and some late, so MTTR, SLA compliance, risk reduction and the
+    # breach-forecast model have realistic history to learn from.
+    sla_by_band = {"critical": 7, "high": 15}
+    for index, task in enumerate(tasks[3::5]):
+        created = now - timedelta(days=30 + (index * 7) % 150)
+        sla = sla_by_band.get(task.priority, 15)
+        late = index % 6 == 0
+        duration = sla + 2 + index % 5 if late else max(1, (index * 3) % sla)
+        task.created_at = created
+        task.sla_due_date = created + timedelta(days=sla)
+        task.closed_at = created + timedelta(days=duration, hours=index % 9)
+        task.status = "closed"
+        task.evidence_notes = "Patched and verified by rescan (synthetic history)."
+        closed_finding = db.get(Finding, task.finding_id)
+        if closed_finding:
+            closed_finding.status = "closed"
+            closed_finding.closed_at = task.closed_at
+        if task.assigned_to_user_id:
+            for old, new in (
+                ("open", "in_progress"),
+                ("in_progress", "pending_verification"),
+                ("pending_verification", "closed"),
+            ):
+                db.add(
+                    TaskUpdate(
+                        task_id=task.id,
+                        user_id=task.assigned_to_user_id,
+                        old_status=old,
+                        new_status=new,
+                        comment="Synthetic remediation history",
+                        created_at=task.closed_at,
+                    )
+                )
+    db.flush()
+
     # Six pending plus four approved examples, including near-term expiries.
     eligible = [f for f in findings if f.status == "open"][:10]
     analysts = [users["user2@demo.bank"], users["user3@demo.bank"]]
@@ -344,44 +383,53 @@ def seed_demo(db: Session) -> None:
             approved_at=now if approved else None,
         )
         db.add(item)
+        db.flush()
+        record_audit(
+            db,
+            item.requested_by,
+            "exception_requested",
+            "risk_exception",
+            item.id,
+            new={"finding_id": str(finding.id), "seeded_demo": True},
+        )
         if approved:
             finding.status = "risk_accepted"
-            db.add(
-                AuditLog(
-                    actor_user_id=architect.id,
-                    action="exception_approved",
-                    entity_type="risk_exception",
-                    new_value={"finding_id": str(finding.id), "seeded_demo": True},
-                )
+            record_audit(
+                db,
+                architect.id,
+                "exception_approved",
+                "risk_exception",
+                item.id,
+                new={"finding_id": str(finding.id), "seeded_demo": True},
             )
 
     db.flush()
-    all_findings = db.scalars(select(Finding)).all()
-    for finding_index, finding in enumerate(all_findings):
-        if finding_index < 100:
-            for week in range(26, -1, -1):
-                calculated = now - timedelta(weeks=week)
-                prior_score = max(0.0, finding.risk_score - ((26 - week) * 0.15))
-                db.add(
-                    RiskScoreHistory(
-                        finding_id=finding.id,
-                        score=round(prior_score, 1),
-                        band=finding.risk_band,
-                        config_version=1,
-                        calculated_at=calculated,
-                    )
-                )
-        else:
-            db.add(
-                RiskScoreHistory(
-                    finding_id=finding.id,
-                    score=finding.risk_score,
-                    band=finding.risk_band,
-                    config_version=1,
-                    calculated_at=now,
-                )
-            )
     db.commit()
     from app.services.attack_path import recalculate_paths
 
     recalculate_paths(db)
+    # Written after path modeling so history ends at the path-aware score.
+    # 26 weeks of score history for every finding (bulk insert): older weeks carried more
+    # risk (findings since remediated, threat signals not yet mitigated), so the portfolio trend
+    # and the risk-reduction KPI reflect a consistent population week to week.
+    history_rows = []
+    for finding_index, finding in enumerate(db.scalars(select(Finding)).all()):
+        drift = 2.0 + finding_index % 5
+        closed = as_utc(finding.closed_at) if finding.closed_at else None
+        for week in range(26, -1, -1):
+            calculated = now - timedelta(weeks=week)
+            if closed and calculated > closed:
+                break
+            score = min(100.0, finding.risk_score + drift * week / 26)
+            history_rows.append(
+                {
+                    "id": uuid4(),
+                    "finding_id": finding.id,
+                    "score": round(score, 1),
+                    "band": finding.risk_band,
+                    "config_version": 1,
+                    "calculated_at": calculated,
+                }
+            )
+    db.execute(insert(RiskScoreHistory), history_rows)
+    db.commit()

@@ -99,6 +99,7 @@ ROLE_PERMISSIONS: dict[str, frozenset[Permission]] = {
             Permission.AUTHENTICATED,
             Permission.USER_READ,
             Permission.TASK_MANAGE,
+            Permission.ASSET_MANAGE,
             Permission.RISK_MANAGE,
             Permission.RISK_WHAT_IF,
             Permission.EXCEPTION_APPROVE_TEMP,
@@ -195,6 +196,13 @@ def canonical_role(role: str) -> str:
     return ROLE_ALIASES.get(role, role)
 
 
+def permissions_for(role: str) -> list[str]:
+    """Sorted permission names for a role, sent to the browser to drive menus and guards."""
+    return sorted(
+        p.value for p in ROLE_PERMISSIONS.get(canonical_role(role), frozenset())
+    )
+
+
 def has_permission(role: str, permission: Permission) -> bool:
     return permission in ROLE_PERMISSIONS.get(canonical_role(role), frozenset())
 
@@ -245,6 +253,10 @@ def permission_for_request(request: Request) -> Permission:
         return Permission.RISK_WHAT_IF
     if path.startswith("/risk/recalculate") or path.startswith("/risk/config"):
         return Permission.RISK_MANAGE if method != "GET" else Permission.RISK_READ
+    if path.startswith("/reports"):
+        return Permission.REPORT_READ
+    if path.startswith("/analytics"):
+        return Permission.RISK_READ
     if path.startswith("/risk") or path.startswith("/dashboards"):
         return Permission.RISK_READ
     if path.startswith("/attack-paths"):
@@ -257,6 +269,10 @@ def permission_for_request(request: Request) -> Permission:
             if method in {"PATCH", "PUT", "POST", "DELETE"}
             else Permission.TASK_READ
         )
+    if path.startswith("/escalations") and path.endswith("/acknowledge"):
+        return (
+            Permission.AUTHENTICATED
+        )  # the route itself restricts this to the recipient
     if path.startswith("/escalations"):
         return Permission.NOTIFICATION_READ
     if path.startswith("/jobs/run"):

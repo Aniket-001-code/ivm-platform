@@ -4,7 +4,7 @@ import pytest
 from fastapi import HTTPException
 from sqlalchemy import select
 
-from app.api.v1.router import review_exception
+from app.api.v1.routes.exceptions import review_exception
 from app.core.rbac import Permission, has_permission
 from app.models.entities import (
     Asset,

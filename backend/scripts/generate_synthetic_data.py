@@ -282,3 +282,52 @@ for index in range(18):
 print(
     f"Wrote deterministic synthetic data to {OUT}; 300 assets, 120 CVEs and {len(scanner)+len(cspm)+len(pentest)+len(container)+100} raw rows."
 )
+
+# External attack surface monitoring (EASM) observations. A separate seeded generator keeps
+# every earlier file byte-for-byte identical to previous runs.
+easm_random = random.Random(4242)
+EASM_ISSUES = [
+    ("Expired TLS certificate", "Medium", "Certificate presented on the public endpoint has expired."),
+    ("Administrative login page exposed to the internet", "High", "Admin console reachable without network restriction."),
+    ("Outdated web server banner", "Low", "Server banner discloses an outdated software version."),
+    ("Remote access service exposed", "High", "SSH/RDP reachable from the internet."),
+    ("Missing HTTP security headers", "Low", "HSTS and CSP headers are absent on the public site."),
+]
+easm = []
+exposed = [a for a in assets if a["internet_exposed"]]
+for index, asset in enumerate(exposed):
+    title, severity, detail = EASM_ISSUES[index % len(EASM_ISSUES)]
+    easm.append(
+        {
+            "url": f"https://{asset['hostname']}:{easm_random.choice([443, 8443])}/",
+            "issue_type": title,
+            "risk": severity,
+            "evidence": detail,
+            "observed_at": str(TODAY - timedelta(days=easm_random.randint(0, 30))),
+        }
+    )
+    if index % 4 == 0:
+        # Same CVE the scanner reports for this asset, seen from outside: exercises
+        # cross-source correlation (scanner row i pairs assets[i] with catalog[i]).
+        vuln = catalog[assets.index(asset) % len(catalog)]
+        easm.append(
+            {
+                "fqdn": asset["hostname"],
+                "cve_id": vuln["cve_id"],
+                "issue_type": vuln["title"],
+                "risk": "High",
+                "cvss_score": vuln["cvss_base_score"],
+                "evidence": "Externally observed vulnerable service version.",
+            }
+        )
+for index in range(5):
+    # Hosts not yet in the inventory: rejected on import, recoverable after registration.
+    easm.append(
+        {
+            "fqdn": f"shadow-it-{index:02d}.bank.example",
+            "issue_type": "Unknown internet-facing host",
+            "risk": "Medium",
+            "evidence": "Discovered by external scan; not in asset inventory.",
+        }
+    )
+(OUT / "easm_findings.json").write_text(json.dumps(easm, indent=2), encoding="utf-8")
