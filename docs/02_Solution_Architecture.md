@@ -250,7 +250,7 @@ Trust boundaries: (1) the browser is untrusted; (2) imported files are untrusted
 
 ## 9. Known architectural gaps
 
-- The refresh token and the access token are kept in browser `sessionStorage`. Production should use a Secure, HttpOnly, SameSite cookie for the refresh token.
+- The refresh token is held in an HttpOnly, SameSite=Strict cookie (`ivm_refresh`, path `/api/v1/auth`; Secure outside development); the short-lived access token is kept in memory and mirrored in `sessionStorage` for page reloads.
 - Rate limits are in-memory, per process and keyed on the client IP. Behind a proxy all users may share one address. A shared store (for example Redis) and a trusted forwarded-for header are needed.
 - The audit triggers can be dropped by a database superuser. External WORM storage is recommended.
 - Kubernetes manifests are untested. Issues seen on review: the `ivm-web` pod sets no `runAsNonRoot` or seccomp profile and the nginx image runs as root on port 80, so the restricted Pod Security Standard would reject it; `frontend/nginx.conf` proxies to the host name `backend`, which does not exist in the namespace (the Service is `ivm-api`); the backend image has no `pg_dump`, so a backup CronJob needs a PostgreSQL client image.

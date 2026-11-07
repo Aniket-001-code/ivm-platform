@@ -20,7 +20,7 @@ is `09_Secure_Coding_Checklist.md`. Status: **Implemented**, **Partial** (works,
 | Area | Controls (code) | Status |
 |---|---|---|
 | Authentication | bcrypt; lockout after 5 failures for 15 min; constant-time unknown-email handling; login rate limit; TOTP MFA for any user who enables it, mandatory for privileged roles with `MFA_REQUIRED=true` (`routes/auth.py`) | Implemented |
-| Session management | 15-min JWT access tokens; 7-day refresh tokens rotated on every use, stored hashed, revoked on logout/password change/deactivation; single-flight refresh in the browser (`frontend/src/api/client.ts`) | Partial — refresh token kept in `sessionStorage`; access token valid until expiry after logout |
+| Session management | 15-min JWT access tokens; 7-day refresh tokens rotated on every use, stored hashed, revoked on logout/password change/deactivation; single-flight refresh in the browser (`frontend/src/api/client.ts`) | Implemented — refresh token in an HttpOnly, SameSite=Strict cookie with unique `jti`; access token valid until expiry after logout (15 min) |
 | Access control | See principles above; tested role by endpoint (`tests/integration/test_role_matrix.py`) | Implemented |
 | Input validation | Pydantic models (`extra="forbid"` on assets), enumerated statuses/roles/types, upload size 10 MB and type checks, CVSS/EPSS range checks, bounded AI question/history | Implemented |
 | Output encoding | React escaping; HTML reports escape every value; CSV formula-injection neutralisation (`common._csv_cell`) | Implemented |
@@ -46,7 +46,7 @@ is `09_Secure_Coding_Checklist.md`. Status: **Implemented**, **Partial** (works,
 
 ## Recommendations before any production use (priority order)
 
-1. Move the refresh token to a Secure, HttpOnly, SameSite cookie and add access-token revocation (token version).
+1. Add access-token revocation (token version) — the refresh token already lives in an HttpOnly cookie.
 2. Stream audit events to external immutable storage; restrict DB roles so the application user cannot alter triggers.
 3. Use a shared rate-limit store (e.g. Redis) and trust `X-Forwarded-For` only from the ingress.
 4. Agree the business-unit visibility policy with stakeholders; add SSO (OIDC) with MFA at the identity provider.

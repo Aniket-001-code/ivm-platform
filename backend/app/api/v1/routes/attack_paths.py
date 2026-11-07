@@ -35,6 +35,11 @@ router = APIRouter(prefix="/api/v1")
 
 @router.get("/attack-paths")
 def attack_paths(db: Session = Depends(get_db), user: User = Depends(current_user)):
+    return _attack_path_list(db, user)
+
+
+@analytics.cached
+def _attack_path_list(db: Session, user: User):
     query = select(AttackPath)
     if not _global_scope(user):
         scope = analytics.asset_scope(user)

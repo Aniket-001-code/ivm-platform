@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { api, apiPage, qs, setAccessToken, setSessionHandlers, storeRefreshToken } from './client'
+import { api, apiPage, qs, setAccessToken, setSessionHandlers } from './client'
 
 const json = (body: unknown, status = 200, headers: Record<string, string> = {}) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json', ...headers } })
@@ -10,7 +10,6 @@ describe('api client', () => {
 
   beforeEach(() => {
     setAccessToken('old-access')
-    storeRefreshToken('refresh-1')
     setSessionHandlers({ expired, refreshed })
   })
 
@@ -38,7 +37,7 @@ describe('api client', () => {
     expect(b).toEqual({ ok: true })
     expect(refreshCalls).toBe(1)
     expect(refreshed).toHaveBeenCalledWith('new-access')
-    expect(sessionStorage.getItem('ivm.refresh')).toBe('refresh-2')
+    expect(sessionStorage.getItem('ivm.refresh')).toBeNull() // never stored in JS-readable storage
   })
 
   it('reports session loss when the refresh token is rejected', async () => {

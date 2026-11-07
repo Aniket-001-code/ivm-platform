@@ -45,7 +45,7 @@ Sign-in behaviour (implemented in `backend/app/api/v1/routes/auth.py`):
 | More than 10 sign-in attempts per minute from one address (default) | *Rate limit exceeded* — wait one minute |
 | `MFA_REQUIRED=true` and you are a Platform Administrator, Security Architect or Vulnerability Manager without MFA | *MFA enrollment is required for this role; ask an administrator* |
 
-**Session.** The access token lasts 15 minutes and is renewed automatically in the background while you work, so you are not signed out during normal use. Reloading the page keeps you signed in (the session is held in the browser tab's session storage and ends when the tab is closed). If renewal fails you return to the sign-in page with the banner *Your session expired. Please sign in again.*
+**Session.** The access token lasts 15 minutes and is renewed automatically in the background while you work, so you are not signed out during normal use. Reloading the page keeps you signed in (the short-lived access token is held in the tab's session storage; the renewal token is a secure cookie the page cannot read). If renewal fails you return to the sign-in page with the banner *Your session expired. Please sign in again.*
 
 **Signing out / switching role.** Select your name at the bottom of the left sidebar. This revokes your refresh token on the server and returns you to the sign-in form, where you can enter another demo account.
 

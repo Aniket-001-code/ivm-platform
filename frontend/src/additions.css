@@ -193,3 +193,44 @@ a.user-avatar { text-decoration: none; }
 }
 .exception-status.rejected, .exception-status.revoked { background: #fff2ee; color: #a8432f; }
 .exception-status.expired { background: #f0f3f6; color: #5b6878; }
+
+/* ---- WCAG AA contrast (axe-core audited, e2e/accessibility.spec.ts) ---------------------- */
+.sidebar-bottom, .user-switch, .workspace-switch { background-color: #10233f; }
+.workspace-switch { background-color: #1a3351; }
+.user-switch strong, .workspace-switch strong { color: #ffffff; }
+.user-switch small, .workspace-switch small, .health-line { color: #c3cfdd; }
+.status-pill { color: #4f5d6e; }
+th, .metric-top, .metric-top span, .panel-kicker, .breadcrumb, .table-primary + small, .muted { color: #5b6878; }
+td { color: #4f5d6e; }
+.env-pill { color: #4f5d6e; }
+.eyebrow, .page-title .eyebrow, .login-form .eyebrow { color: #076763; }
+.text-btn, .back-link, .asset-card-foot a { color: #076763; }
+.danger-text, .text-btn.danger-text { color: #a8432f; }
+.risk-badge.critical { color: #9c3d2c; }
+.risk-badge.high { color: #7f500d; }
+.risk-badge.medium { color: #3f5f95; }
+.risk-badge.low, .breach-low { color: #1f6b4a; }
+.breach-medium { color: #7a4f0f; }
+.exception-status.approved { color: #2b6b4c; }
+.exception-status.pending { color: #7f500d; }
+.exception-status, .exception-status.expired { color: #4f5d6e; }
+.chart-key small.trend-down { color: #1f6b4a; }
+.success-note { color: #1f6b4a; }
+.nav-link { color: #c3cfdd; }
+.login-legal, .demo-account small, .demo-account span { color: #5b6878; }
+.nav-caption { color: #a9b8ca; }
+.page-title p, .pager, .pager span, .chart-key span, .band-callout small, .chart-foot { color: #5b6878; }
+.section-grid .panel p, .admin-note p, .assistant-side p { color: #4f5d6e; }
+.asset-tags span, .graph-legend, .graph-legend span, .chat-top small, .suggestions span, .suggestions button,
+.weight-row, .weight-row span, .path-item small, .asset-card-foot, .route-node small, .score-compare .panel-kicker,
+.assistant-message small, .ai-label, .privacy-line, .exception-copy small, .selected-file, .upload-copy p,
+.factor > div:first-child span, .factor p, .detail-pair span, .sla-row small, .heat-cell small { color: #4f5d6e; }
+.route-finding { color: #7a4f0f !important; }
+.ai-label { color: #076763; }
+.heat-cell small, .heat-cell span { opacity: 1; color: #17273e; }
+.compare-toggle button { color: #4f5d6e; }
+.path-risk { color: #9c3d2c; }
+.breach-high, .breach-breached, .tag-hot { color: #9c3d2c !important; }
+.risk-badge.critical, .path-item .risk-badge.critical { color: #8a3424; }
+.empty-state { color: #4f5d6e; }
+.login-foot { color: #a9b8ca; }

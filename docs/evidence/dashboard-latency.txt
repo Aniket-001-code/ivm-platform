@@ -1,4 +1,4 @@
 $ ./.venv/bin/python scripts/measure_dashboard_latency.py
-# collected 2026-11-07T02:34:13Z
-dashboard samples=10 mean=0.500s p95=0.514s
+# collected 2026-11-07T07:23:16Z
+dashboard samples=10 mean=0.064s p95=0.014s
 # exit code: 0

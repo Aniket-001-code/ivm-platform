@@ -10,7 +10,6 @@ Updated 2026-11-06.
 
 ## Prototype limits (by design)
 
-- Refresh tokens live in browser `sessionStorage`; production should use Secure, HttpOnly cookies.
 - Business-unit scoping follows one documented rule set (`backend/app/core/scope.py`) and still needs stakeholder sign-off for real use.
 - Audit rows are hash-chained and protected by database triggers; a database superuser could still drop the triggers, so production should also ship events to external write-once storage.
 - Rate limits are per process and per client IP. Behind the Docker nginx proxy every user shares the proxy's IP, so the login limit is effectively shared.

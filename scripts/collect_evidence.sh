@@ -55,6 +55,7 @@ PY
 echo "  success-criteria.json written"
 if curl -sf http://127.0.0.1:8000/api/v1/health >/dev/null 2>&1; then
   run dashboard-latency.txt "$PY" scripts/measure_dashboard_latency.py
+  run load-benchmark.txt "$PY" scripts/load_benchmark.py --users 25 --requests 600
 fi
 
 echo "Frontend"

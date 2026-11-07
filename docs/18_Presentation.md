@@ -17,7 +17,7 @@ The deck is `docs/presentation/IVM_Final_Presentation.pptx` (16 slides, 16:9, sp
 | 11 | Dashboards | Executive view and section-13 coverage |
 | 12 | AI assistant | Example questions, sources, scoping |
 | 13 | Security | Access control, identity, audit chain, input/output safety, secrets, DevSecOps |
-| 14 | Quality | Test chart, 85% coverage, 0.51 s p95, 0 vulnerabilities |
+| 14 | Quality | Test chart, 86% coverage, 0.51 s p95, 0 vulnerabilities |
 | 15 | Success criteria | 12/12 met with values |
 | 16 | Close | Honest limits and next steps; questions |
 

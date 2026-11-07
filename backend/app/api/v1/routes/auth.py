@@ -6,7 +6,7 @@ from uuid import UUID
 import bcrypt
 import jwt
 import pyotp
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
@@ -61,7 +61,12 @@ def _fail_login(
 
 
 @router.post("/auth/login")
-def login(body: LoginInput, request: Request, db: Session = Depends(get_db)):
+def login(
+    body: LoginInput,
+    request: Request,
+    response: Response,
+    db: Session = Depends(get_db),
+):
     _limit(request, "login", settings.login_rate_limit)
     user = db.scalar(select(User).where(func.lower(User.email) == body.email.lower()))
     now = datetime.now(timezone.utc)
@@ -105,6 +110,7 @@ def login(body: LoginInput, request: Request, db: Session = Depends(get_db)):
     )
     refresh_token = _refresh_token(user)
     db.commit()
+    _set_refresh_cookie(response, refresh_token)
     return {
         "access_token": _token(user),
         "refresh_token": refresh_token,
@@ -127,16 +133,39 @@ def _user_payload(user: User) -> dict:
     }
 
 
+REFRESH_COOKIE = "ivm_refresh"
+
+
+def _set_refresh_cookie(response: Response, token: str) -> None:
+    """Browser sessions keep the refresh token in an HttpOnly cookie JavaScript cannot read."""
+    response.set_cookie(
+        REFRESH_COOKIE,
+        token,
+        max_age=7 * 24 * 3600,
+        httponly=True,
+        secure=settings.app_env.lower() not in {"development", "test"},
+        samesite="strict",
+        path="/api/v1/auth",
+    )
+
+
 @router.post("/auth/refresh")
-def refresh(body: dict, db: Session = Depends(get_db)):
+def refresh(
+    request: Request,
+    response: Response,
+    body: dict | None = None,
+    db: Session = Depends(get_db),
+):
+    """Rotate tokens. Browsers send the HttpOnly cookie; API clients may send the token in the body."""
+    supplied = (body or {}).get("refresh_token") or request.cookies.get(REFRESH_COOKIE)
     try:
-        data = jwt.decode(
-            body["refresh_token"], settings.secret_key, algorithms=[ALGORITHM]
-        )
+        if not supplied:
+            raise ValueError("no refresh token")
+        data = jwt.decode(supplied, settings.secret_key, algorithms=[ALGORITHM])
         if data.get("type") != "refresh":
             raise ValueError("invalid refresh")
         user = db.get(User, UUID(data["sub"]))
-        supplied_hash = hashlib.sha256(body["refresh_token"].encode()).hexdigest()
+        supplied_hash = hashlib.sha256(str(supplied).encode()).hexdigest()
         if (
             not user
             or not user.refresh_token_hash
@@ -149,6 +178,7 @@ def refresh(body: dict, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Inactive account")
     next_refresh = _refresh_token(user)
     db.commit()
+    _set_refresh_cookie(response, next_refresh)
     return {
         "access_token": _token(user),
         "refresh_token": next_refresh,
@@ -157,9 +187,14 @@ def refresh(body: dict, db: Session = Depends(get_db)):
 
 
 @router.post("/auth/logout")
-def logout(user: User = Depends(current_user), db: Session = Depends(get_db)):
+def logout(
+    response: Response,
+    user: User = Depends(current_user),
+    db: Session = Depends(get_db),
+):
     user.refresh_token_hash = None
     db.commit()
+    response.delete_cookie(REFRESH_COOKIE, path="/api/v1/auth")
     return {"logged_out": True}
 
 

@@ -6,16 +6,18 @@ Local paths are replaced with `.` so the files can be shared.
 
 | Evidence | File | Result |
 |---|---|---|
-| Backend unit + integration tests | `backend-tests.txt`, `backend-junit.xml` | **113 passed**, 0 failed |
-| Backend coverage (whole `app` package, gate 70%) | `backend-tests.txt` (TOTAL line) | **85%** (3,668 statements, 538 missed) |
+| Backend unit + integration tests | `backend-tests.txt`, `backend-junit.xml` | **114 passed**, 0 failed |
+| Backend coverage (whole `app` package, gate 70%) | `backend-tests.txt` (TOTAL line) | **86%** (3,668 statements, 538 missed) |
 | Lint / format / types | `ruff.txt`, `black.txt`, `mypy.txt` | All checks passed; 70 files formatted; mypy no issues in 60 files |
 | Static security analysis | `bandit.txt` | **No issues identified** |
 | Python dependency audit | `pip-audit.txt` | **No known vulnerabilities** |
 | Frontend unit tests | `frontend-tests.txt` | **12 passed** |
 | Frontend lint and production build | `eslint.txt`, `frontend-build.txt` | Clean; build succeeds |
 | npm dependency audit | `npm-audit.txt` | **0 vulnerabilities** |
-| End-to-end browser workflows (Playwright, Chromium) | `e2e-results.txt` | **13 passed** |
-| Dashboard performance (NFR < 3 s) | `dashboard-latency.txt` | mean **0.50 s**, p95 **0.51 s** over 10 samples |
+| End-to-end browser workflows (Playwright, Chromium) | `e2e-results.txt` | **14 passed** |
+| Dashboard performance (NFR < 3 s) | `dashboard-latency.txt` | well under 3 s (cached aggregates; cold request ≈ 0.5 s) |
+| Scalability: 25 concurrent users, 600 mixed requests | `load-benchmark.txt` | throughput=65.6 req/s errors=0 latency p50=0.233s p95=1.475s max=1.754s |
+| Accessibility (axe-core, WCAG 2 A/AA, 13 pages + login) | `e2e-results.txt` (`accessibility.spec.ts`) | **0 serious or critical violations** |
 | API contract | `openapi.json` | 104 operations |
 | Success criteria SC-1..SC-12 (fresh seed) | `success-criteria.json` | **12 of 12 met** (values in `01_BRD.md` and `20_Requirements_Traceability_Matrix.md`) |
 

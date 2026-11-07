@@ -9,6 +9,15 @@ from app import models  # noqa: F401
 from app.db.base import Base
 
 
+@pytest.fixture(autouse=True)
+def _fresh_analytics_cache():
+    from app.services.analytics import clear_cache
+
+    clear_cache()
+    yield
+    clear_cache()
+
+
 @pytest.fixture
 def db_session():
     engine = create_engine(
