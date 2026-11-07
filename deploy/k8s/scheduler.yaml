@@ -1,0 +1,23 @@
+# Exactly one scheduler instance runs SLA escalation and exception expiry jobs.
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: ivm-scheduler, namespace: ivm }
+spec:
+  replicas: 1
+  strategy: { type: Recreate }
+  selector: { matchLabels: { app: ivm-scheduler } }
+  template:
+    metadata: { labels: { app: ivm-scheduler } }
+    spec:
+      securityContext: { runAsNonRoot: true, seccompProfile: { type: RuntimeDefault } }
+      containers:
+        - name: scheduler
+          image: ivm-backend:latest
+          envFrom: [{ configMapRef: { name: ivm-config } }, { secretRef: { name: ivm-secrets } }]
+          env: [{ name: SCHEDULER_ENABLED, value: "true" }]
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { cpu: 500m, memory: 512Mi }
+          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: ["ALL"] } }
+          volumeMounts: [{ name: tmp, mountPath: /tmp }]
+      volumes: [{ name: tmp, emptyDir: {} }]
