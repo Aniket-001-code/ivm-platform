@@ -1,0 +1,5 @@
+$ ./.venv/bin/black --check app tests
+# collected 2026-11-07T02:34:08Z
+All done! ✨ 🍰 ✨
+70 files would be left unchanged.
+# exit code: 0

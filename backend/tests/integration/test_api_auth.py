@@ -1,7 +1,7 @@
 import bcrypt
 from fastapi.testclient import TestClient
 
-from app.api.v1.router import settings
+from app.api.v1.common import settings
 from app.core.deps import get_db
 from app.main import app
 from app.models.entities import Asset, BusinessUnit, User

@@ -1,0 +1,20 @@
+# TLS-terminating ingress (encryption in transit). Provide the certificate via cert-manager or a secret.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ivm
+  namespace: ivm
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "11m"
+spec:
+  ingressClassName: nginx
+  tls: [{ hosts: ["ivm.example.internal"], secretName: ivm-tls }]
+  rules:
+    - host: ivm.example.internal
+      http:
+        paths:
+          - { path: /api, pathType: Prefix, backend: { service: { name: ivm-api, port: { number: 8000 } } } }
+          - { path: /docs, pathType: Prefix, backend: { service: { name: ivm-api, port: { number: 8000 } } } }
+          - { path: /openapi.json, pathType: Exact, backend: { service: { name: ivm-api, port: { number: 8000 } } } }
+          - { path: /, pathType: Prefix, backend: { service: { name: ivm-web, port: { number: 80 } } } }

@@ -1,5 +1,6 @@
 import hashlib
 import re
+from urllib.parse import urlparse
 
 
 def normalize_severity(value: str | None) -> str:
@@ -18,13 +19,28 @@ def normalize_severity(value: str | None) -> str:
     return aliases.get(value, "medium")
 
 
+_IPV4 = re.compile(r"^\d{1,3}(\.\d{1,3}){3}$")
+
+
 def asset_key(*values: str | None) -> str:
-    normalized = []
+    """Normalize a host, FQDN, URL or IP to the key used to match import rows to assets.
+
+    Hostnames and FQDNs reduce to their first label ("host001.bank.local" -> "host001");
+    URLs reduce to their host; IP addresses are kept whole so different hosts never collide.
+    """
     for value in values:
-        token = (value or "").lower().strip().split(".")[0]
-        if token:
-            normalized.append(re.sub(r"[^a-z0-9]", "", token))
-    return normalized[0] if normalized else "unknown"
+        token = (value or "").lower().strip()
+        if not token:
+            continue
+        if "://" in token:
+            token = urlparse(token).hostname or ""
+        token = token.split("/")[0].split(":")[0] if not _IPV4.match(token) else token
+        if _IPV4.match(token):
+            return token
+        label = re.sub(r"[^a-z0-9]", "", token.split(".")[0])
+        if label:
+            return label
+    return "unknown"
 
 
 def finding_fingerprint(asset_id: str, cve_id: str | None, title: str) -> str:

@@ -6,9 +6,12 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
+from app.core import scope
 from app.core.rbac import canonical_role
+from app.core.timeutil import as_utc
 from app.models.entities import (
     Asset,
+    AttackPath,
     BusinessService,
     BusinessUnit,
     Finding,
@@ -20,30 +23,11 @@ from app.models.entities import (
 )
 
 MINUTES_PER_RAW_RECORD = 6
-GLOBAL_ROLES = {
-    "platform_admin",
-    "security_analyst",
-    "vulnerability_manager",
-    "executive_ciso",
-    "auditor",
-}
+GLOBAL_ROLES = scope.GLOBAL_ROLES
 
 
 def asset_scope(user: User):
-    role = canonical_role(user.role)
-    if role in GLOBAL_ROLES:
-        return None
-    if role == "business_unit_manager":
-        return Asset.business_unit_id == user.business_unit_id
-    if role == "system_administrator":
-        return Asset.id.in_(
-            select(RemediationTask.asset_id).where(
-                RemediationTask.assigned_to_user_id == user.id
-            )
-        )
-    if role in {"it_asset_owner", "security_architect"}:
-        return Asset.owner_user_id == user.id
-    return Asset.business_unit_id == user.business_unit_id
+    return scope.asset_condition(user)
 
 
 def finding_query(user: User):
@@ -82,29 +66,40 @@ def risk_bands(db: Session, user: User) -> dict[str, int]:
 
 
 def trend(db: Session, user: User, weeks: int = 26) -> list[dict]:
+    """Weekly average of each finding's latest score in that week (open-portfolio risk)."""
     cutoff = datetime.now(timezone.utc) - timedelta(weeks=weeks)
     query = (
-        select(RiskScoreHistory.calculated_at, RiskScoreHistory.score)
+        select(
+            RiskScoreHistory.finding_id,
+            RiskScoreHistory.calculated_at,
+            RiskScoreHistory.score,
+        )
         .join(Finding, RiskScoreHistory.finding_id == Finding.id)
         .where(RiskScoreHistory.calculated_at >= cutoff)
     )
     scope = asset_scope(user)
     if scope is not None:
         query = query.join(Asset, Finding.asset_id == Asset.id).where(scope)
-    groups: dict[tuple[int, int], list[float]] = defaultdict(list)
-    labels = {}
-    for timestamp, score in db.execute(query):
-        if timestamp.tzinfo is None:
-            timestamp = timestamp.replace(tzinfo=timezone.utc)
+    latest: dict[tuple[int, int], dict] = defaultdict(dict)
+    labels: dict[tuple[int, int], str] = {}
+    for finding_id, timestamp, score in db.execute(query):
+        timestamp = as_utc(timestamp)
         year, week, _ = timestamp.isocalendar()
-        groups[(year, week)].append(float(score))
-        labels[(year, week)] = timestamp.date().isoformat()
-    ordered = sorted(groups)[-weeks:]
+        key = (year, week)
+        current = latest[key].get(finding_id)
+        if current is None or timestamp >= current[0]:
+            latest[key][finding_id] = (timestamp, float(score))
+        labels[key] = max(
+            labels.get(key, timestamp.date().isoformat()), timestamp.date().isoformat()
+        )
+    ordered = sorted(latest)[-weeks:]
     return [
         {
             "week": labels[key],
-            "average_score": round(sum(groups[key]) / len(groups[key]), 1),
-            "sample_count": len(groups[key]),
+            "average_score": round(
+                sum(score for _, score in latest[key].values()) / len(latest[key]), 1
+            ),
+            "sample_count": len(latest[key]),
         }
         for key in ordered
     ]
@@ -273,6 +268,84 @@ def exceptions_expiring(db: Session, user: User, days: int = 30) -> list[dict]:
     ]
 
 
+def overdue_by_owner_and_category(db: Session, user: User) -> list[dict]:
+    """Overdue open tasks grouped by owner and SLA category (risk band)."""
+    now = datetime.now(timezone.utc)
+    query = (
+        select(
+            User.full_name, RemediationTask.sla_category, func.count(RemediationTask.id)
+        )
+        .join(User, RemediationTask.assigned_to_user_id == User.id, isouter=True)
+        .where(RemediationTask.status != "closed", RemediationTask.sla_due_date < now)
+        .group_by(User.full_name, RemediationTask.sla_category)
+    )
+    condition = asset_scope(user)
+    if condition is not None:
+        query = query.join(Asset, RemediationTask.asset_id == Asset.id).where(condition)
+    return [
+        {
+            "owner": name or "Unassigned",
+            "sla_category": category or "unknown",
+            "overdue_tasks": n,
+        }
+        for name, category, n in db.execute(query)
+    ]
+
+
+def internet_facing_high_risk(db: Session, user: User, limit: int = 10) -> list[dict]:
+    query = (
+        select(
+            Asset.id,
+            Asset.name,
+            Asset.is_crown_jewel,
+            func.count(Finding.id),
+            func.max(Finding.risk_score),
+        )
+        .join(Finding, Finding.asset_id == Asset.id)
+        .where(
+            Asset.internet_exposed.is_(True),
+            Finding.status == "open",
+            Finding.risk_band.in_(["critical", "high"]),
+        )
+        .group_by(Asset.id, Asset.name, Asset.is_crown_jewel)
+        .order_by(func.max(Finding.risk_score).desc())
+    )
+    condition = asset_scope(user)
+    if condition is not None:
+        query = query.where(condition)
+    return [
+        {
+            "asset_id": str(i),
+            "asset": n,
+            "crown_jewel": bool(c),
+            "high_risk_findings": count,
+            "max_risk": float(m or 0),
+        }
+        for i, n, c, count, m in db.execute(query.limit(limit))
+    ]
+
+
+def crown_jewel_paths(db: Session, user: User, limit: int = 8) -> list[dict]:
+    targets = select(Asset.id).where(Asset.is_crown_jewel.is_(True))
+    condition = asset_scope(user)
+    if condition is not None:
+        targets = targets.where(condition)
+    query = (
+        select(AttackPath)
+        .where(AttackPath.target_asset_id.in_(targets))
+        .order_by(AttackPath.path_risk_score.desc())
+    )
+    return [
+        {
+            "id": str(p.id),
+            "name": p.name,
+            "path_risk_score": p.path_risk_score,
+            "hops": len(p.path_asset_ids or []),
+        }
+        for p in db.scalars(query.limit(limit))
+    ]
+
+
 def summary(db: Session, user: User, baseline_days: int = 180) -> dict:
     findings = finding_query(user)
     task_base = task_query(user)
@@ -297,11 +370,31 @@ def summary(db: Session, user: User, baseline_days: int = 180) -> dict:
         )
         or 0
     )
-    compliant = max(0, total_tasks - overdue)
+    # Compliant = closed on/before the SLA date, or still open and not yet due.
+    late_closed = 0
+    for closed_at, due in db.execute(
+        task_base.with_only_columns(
+            RemediationTask.closed_at, RemediationTask.sla_due_date
+        ).where(
+            RemediationTask.status == "closed",
+            RemediationTask.closed_at.is_not(None),
+            RemediationTask.sla_due_date.is_not(None),
+        )
+    ):
+        if as_utc(closed_at) > as_utc(due):
+            late_closed += 1
+    compliant = max(0, total_tasks - overdue - late_closed)
     raw_count = (
         db.scalar(select(func.coalesce(func.sum(ImportBatch.total_records), 0))) or 0
     )
-    distinct_actions = open_count
+    duplicates = (
+        db.scalar(select(func.coalesce(func.sum(ImportBatch.duplicate_count), 0))) or 0
+    )
+    failed_rows = (
+        db.scalar(select(func.coalesce(func.sum(ImportBatch.failed_count), 0))) or 0
+    )
+    # Distinct records after correlation: every duplicate row merged is triage avoided.
+    distinct_actions = max(0, int(raw_count) - int(duplicates) - int(failed_rows))
     mttr = mttr_by_band(db, user)
     history_query = select(RiskScoreHistory.calculated_at, RiskScoreHistory.score).join(
         Finding, RiskScoreHistory.finding_id == Finding.id
@@ -346,8 +439,8 @@ def summary(db: Session, user: User, baseline_days: int = 180) -> dict:
         ),
         "raw_records": int(raw_count),
         "prioritized_actions": int(distinct_actions),
-        "effort_saved_minutes": max(0, int(raw_count) - int(distinct_actions))
-        * MINUTES_PER_RAW_RECORD,
+        "duplicates_merged": int(duplicates),
+        "effort_saved_minutes": int(duplicates) * MINUTES_PER_RAW_RECORD,
         "effort_saved_assumption_minutes_per_raw_record": MINUTES_PER_RAW_RECORD,
         "mttr_by_band": mttr,
         "risk_reduction_percent": risk_reduction,
@@ -358,4 +451,7 @@ def summary(db: Session, user: User, baseline_days: int = 180) -> dict:
         "aging_buckets": aging_buckets(db, user),
         "findings_by_source": findings_by_source(db, user),
         "exceptions_expiring": exceptions_expiring(db, user),
+        "overdue_by_owner_and_category": overdue_by_owner_and_category(db, user),
+        "internet_facing_high_risk": internet_facing_high_risk(db, user),
+        "crown_jewel_paths": crown_jewel_paths(db, user),
     }

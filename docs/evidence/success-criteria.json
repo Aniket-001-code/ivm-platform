@@ -1,0 +1,140 @@
+{
+  "note": "Measured on a fresh seeded database (seed 42) at collection time.",
+  "success_criteria": {
+    "generated_at": "2026-11-07 02:34:13.539786+00:00",
+    "criteria": [
+      {
+        "id": "SC-1",
+        "criterion": "Platform manages and tracks all assets in the supplied dataset",
+        "passed": true,
+        "evidence": "300 assets in inventory; dataset contains 300",
+        "value": 300
+      },
+      {
+        "id": "SC-2",
+        "criterion": "Ingests data from at least three simulated finding sources",
+        "passed": true,
+        "evidence": "5 sources: container, cspm, identity, pentest, scanner",
+        "value": 5
+      },
+      {
+        "id": "SC-3",
+        "criterion": "Duplicate findings are automatically identified and correlated",
+        "passed": true,
+        "evidence": "714 duplicate rows merged (28.6%); 500 findings corroborated by more than one source",
+        "value": 714
+      },
+      {
+        "id": "SC-4",
+        "criterion": "Risk scoring uses technical severity and business context",
+        "passed": true,
+        "evidence": "2588 of 3454 open findings have a risk band different from their scanner severity",
+        "value": 2588
+      },
+      {
+        "id": "SC-5",
+        "criterion": "Threat intelligence enrichment influences prioritization",
+        "passed": true,
+        "evidence": "901 open findings carry threat-intel points; removing KEV/exploitation signals would lower the band of 444",
+        "value": 444
+      },
+      {
+        "id": "SC-6",
+        "criterion": "Ownership assignment accuracy exceeds 90%",
+        "passed": true,
+        "evidence": "100.0% of 393 tasks match the dataset owner; routing engine 100.0%",
+        "value": 100.0
+      },
+      {
+        "id": "SC-7",
+        "criterion": "SLA breaches are automatically identified and escalated",
+        "passed": true,
+        "evidence": "3 overdue tasks; 3 without an approved exception, 3 escalated (run the scheduler to escalate new breaches)",
+        "value": 3
+      },
+      {
+        "id": "SC-8",
+        "criterion": "Exception workflow operates end-to-end with audit evidence",
+        "passed": true,
+        "evidence": "4 reviewed/expired exceptions, 4 with audit records",
+        "value": 4
+      },
+      {
+        "id": "SC-9",
+        "criterion": "Attack path view shows how exposure chains change priority",
+        "passed": true,
+        "evidence": "555 findings sit on modeled paths; 300 were raised a risk band; average +9.67 points",
+        "value": 300
+      },
+      {
+        "id": "SC-10",
+        "criterion": "Dashboards provide operational and executive views",
+        "passed": true,
+        "evidence": "Role dashboards: executive, analyst, manager, auditor; heatmap, trend, MTTR, SLA, forecast and executive report endpoints",
+        "value": 4
+      },
+      {
+        "id": "SC-11",
+        "criterion": "APIs support external / simulated ticketing integration",
+        "passed": true,
+        "evidence": "0 tickets created; Jira/ServiceNow simulators and HMAC webhook (not configured)",
+        "value": 0
+      },
+      {
+        "id": "SC-12",
+        "criterion": "Measurable reduction in manual triage/reporting effort",
+        "passed": true,
+        "evidence": "\u224899.1 hours saved under stated assumptions",
+        "value": 99.1
+      }
+    ],
+    "roles": 9
+  },
+  "automation_impact": {
+    "raw_records_processed": 2500,
+    "consolidated_findings": 3536,
+    "duplicates_merged": 714,
+    "duplicate_rate_percent": 28.6,
+    "multi_source_findings": 500,
+    "rows_rejected_and_kept_for_retry": 50,
+    "tasks_auto_assigned": 393,
+    "auto_assignment_percent": 100.0,
+    "escalations_automated": 9,
+    "exceptions_auto_expired": 0,
+    "ai_questions_answered": 0,
+    "executive_reports_generated": 0,
+    "minutes_saved": {
+      "duplicate_triage_avoided": 4284,
+      "manual_assignment_avoided": 1572,
+      "escalation_chasing_avoided": 90,
+      "report_compilation_avoided": 0,
+      "ai_lookups": 0
+    },
+    "hours_saved": 99.1,
+    "assumptions_minutes": {
+      "triage_per_duplicate_row": 6,
+      "manual_owner_lookup_per_task": 4,
+      "chasing_one_overdue_item": 10,
+      "compiling_one_executive_report": 240,
+      "answering_one_question_manually": 5
+    }
+  },
+  "ownership_accuracy": {
+    "target_percent": 90,
+    "task_accuracy_percent": 100.0,
+    "tasks_evaluated": 393,
+    "tasks_correct": 393,
+    "tasks_unassigned": 0,
+    "manual_overrides": 0,
+    "routing_accuracy_percent": 100.0,
+    "assets_evaluated": 300,
+    "meets_target": true,
+    "mismatches": [],
+    "ground_truth": "owner_email in backend/data/synthetic/assets.json"
+  },
+  "attack_path_impact": {
+    "findings_on_paths": 555,
+    "findings_raised_a_band": 300,
+    "average_score_increase": 9.67
+  }
+}

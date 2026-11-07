@@ -1,0 +1,26 @@
+# Default deny, then allow only: ingress -> web/api, api/scheduler -> db.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: default-deny, namespace: ivm }
+spec:
+  podSelector: {}
+  policyTypes: [Ingress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: db-from-backend-only, namespace: ivm }
+spec:
+  podSelector: { matchLabels: { app: ivm-db } }
+  ingress:
+    - from:
+        - podSelector: { matchLabels: { app: ivm-api } }
+        - podSelector: { matchLabels: { app: ivm-scheduler } }
+      ports: [{ port: 5432 }]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: web-and-api-from-ingress, namespace: ivm }
+spec:
+  podSelector: { matchExpressions: [{ key: app, operator: In, values: [ivm-api, ivm-web] }] }
+  ingress:
+    - from: [{ namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: ingress-nginx } } }]

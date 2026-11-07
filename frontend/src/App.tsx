@@ -1,108 +1,240 @@
-import { FormEvent, useEffect, useRef, useState } from 'react'
-import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Activity, AlertTriangle, ArrowDownRight, Bot, Boxes, CheckCircle2, ChevronDown, CircleHelp, FileUp, GitBranch, LayoutDashboard, ListChecks, LogOut, Search, Shield, ShieldAlert, Users } from 'lucide-react'
-import { api, downloadCsv, setAccessToken } from './api/client'
+import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from 'react'
+import { Link, NavLink, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { useQueryClient } from '@tanstack/react-query'
+import { ChevronDown, CircleHelp, LogOut, Search, Shield } from 'lucide-react'
+import { api, setAccessToken, setSessionHandlers, storeRefreshToken } from './api/client'
+import { NAV, can, label } from './access'
+import type { User } from './types'
+import { Login } from './pages/Login'
+import { DashboardPage } from './pages/Dashboard'
+import { FindingsPage } from './pages/Findings'
+import { FindingDetailPage } from './pages/FindingDetail'
+import { AssetDetailPage, AssetsPage } from './pages/Assets'
+import { AttackPathsPage } from './pages/AttackPaths'
+import { TasksPage } from './pages/Tasks'
+import { ExceptionsPage } from './pages/Exceptions'
+import { ImportsPage } from './pages/Imports'
+import { AssistantPage } from './pages/Assistant'
+import { AuditPage } from './pages/Audit'
+import { AdminPage } from './pages/Admin'
+import { ReportsPage } from './pages/Reports'
+import { AccountPage } from './pages/Account'
+import { NotificationBell } from './components/Notifications'
+import './additions.css'
 
-type User = { id: string; email: string; full_name: string; role: string }
-type Finding = { id: string; asset_id: string; title: string; severity: string; risk_score: number; risk_band: string; status: string; sources: string[] }
-type Dashboard = { kpis: Record<string, number>; risk_bands: Record<string, number>; top_findings: Finding[]; assumption: string; trend?: Array<{week:string;average_score:number;sample_count:number}> }
-type Task = { id: string; finding_id: string; asset_id: string; status: string; priority: string; sla_due_date: string | null; evidence_notes: string | null; ticket_ref: string | null }
-const nav = [
-  { to: '/', label: 'Overview', icon: LayoutDashboard, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','it_asset_owner','system_administrator','business_unit_manager','executive_ciso','auditor'] },
-  { to: '/findings', label: 'Findings', icon: ShieldAlert, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','it_asset_owner','system_administrator','business_unit_manager','executive_ciso','auditor'] },
-  { to: '/assets', label: 'Asset inventory', icon: Boxes, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','it_asset_owner','system_administrator','business_unit_manager','auditor'] },
-  { to: '/attack-paths', label: 'Attack paths', icon: GitBranch, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','executive_ciso'] },
-  { to: '/tasks', label: 'Remediation', icon: ListChecks, roles: ['platform_admin','vulnerability_manager','it_asset_owner','system_administrator','business_unit_manager'] },
-  { to: '/exceptions', label: 'Risk exceptions', icon: Shield, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','it_asset_owner','business_unit_manager','executive_ciso','auditor'] },
-  { to: '/imports', label: 'Data imports', icon: FileUp, roles: ['platform_admin','security_analyst'] },
-  { to: '/assistant', label: 'AI assistant', icon: Bot, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','it_asset_owner','system_administrator','business_unit_manager','executive_ciso','auditor'] },
-  { to: '/auditor', label: 'Audit trail', icon: Activity, roles: ['platform_admin','security_analyst','vulnerability_manager','security_architect','auditor'] },
-  { to: '/admin', label: 'Administration', icon: Users, roles: ['platform_admin','vulnerability_manager'] },
-]
+const USER_KEY = 'ivm.user'
+const TOKEN_KEY = 'ivm.token'
 
-function Login({ onLogin }: { onLogin: (user: User, token: string) => void }) {
-  const [email, setEmail] = useState('user2@demo.bank')
-  const [password, setPassword] = useState('DemoPass!234')
-  const [error, setError] = useState('')
-  const mutation = useMutation({ mutationFn: () => api<{ access_token: string; user: User }>('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) }), onSuccess: (result) => onLogin(result.user, result.access_token), onError: (reason: Error) => setError(reason.message) })
-  function submit(event: FormEvent) { event.preventDefault(); mutation.mutate() }
-  return <main className="login-screen"><div className="login-art"><div className="brand-mark"><Shield size={21} /> IVM</div><div className="login-copy"><span className="eyebrow">SECURITY OPERATIONS / 01</span><h1>Put risk in<br/><em>business context.</em></h1><p>A single, explainable view of exposure across critical services.</p><div className="login-visual"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="orbit-center"><ShieldAlert size={28}/></div><span className="orbit-label label-a">THREAT SIGNAL</span><span className="orbit-label label-b">BUSINESS IMPACT</span><span className="orbit-label label-c">ATTACK PATH</span></div></div><div className="login-foot">LOCAL DEMO · SYNTHETIC DATA ONLY</div></div><section className="login-panel"><form className="login-form" onSubmit={submit}><span className="eyebrow">WELCOME BACK</span><h2>Sign in to IVM</h2><p className="muted">Use a seeded demo account to explore the platform.</p><label htmlFor="email">Email address</label><input id="email" value={email} onChange={e => setEmail(e.target.value)} type="email" required autoComplete="username"/><label htmlFor="password">Password</label><input id="password" value={password} onChange={e => setPassword(e.target.value)} type="password" required autoComplete="current-password"/>{error && <div className="error-box" role="alert">{error}</div>}<button className="primary-btn full" disabled={mutation.isPending}>{mutation.isPending ? 'Signing in…' : 'Continue'} <span>→</span></button><div className="demo-account"><span>DEMO ACCESS</span><strong>user2@demo.bank</strong><small>Password: DemoPass!234</small></div></form><div className="login-legal">For academic demonstration only. No production systems are connected.</div></section></main>
+function readStored<T>(key: string, parse: (raw: string) => T): T | null {
+  try {
+    const raw = sessionStorage.getItem(key)
+    return raw ? parse(raw) : null
+  } catch {
+    return null
+  }
+}
+
+function writeStored(key: string, value: string | null) {
+  try {
+    if (value === null) sessionStorage.removeItem(key)
+    else sessionStorage.setItem(key, value)
+  } catch {
+    /* storage unavailable (private mode): the session lives in memory only */
+  }
 }
 
 function App() {
   const [user, setUser] = useState<User | null>(() => {
-    try { return JSON.parse(sessionStorage.getItem('ivm.user') ?? 'null') as User | null } catch { return null }
+    const stored = readStored(USER_KEY, (raw) => JSON.parse(raw) as User)
+    // Sessions saved before permissions were sent with the user must sign in again.
+    return stored && Array.isArray(stored.permissions) ? stored : null
   })
-  const [token, setToken] = useState<string | null>(() => sessionStorage.getItem('ivm.token'))
+  const [token, setToken] = useState<string | null>(() => readStored(TOKEN_KEY, (raw) => raw))
+  const [expiredNotice, setExpiredNotice] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   setAccessToken(token)
-  function login(nextUser: User, nextToken: string) { sessionStorage.setItem('ivm.user', JSON.stringify(nextUser)); sessionStorage.setItem('ivm.token', nextToken); setUser(nextUser); setToken(nextToken); setAccessToken(nextToken); navigate('/') }
-  function logout() { sessionStorage.removeItem('ivm.user'); sessionStorage.removeItem('ivm.token'); setUser(null); setToken(null); setAccessToken(null); queryClient.clear(); navigate('/login') }
-  if (!token || !user) return <Login onLogin={login}/>
-  const allowed = nav.filter(item => item.roles.includes('all') || item.roles.includes(user.role))
-  return <div className="app-shell"><aside className="sidebar"><Link to="/" className="brand"><span className="brand-icon"><Shield size={17}/></span><span>ivm<span className="brand-dot">.</span><small>RISK COMMAND CENTER</small></span></Link><div className="workspace-switch"><span className="workspace-avatar">N</span><span><strong>Northstar Bank</strong><small>Security workspace</small></span><ChevronDown size={15}/></div><span className="nav-caption">WORKSPACE</span><nav aria-label="Main navigation">{allowed.map(item => <NavLink key={item.to} to={item.to} end={item.to === '/'} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}><item.icon size={17}/><span>{item.label}</span></NavLink>)}</nav><div className="sidebar-bottom"><div className="health-line"><span className="status-dot"/><span>All systems operational</span></div><button className="user-switch" onClick={logout}><span className="user-avatar">{user.full_name.slice(0, 1)}</span><span><strong>{user.full_name}</strong><small>{user.role.replaceAll('_', ' ')}</small></span><LogOut size={16}/></button></div></aside><main className="main-area"><header className="topbar"><div className="breadcrumb">Security <span>/</span> <strong>{allowed.find(x => x.to === location.pathname)?.label ?? 'Workspace'}</strong></div><div className="top-actions"><div className="env-pill"><span/> DEMO ENVIRONMENT</div><button className="icon-button" aria-label="Help"><CircleHelp size={18}/></button><button className="user-avatar small" aria-label="User menu">{user.full_name.slice(0, 1)}</button></div></header><div className="page-wrap"><Routes><Route path="/" element={<DashboardPage user={user}/>}/><Route path="/findings" element={<FindingsPage/>}/><Route path="/findings/:id" element={<FindingPage/>}/><Route path="/assets" element={<AssetsPage/>}/><Route path="/assets/:id" element={<AssetDetailPage/>}/><Route path="/attack-paths" element={<AttackPathsPage/>}/><Route path="/tasks" element={<TasksPage user={user}/>}/><Route path="/exceptions" element={<ExceptionsPage user={user}/>}/><Route path="/imports" element={<ImportsPage/>}/><Route path="/assistant" element={<AssistantPage/>}/><Route path="/auditor" element={<RolePage user={user} allowed={['platform_admin','auditor','security_architect']}><AuditPage/></RolePage>}/><Route path="/admin" element={<RolePage user={user} allowed={['platform_admin','vulnerability_manager']}><AdminPage/></RolePage>}/><Route path="*" element={<Navigate to="/" replace/>}/></Routes></div></main></div>
+
+  const clearSession = useCallback(() => {
+    writeStored(USER_KEY, null)
+    writeStored(TOKEN_KEY, null)
+    storeRefreshToken(null)
+    setUser(null)
+    setToken(null)
+    setAccessToken(null)
+    queryClient.clear()
+  }, [queryClient])
+
+  useEffect(() => {
+    setSessionHandlers({
+      expired: () => {
+        clearSession()
+        setExpiredNotice(true)
+      },
+      refreshed: (next) => {
+        writeStored(TOKEN_KEY, next)
+        setToken(next)
+      },
+    })
+  }, [clearSession])
+
+  function login(result: { access_token: string; refresh_token: string; user: User }) {
+    writeStored(USER_KEY, JSON.stringify(result.user))
+    writeStored(TOKEN_KEY, result.access_token)
+    storeRefreshToken(result.refresh_token)
+    setExpiredNotice(false)
+    setUser(result.user)
+    setToken(result.access_token)
+    setAccessToken(result.access_token)
+    navigate('/')
+  }
+
+  function updateUser(next: User) {
+    writeStored(USER_KEY, JSON.stringify(next))
+    setUser(next)
+  }
+
+  function logout() {
+    // Revoke the refresh token server-side; sign out locally even if the call fails.
+    void api('/auth/logout', { method: 'POST' }).catch(() => undefined)
+    clearSession()
+    navigate('/login')
+  }
+
+  if (!token || !user)
+    return (
+      <>
+        {expiredNotice && (
+          <div className="session-banner" role="status">
+            Your session expired. Please sign in again.
+          </div>
+        )}
+        <Login onLogin={login} />
+      </>
+    )
+
+  const allowed = NAV.filter((item) => can(user, ...item.anyOf))
+  const guard = (path: string, element: ReactNode) => {
+    const item = NAV.find((x) => x.to === path)
+    return !item || can(user, ...item.anyOf) ? element : <Navigate to="/" replace />
+  }
+  const current = allowed.find((x) => (x.to === '/' ? location.pathname === '/' : location.pathname.startsWith(x.to)))
+  return (
+    <div className="app-shell">
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
+      <aside className="sidebar">
+        <Link to="/" className="brand">
+          <span className="brand-icon">
+            <Shield size={17} />
+          </span>
+          <span>
+            ivm<span className="brand-dot">.</span>
+            <small>RISK COMMAND CENTER</small>
+          </span>
+        </Link>
+        <div className="workspace-switch">
+          <span className="workspace-avatar">N</span>
+          <span>
+            <strong>Northstar Bank</strong>
+            <small>Synthetic workspace</small>
+          </span>
+          <ChevronDown size={15} />
+        </div>
+        <span className="nav-caption">WORKSPACE</span>
+        <nav aria-label="Main navigation">
+          {allowed.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === '/'}
+              className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            >
+              <item.icon size={17} />
+              <span>{item.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+        <div className="sidebar-bottom">
+          <div className="health-line">
+            <span className="status-dot" />
+            <span>API connected</span>
+          </div>
+          <button className="user-switch" onClick={logout} title="Sign out">
+            <span className="user-avatar">{user.full_name.slice(0, 1)}</span>
+            <span>
+              <strong>{user.full_name}</strong>
+              <small>{label(user.role)}</small>
+            </span>
+            <LogOut size={16} />
+          </button>
+        </div>
+      </aside>
+      <main className="main-area">
+        <header className="topbar">
+          <div className="breadcrumb">
+            Security <span>/</span>{' '}
+            <strong>{current?.label ?? (location.pathname === '/account' ? 'My account' : 'Workspace')}</strong>
+          </div>
+          {can(user, 'finding:read') && <GlobalSearch />}
+          <div className="top-actions">
+            <NotificationBell />
+            <div className="env-pill">
+              <span /> DEMO ENVIRONMENT
+            </div>
+            <a className="icon-button" aria-label="API documentation" href="/docs" target="_blank" rel="noreferrer">
+              <CircleHelp size={18} />
+            </a>
+            <Link className="user-avatar small" to="/account" title={`${user.email} · my account`} aria-label="My account">
+              {user.full_name.slice(0, 1)}
+            </Link>
+          </div>
+        </header>
+        <div className="page-wrap" id="main-content" tabIndex={-1}>
+          <Routes>
+            <Route path="/" element={<DashboardPage user={user} />} />
+            <Route path="/findings" element={guard('/findings', <FindingsPage user={user} />)} />
+            <Route path="/findings/:id" element={guard('/findings', <FindingDetailPage user={user} />)} />
+            <Route path="/assets" element={guard('/assets', <AssetsPage user={user} />)} />
+            <Route path="/assets/:id" element={guard('/assets', <AssetDetailPage user={user} />)} />
+            <Route path="/attack-paths" element={guard('/attack-paths', <AttackPathsPage user={user} />)} />
+            <Route path="/tasks" element={guard('/tasks', <TasksPage user={user} />)} />
+            <Route path="/exceptions" element={guard('/exceptions', <ExceptionsPage user={user} />)} />
+            <Route path="/imports" element={guard('/imports', <ImportsPage />)} />
+            <Route path="/assistant" element={guard('/assistant', <AssistantPage />)} />
+            <Route path="/auditor" element={guard('/auditor', <AuditPage />)} />
+            <Route path="/admin" element={guard('/admin', <AdminPage user={user} />)} />
+            <Route path="/reports" element={guard('/reports', <ReportsPage user={user} />)} />
+            <Route path="/account" element={<AccountPage user={user} onUserChange={updateUser} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </main>
+    </div>
+  )
 }
 
-function PageTitle({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: React.ReactNode }) { return <div className="page-title"><div><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{description}</p></div>{action}</div> }
-function Loading() { return <div className="skeleton" aria-label="Loading data"><i/><i/><i/></div> }
-function ErrorState({ message }: { message: string }) { return <div className="error-box" role="alert">{message}</div> }
-function useDashboard(view = 'executive') { return useQuery({ queryKey: ['dashboard', view], queryFn: () => api<Dashboard>(`/dashboards/${view}`) }) }
-function RolePage({user,allowed,children}:{user:User;allowed:string[];children:React.ReactNode}) { return allowed.includes(user.role)?<>{children}</>:<Navigate to="/" replace/> }
-function useFindings() { return useQuery({ queryKey: ['findings'], queryFn: () => api<Finding[]>('/findings') }) }
-function RiskBadge({ band }: { band: string }) { return <span className={`risk-badge ${band.toLowerCase()}`}><i/>{band}</span> }
-
-function DashboardPage({user}:{user:User}) {
-  const view=user.role==='business_unit_manager'?'manager':user.role==='auditor'?'auditor':['security_analyst','vulnerability_manager','security_architect','it_asset_owner','system_administrator'].includes(user.role)?'analyst':'executive'
-  const { data, isLoading, error } = useDashboard(view)
-  if (isLoading) return <Loading/>; if (error) return <ErrorState message={(error as Error).message}/>
-  const k = data!.kpis
-  const trendPoints = (data!.trend ?? []).slice(-6).map((row,index,rows) => ({x:36+index*592/Math.max(1,rows.length-1), y:185-(row.average_score/100)*150, row}))
-  const trendLine = trendPoints.map((point,index) => `${index ? "L" : "M"}${point.x.toFixed(1)} ${point.y.toFixed(1)}`).join(" ")
-  const trendArea = trendLine ? `${trendLine} L ${trendPoints[trendPoints.length-1].x.toFixed(1)} 190 L 36 190 Z` : ""
-  return <><PageTitle eyebrow="TUESDAY, 03 NOVEMBER 2026 · EXECUTIVE VIEW" title="Good morning, Security team" description="Here’s the current risk posture across your critical services." action={<button className="secondary-btn" onClick={() => void downloadCsv("/audit/export", "ivm-audit.csv")}>Download audit CSV <ArrowDownRight size={15}/></button>}/><div className="metric-grid"><Metric label="Open findings" value={k.open_findings.toLocaleString()} foot={`Across ${k.assets.toLocaleString()} managed assets`} icon={<ShieldAlert/>}/><Metric label="Critical risk" value={k.critical_count.toLocaleString()} foot="Requires immediate attention" icon={<AlertTriangle/>} accent="coral"/><Metric label="SLA compliance" value={`${k.sla_compliance_percent}%`} foot={`${k.overdue_count} overdue actions`} icon={<CheckCircle2/>} accent="green"/><Metric label="Triage effort saved" value={`${Math.round(k.effort_saved_minutes / 60)}h`} foot={`${k.raw_records.toLocaleString()} raw → ${k.prioritized_actions.toLocaleString()} actions` } icon={<Activity/>} accent="blue"/></div><div className="dashboard-grid"><section className="panel risk-trend"><div className="panel-head"><div><span className="panel-kicker">PORTFOLIO HEALTH</span><h2>Risk score trend</h2></div><button className="text-btn">Last 6 months <ChevronDown size={14}/></button></div><div className="chart-key"><span/><span>Composite risk index</span><strong>{data!.trend?.length ? data!.trend[data!.trend.length-1].average_score.toFixed(1) : "—"} <small>{data!.trend?.length ? `${data!.trend[data!.trend.length-1].sample_count} samples` : "No history"}</small></strong></div><div className="chart-area"><svg viewBox="0 0 640 220" role="img" aria-label="Composite risk score history"><defs><linearGradient id="riskFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#118b86" stopOpacity=".23"/><stop offset="95%" stopColor="#118b86" stopOpacity="0"/></linearGradient></defs><path d="M36 35H628M36 85H628M36 135H628M36 185H628" stroke="#e9eef4"/><path d={trendArea} fill="url(#riskFill)"/><path d={trendLine} fill="none" stroke="#118b86" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/><g fill="#8390a3" fontSize="12" textAnchor="middle">{trendPoints.map(point=><text key={point.row.week} x={point.x} y="212">{new Date(point.row.week).toLocaleDateString(undefined,{month:"short"})}</text>)}</g></svg></div><div className="chart-foot"><span><i className="legend-dot"/>Composite risk index</span><span>Lower score indicates reduced exposure</span></div></section><section className="panel band-panel"><div className="panel-head"><div><span className="panel-kicker">RISK DISTRIBUTION</span><h2>Findings by severity</h2></div><Link to="/findings" className="text-btn">View all <span>→</span></Link></div><div className="band-stack">{[['Critical',data!.risk_bands.critical,'critical'],['High',data!.risk_bands.high,'high'],['Medium',data!.risk_bands.medium,'medium'],['Low',data!.risk_bands.low,'low']].map(([label,value,color])=><div className="band-row" key={label as string}><div className="band-label"><span className={`band-dot ${color}`}/>{label}<strong>{Number(value).toLocaleString()}</strong></div><div className="band-track"><div className={`band-fill ${color}`} style={{width:`${Math.max(3,Number(value)/Math.max(1,k.open_findings)*100)}%`}}/></div></div>)}</div><div className="band-callout"><span className="callout-icon"><Activity size={16}/></span><span><strong>Threat intelligence is active</strong><small>Exploited vulnerabilities are reflected in risk priority.</small></span></div></section></div><div className="panel table-panel"><div className="panel-head"><div><span className="panel-kicker">FOCUS AREAS</span><h2>Highest priority findings</h2></div><Link to="/findings" className="text-btn">See all findings <span>→</span></Link></div><FindingTable rows={data!.top_findings.slice(0, 5)}/></div><p className="assumption-note"><CircleHelp size={14}/>{data!.assumption}</p></>
+function GlobalSearch() {
+  const navigate = useNavigate()
+  const [term, setTerm] = useState('')
+  function submit(event: FormEvent) {
+    event.preventDefault()
+    const query = term.trim()
+    if (query) navigate(`/findings?search=${encodeURIComponent(query)}`)
+  }
+  return (
+    <form className="global-search" role="search" onSubmit={submit}>
+      <Search size={15} />
+      <input
+        aria-label="Global finding search"
+        placeholder="Search findings…"
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+      />
+    </form>
+  )
 }
-function Metric({ label, value, foot, icon, accent = 'teal' }: { label: string; value: string; foot: string; icon: React.ReactNode; accent?: string }) { return <article className="metric-card"><div className="metric-top"><span>{label}</span><span className={`metric-icon ${accent}`}>{icon}</span></div><strong>{value}</strong><small>{foot}</small></article> }
-function FindingTable({ rows }: { rows: Finding[] }) { return <div className="table-scroll"><table aria-label="Prioritized findings"><thead><tr><th>Finding</th><th>Severity</th><th>Risk score</th><th>Sources</th><th>Status</th><th/></tr></thead><tbody>{rows.map(row=><tr key={row.id}><td><Link className="table-primary" to={`/findings/${row.id}`}>{row.title}</Link><small>{row.id.slice(0,8)} · asset {row.asset_id.slice(0,8)}</small></td><td><RiskBadge band={row.severity}/></td><td><div className="score-cell"><strong>{Number(row.risk_score).toFixed(1)}</strong><div className="score-track"><i style={{width:`${row.risk_score}%`}}/></div></div></td><td>{row.sources?.slice(0,2).join(', ') || '—'}</td><td><span className="status-pill">{row.status.replace('_',' ')}</span></td><td><Link className="row-arrow" to={`/findings/${row.id}`} aria-label={`Open ${row.title}`}>→</Link></td></tr>)}</tbody></table></div> }
-
-function FindingsPage() { const [search,setSearch] = useState(''); const [band,setBand]=useState(''); const [status,setStatus]=useState(''); const navigate=useNavigate(); const {data,isLoading,error}=useFindings(); const rows=(data??[]).filter(x=>x.title.toLowerCase().includes(search.toLowerCase())&&(!band||x.risk_band.toLowerCase()===band)&&(!status||x.status===status)); return <><PageTitle eyebrow="RISK REGISTER" title="Findings" description="Correlated, risk-ranked issues across your inventory." action={<button className="primary-btn" onClick={()=>navigate('/imports')}>Import findings <span>＋</span></button>}/><div className="filter-bar"><label className="search-box"><Search size={16}/><input aria-label="Search findings" placeholder="Search findings…" value={search} onChange={e=>setSearch(e.target.value)}/></label><select aria-label="Risk band" value={band} onChange={e=>setBand(e.target.value)}><option value="">All risk bands</option>{["critical","high","medium","low"].map(x=><option key={x} value={x}>{x}</option>)}</select><select aria-label="Status" value={status} onChange={e=>setStatus(e.target.value)}><option value="">All statuses</option>{["open","in_remediation","risk_accepted","closed"].map(x=><option key={x}>{x}</option>)}</select><span className="result-count">{rows.length.toLocaleString()} findings</span></div><section className="panel table-panel">{isLoading?<Loading/>:error?<ErrorState message={(error as Error).message}/>:<FindingTable rows={rows}/>}</section></> }
-
-function FindingPage() { const { id = '' } = useParams(); const navigate=useNavigate(); const {data,error}=useQuery({queryKey:['finding',id],queryFn:()=>api<Record<string,unknown>>(`/findings/${id}`)}); if(error)return <ErrorState message={(error as Error).message}/>; if(!data)return <Loading/>; const findingTitle=String(data.title); const findingId=String(data.id??id); const rawBreakdown=data.risk_breakdown??[]; const breakdown=Array.isArray(rawBreakdown)?rawBreakdown as Array<{factor:string;points:number;max_points:number;reason:string}>:Object.entries(rawBreakdown as Record<string,{points:number;weight:number;reason:string}>).map(([factor,x])=>({factor,points:x.points,max_points:x.weight*100,reason:x.reason})); function explainFinding(){navigate('/assistant',{state:{findingId,question:`Explain why “${findingTitle}” is prioritized. Describe its risk score, strongest risk drivers, evidence, and what to validate first.`}})} return <><Link to="/findings" className="back-link">← Back to findings</Link><PageTitle eyebrow="FINDING DETAIL" title={findingTitle} description={`${String(data.severity)} severity · ${String(data.status)} · ${String((data.asset as {name?:string})?.name??'Asset')}`}/><div className="detail-grid"><section className="panel"><div className="panel-head"><div><span className="panel-kicker">EXPLAINABLE RISK</span><h2>Risk score <b className="large-score">{Number(data.risk_score).toFixed(1)}</b></h2></div><RiskBadge band={String(data.risk_band)}/></div><div className="factor-list">{breakdown.map(factor=><div className="factor" key={factor.factor}><div><strong>{factor.factor.replaceAll('_',' ')}</strong><span>{factor.points.toFixed(1)} / {factor.max_points.toFixed(1)} pts</span></div><div className="factor-bar"><i style={{width:`${factor.points}%`}}/></div><p>{factor.reason}</p></div>)}</div></section><section className="panel"><span className="panel-kicker">EVIDENCE</span><h2>Finding context</h2><p className="muted">{String(data.description??'No description supplied.')}</p><div className="detail-pair"><span>CVSS</span><strong>{String(data.cvss_score??'—')}</strong></div><div className="detail-pair"><span>Source tools</span><strong>{(data.sources as string[]).join(', ')}</strong></div><div className="detail-pair"><span>Asset</span><strong>{String((data.asset as {name?:string})?.name??'—')}</strong></div><button className="secondary-btn" onClick={explainFinding}>Explain with AI <Bot size={15}/></button></section></div></> }
-
-function AssetDetailPage() { const {id=''}=useParams(); const query=useQuery({queryKey:['asset',id],queryFn:()=>api<Record<string,unknown>>(`/assets/${id}`)}); if(query.error)return <ErrorState message={(query.error as Error).message}/>; if(!query.data)return <Loading/>; const a=query.data; return <><Link to="/assets" className="back-link">← Back to assets</Link><PageTitle eyebrow="ASSET PROFILE" title={String(a.name)} description={`${String(a.hostname)} · ${String(a.environment)} environment`}/><div className="detail-grid"><section className="panel"><span className="panel-kicker">BUSINESS CONTEXT</span><h2>Asset posture</h2><div className="detail-pair"><span>Criticality tier</span><strong>{String(a.criticality_tier)}</strong></div><div className="detail-pair"><span>Type</span><strong>{String(a.asset_type)}</strong></div><div className="detail-pair"><span>Internet exposed</span><strong>{a.internet_exposed?'Yes':'No'}</strong></div><div className="detail-pair"><span>Crown jewel</span><strong>{a.is_crown_jewel?'Yes':'No'}</strong></div></section><section className="panel"><span className="panel-kicker">CONNECTED ASSETS</span><h2>Connections</h2>{(a.connections as string[]).map(edge=><p className="muted" key={edge}>{edge}</p>)}{!(a.connections as string[]).length&&<p className="muted">No connections recorded.</p>}</section></div></> }
-
-function AssetsPage() { const {data,isLoading,error}=useQuery({queryKey:['assets'],queryFn:()=>api<Array<Record<string,unknown>>>('/assets')}); const [search,setSearch]=useState(''); if(isLoading)return <Loading/>; if(error)return <ErrorState message={(error as Error).message}/>; const rows=(data??[]).filter(a=>String(a.name).toLowerCase().includes(search.toLowerCase())); return <><PageTitle eyebrow="INVENTORY" title="Asset inventory" description="Business context for systems, applications, and data stores."/><div className="filter-bar"><label className="search-box"><Search size={16}/><input aria-label="Search assets" placeholder="Search assets…" value={search} onChange={e=>setSearch(e.target.value)}/></label><span className="result-count">{rows.length} assets</span></div><div className="asset-grid">{rows.slice(0,90).map(a=><article className="panel asset-card" key={String(a.id)}><div className="asset-card-top"><span className="asset-symbol"><Boxes size={17}/></span><RiskBadge band={a.is_crown_jewel === true?'Critical':a.internet_exposed === true?'High':'Medium'}/></div><h3>{String(a.name)}</h3><p>{String(a.hostname)} · {String(a.environment)}</p><div className="asset-tags"><span>Tier {String(a.criticality_tier)}</span>{a.internet_exposed === true&&<span>Internet exposed</span>}{a.is_crown_jewel === true&&<span>Crown jewel</span>}</div><div className="asset-card-foot"><span>{String(a.asset_type).replace('_',' ')}</span><Link to={`/assets/${String(a.id)}`} aria-label={`Open ${String(a.name)}`}>↗</Link></div></article>)}</div></> }
-
-function AttackPathsPage() { const {data,error}=useQuery({queryKey:['attack-paths'],queryFn:()=>api<Array<Record<string,unknown>>>('/attack-paths')}); const selectedEntry=String(data?.[0]?.entry_asset_id??''); const {data:graph}=useQuery({queryKey:['graph',selectedEntry],queryFn:()=>api<{nodes:Array<Record<string,unknown>>;links:Array<Record<string,unknown>>}>(`/attack-paths/graph${selectedEntry?`?asset_id=${selectedEntry}`:''}`)}); const [after,setAfter]=useState(false); const queryClient=useQueryClient(); const mutation=useMutation({mutationFn:()=>api('/attack-paths/recalculate',{method:'POST'}),onSuccess:()=>{void queryClient.invalidateQueries({queryKey:['attack-paths']});void queryClient.invalidateQueries({queryKey:['graph']})}}); if(error)return <ErrorState message={(error as Error).message}/>; return <><PageTitle eyebrow="EXPOSURE GRAPH" title="Attack paths" description="Explore modeled routes from internet-facing assets to crown jewels." action={<button className="secondary-btn" onClick={()=>mutation.mutate()} disabled={mutation.isPending}>{mutation.isPending?'Recalculating…':'Recalculate paths'} <Activity size={15}/></button>}/><div className="path-layout"><section className="panel graph-panel"><div className="graph-legend"><span><i className="legend-entry"/>Internet entry</span><span><i className="legend-hop"/>Asset hop</span><span><i className="legend-crown"/>Crown jewel</span><span className="result-count">Selected route nodes outlined</span></div><GraphView nodes={graph?.nodes??[]} links={graph?.links??[]}/></section><aside className="panel path-list"><span className="panel-kicker">PRIORITY ROUTES</span><h2>{data?.length??0} modeled paths</h2><div className="compare-toggle"><button className={!after?'selected':''} onClick={()=>setAfter(false)}>Before feedback</button><button className={after?'selected':''} onClick={()=>setAfter(true)}>After feedback</button></div>{(data??[]).slice(0,12).map(path=><article className="path-item" key={String(path.id)}><span className="path-risk">{Number(after ? path.final_score ?? path.path_risk_score : path.base_score ?? path.path_risk_score).toFixed(0)}</span><span><strong>{String(path.name)}</strong><small>{(path.path_asset_ids as string[]).length} asset hops · {(path.path_finding_ids as string[]).length} linked findings</small></span><span>→</span></article>)}</aside></div></> }
-function GraphView({nodes,links}:{nodes:Array<Record<string,unknown>>;links:Array<Record<string,unknown>>}) { const navigate=useNavigate(); const shown=nodes.slice(0,36); return <svg className="graph-svg" viewBox="0 0 900 500" role="img" aria-label="Attack path asset graph">{links.slice(0,70).map((edge,i)=>{const s=shown.findIndex(n=>n.id===edge.source),t=shown.findIndex(n=>n.id===edge.target);if(s<0||t<0)return null;const x1=50+(s%9)*100,y1=55+Math.floor(s/9)*100,x2=50+(t%9)*100,y2=55+Math.floor(t/9)*100;return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#b9c6d4" strokeWidth="1.2"/>})}{shown.map((node,i)=>{const x=50+(i%9)*100,y=55+Math.floor(i/9)*100;const crown=Boolean(node.is_crown_jewel);return <g key={String(node.id)} role="button" tabIndex={0} aria-label={`Open asset ${String(node.name)}`} onClick={()=>navigate(`/assets/${String(node.id)}`)} onKeyDown={e=>{if(e.key==='Enter')navigate(`/assets/${String(node.id)}`)}}><circle cx={x} cy={y} r={node.selected?20:crown?16:11} fill="none" stroke={node.selected?'#173c57':'transparent'} strokeWidth="2"/><circle cx={x} cy={y} r={crown?14:10} fill={crown?'#d66850':node.risk_band==='high'?'#e7a342':'#108c88'} stroke="white" strokeWidth="3"/><text x={x} y={y+29} textAnchor="middle" fontSize="9" fill="#5c6b7e">{String(node.name).slice(0,13)}</text></g>})}</svg> }
-
-function TasksPage({user}:{user:User}) { const taskPath=user.role==='remediation_owner'?'/tasks/my':'/tasks'; const query=useQuery({queryKey:['tasks',taskPath],queryFn:()=>api<Task[]>(taskPath)}); const [comment,setComment]=useState(''); const [evidence,setEvidence]=useState(''); const qc=useQueryClient(); const update=useMutation({mutationFn:({id,status}:{id:string;status:string})=>api(`/tasks/${id}`,{method:'PATCH',body:JSON.stringify({status,comment,evidence_notes:evidence||undefined})}),onSuccess:()=>qc.invalidateQueries({queryKey:['tasks']})}); if(query.isLoading)return <Loading/>; if(query.error)return <ErrorState message={(query.error as Error).message}/>; const tasks=query.data??[]; return <><PageTitle eyebrow="REMEDIATION OPERATIONS" title="Remediation tasks" description={`Assigned work and SLA deadlines · signed in as ${user.role.replaceAll('_',' ')}`}/><div className="filter-bar"><label className="search-box"><Search size={16}/><input placeholder="Filter tasks…" aria-label="Filter tasks" value={comment} onChange={e=>setComment(e.target.value)}/></label><input aria-label="Remediation evidence" placeholder="Evidence notes (required to close)" value={evidence} onChange={e=>setEvidence(e.target.value)}/><span className="result-count">{tasks.length} actions</span></div><section className="panel table-panel"><div className="table-scroll"><table><thead><tr><th>Task / finding</th><th>Priority</th><th>Due date</th><th>Status</th><th>Evidence</th><th>Update</th></tr></thead><tbody>{tasks.filter(t=>t.finding_id.includes(comment)||t.status.includes(comment)).slice(0,100).map(t=><tr key={t.id}><td><Link className="table-primary" to={`/findings/${t.finding_id}`}>{t.finding_id.slice(0,12)}</Link><small>Asset {t.asset_id.slice(0,10)}</small></td><td><RiskBadge band={t.priority}/></td><td>{t.sla_due_date?new Date(t.sla_due_date).toLocaleDateString():'—'}</td><td><span className="status-pill">{t.status}</span></td><td>{t.evidence_notes?'Added':'Pending'}</td><td><select aria-label={`Update task ${t.id}`} value={t.status} onChange={e=>update.mutate({id:t.id,status:e.target.value})}><option value="open">Open</option><option value="in_progress">In progress</option><option value="pending_verification">Verify</option><option value="closed" disabled={!evidence.trim()}>Close (evidence required)</option><option value="blocked">Blocked</option></select></td></tr>)}</tbody></table></div></section></> }
-
-function ExceptionsPage({user}:{user:User}) { const query=useQuery({queryKey:['exceptions'],queryFn:()=>api<Array<Record<string,unknown>>>('/exceptions')});const qc=useQueryClient();const review=useMutation({mutationFn:({id,action}:{id:string;action:string})=>api(`/exceptions/${id}/${action}`,{method:'POST',body:JSON.stringify({comment:'Reviewed in the demo workspace.'})}),onSuccess:()=>qc.invalidateQueries({queryKey:['exceptions']})});const [finding,setFinding]=useState('');const findingOptions=useFindings();const [justification,setJustification]=useState('');const [expiry,setExpiry]=useState('');const request=useMutation({mutationFn:()=>api('/exceptions',{method:'POST',body:JSON.stringify({finding_id:finding,justification,compensating_controls:'Network segmentation and weekly monitoring.',exception_type:'temporary',requested_expiry_date:new Date(expiry).toISOString()})}),onSuccess:()=>{setFinding('');setJustification('');qc.invalidateQueries({queryKey:['exceptions']})}});return <><PageTitle eyebrow="GOVERNANCE" title="Risk exceptions" description="Document, review, and track time-bound risk acceptance." action={<button className="secondary-btn" onClick={()=>void downloadCsv("/exceptions/export","ivm-exceptions.csv")}>Download exception CSV <ArrowDownRight size={14}/></button>}/><section className="panel form-panel"><div><span className="panel-kicker">NEW REQUEST</span><h2>Request an exception</h2></div><div className="form-row"><label>Finding<select aria-label="Finding" value={finding} onChange={e=>setFinding(e.target.value)}><option value="">Choose a finding</option>{(findingOptions.data??[]).filter(x=>x.status!=="closed").map(x=><option key={x.id} value={x.id}>{x.title} · {x.risk_band} · {x.id.slice(0,8)}</option>)}</select></label><label>Expiry date<input aria-label="Expiry date" type="date" value={expiry} onChange={e=>setExpiry(e.target.value)}/></label></div><label>Business justification<textarea aria-label="Business justification" value={justification} onChange={e=>setJustification(e.target.value)} placeholder="Why is remediation deferred?"/></label><button className="primary-btn" disabled={!finding||justification.length<10||!expiry||request.isPending} onClick={()=>request.mutate()}>Submit request <span>→</span></button>{request.error&&<ErrorState message={(request.error as Error).message}/>}</section><section className="panel table-panel"><div className="panel-head"><h2>Exception register</h2><span className="result-count">{query.data?.length??0} records</span></div>{query.data?.map(item=><div className="exception-row" key={String(item.id)}><span className={`exception-status ${String(item.status)}`}>{String(item.status)}</span><span className="exception-copy"><strong>Finding {String(item.finding_id).slice(0,12)}</strong><small>{String(item.justification)}</small></span><span className="muted">Expires {new Date(String(item.requested_expiry_date)).toLocaleDateString()}</span>{item.status==='pending'&&['vulnerability_manager','security_architect'].includes(user.role)&&<div className="button-row"><button className="text-btn" onClick={()=>review.mutate({id:String(item.id),action:'approve'})}>Approve</button><button className="text-btn danger-text" onClick={()=>review.mutate({id:String(item.id),action:'reject'})}>Reject</button></div>}</div>)}</section></> }
-
-function ImportsPage() { const [source,setSource]=useState('scanner');const [file,setFile]=useState<File|null>(null);const [result,setResult]=useState<Record<string,unknown>|null>(null);const query=useQuery({queryKey:['imports'],queryFn:()=>api<Array<Record<string,unknown>>>('/imports')});const qc=useQueryClient();const mutation=useMutation({mutationFn:async()=>{if(!file)throw new Error('Select a file first');const form=new FormData();form.append('file',file);return api<Record<string,unknown>>(`/imports/${source}`,{method:'POST',body:form})},onSuccess:data=>{setResult(data);qc.invalidateQueries({queryKey:['imports']})}});return <><PageTitle eyebrow="DATA PIPELINE" title="Import findings" description="Load simulated scanner exports and track normalization results."/><section className="panel upload-panel"><div className="upload-icon"><FileUp size={22}/></div><div className="upload-copy"><h2>Upload a source export</h2><p>CSV or JSON, up to 10 MB. Synthetic data only.</p></div><div className="upload-controls"><label>Source type<select aria-label="Source type" value={source} onChange={e=>setSource(e.target.value)}><option value="scanner">Host scanner</option><option value="cspm">Cloud posture</option><option value="pentest">Penetration test</option><option value="container">Container / Kubernetes</option><option value="identity">Identity</option></select></label><label className="file-picker">Choose file<input type="file" accept=".csv,.json" onChange={e=>setFile(e.target.files?.[0]??null)}/></label><button className="primary-btn" disabled={!file||mutation.isPending} onClick={()=>mutation.mutate()}>{mutation.isPending?'Importing…':'Run import'} <span>→</span></button></div>{file&&<div className="selected-file">Selected: {file.name}</div>}{mutation.error&&<ErrorState message={(mutation.error as Error).message}/>}</section>{result&&<section className="import-result panel"><CheckCircle2 size={20}/><div><strong>Import finished · {String(result.status)}</strong><p>{String(result.success_count)} new findings · {String(result.duplicate_count)} duplicates · {String(result.failed_count)} errors</p></div></section>}<section className="panel table-panel"><div className="panel-head"><h2>Recent batches</h2></div><div className="table-scroll"><table><thead><tr><th>Source</th><th>File</th><th>Records</th><th>New</th><th>Duplicates</th><th>Failed</th><th>Status</th></tr></thead><tbody>{(query.data??[]).map(row=><tr key={String(row.id)}><td>{String(row.source_name)}</td><td>{String(row.file_name)}</td><td>{String(row.total_records)}</td><td>{String(row.success_count)}</td><td>{String(row.duplicate_count)}</td><td>{String(row.failed_count)}</td><td>{String(row.status)}</td></tr>)}</tbody></table></div></section></> }
-
-function AssistantPage() {
-  type Exchange = { question: string; answer: Record<string, unknown> }
-  const location=useLocation()
-  const navigate=useNavigate()
-  const navigationContext=location.state as {question?:string;findingId?:string}|null
-  const [question,setQuestion]=useState(navigationContext?.question??'')
-  const [findingId]=useState<string|null>(navigationContext?.findingId??null)
-  const [conversation,setConversation]=useState<Exchange[]>([])
-  const chatHistoryRef=useRef<HTMLDivElement>(null)
-  const autoSubmitted=useRef(false)
-  const mutation=useMutation({mutationFn:({question:submittedQuestion,findingId:contextId}:{question:string;findingId:string|null})=>api<Record<string,unknown>>('/ai/ask',{method:'POST',body:JSON.stringify({question:submittedQuestion,...(contextId?{finding_id:contextId}:{})})}),onSuccess:(answer,variables)=>setConversation(previous=>[...previous,{question:variables.question,answer}])})
-  useEffect(()=>{if(!navigationContext?.question||!navigationContext.findingId||autoSubmitted.current)return;autoSubmitted.current=true;const submittedQuestion=navigationContext.question.trim();setQuestion('');mutation.mutate({question:submittedQuestion,findingId:navigationContext.findingId},{onError:()=>setQuestion(current=>current||submittedQuestion)});navigate(location.pathname,{replace:true,state:null})},[location.pathname,navigate,navigationContext,mutation])
-  useEffect(()=>{const history=chatHistoryRef.current;if(history)history.scrollTo({top:history.scrollHeight,behavior:'smooth'})},[conversation,mutation.isPending])
-  function ask(e:FormEvent){e.preventDefault();const submittedQuestion=question.trim();if(!submittedQuestion||mutation.isPending)return;setQuestion('');mutation.mutate({question:submittedQuestion,findingId},{onError:()=>setQuestion(current=>current||submittedQuestion)})}
-  return <><PageTitle eyebrow="AI COPILOT" title="Risk assistant" description="Ask plain-language questions about prioritized synthetic risk data."/><div className="assistant-layout"><section className="panel chat-panel"><div className="chat-top"><span className="bot-avatar"><Bot size={18}/></span><span><strong>IVM Assistant</strong><small><i className="status-dot"/> Offline-ready · synthetic data scoped</small></span><span className="ai-label">AI GENERATED</span></div><div className="chat-history" ref={chatHistoryRef} aria-live="polite"><div className="assistant-message">Hello. I can explain risk scores, summarize exposure, or help you choose what to remediate first.</div>{conversation.map((exchange,index)=><div className="chat-exchange" key={`${index}-${exchange.question}`}><div className="user-message">{exchange.question}</div><div className="assistant-message"><p>{String(exchange.answer.answer)}</p><small>{String(exchange.answer.disclaimer)}</small>{Array.isArray(exchange.answer.data)&&<div className="ai-table">{(exchange.answer.data as Array<Record<string,unknown>>).slice(0,6).map(row=><article className="ai-finding" key={String(row.id)}><div><strong>{String(row.title)}</strong><RiskBadge band={String(row.risk_band)}/><b>{String(row.risk_score)}</b></div>{row.description!=null&&String(row.description).length>0&&<p>{String(row.description)}</p>}{Array.isArray(row.risk_breakdown)&&<ul>{(row.risk_breakdown as Array<Record<string,unknown>>).slice(0,4).map((factor,index)=><li key={`${String(factor.factor)}-${index}`}><strong>{String(factor.factor).replaceAll('_',' ')}</strong> · {String(factor.points)}/{String(factor.max_points)} pts · {String(factor.reason)}</li>)}</ul>}</article>)}</div>}</div></div>)}{mutation.isPending&&<div className="assistant-message" role="status">Thinking…</div>}</div><div className="suggestions"><span>Try asking</span>{['What is overdue?','How many assets are exposed?','Explain the top priorities'].map(q=><button type="button" key={q} onClick={()=>setQuestion(q)}>{q}</button>)}</div><form className="chat-input" onSubmit={ask}><input aria-label="Ask the IVM assistant" value={question} onChange={e=>setQuestion(e.target.value)} placeholder="Ask a question…"/><button className="primary-btn" disabled={mutation.isPending||!question.trim()}>Send ↑</button></form>{mutation.error&&<ErrorState message={(mutation.error as Error).message}/>}</section><aside className="panel assistant-side"><span className="panel-kicker">HOW IT WORKS</span><h2>Grounded in your data</h2><p>The offline assistant uses role-scoped queries against this synthetic demo database. It does not send data to an external model.</p><div className="privacy-line"><Shield size={16}/> No customer or production data</div><div className="privacy-line"><Activity size={16}/> Questions are written to the audit log</div></aside></div></>
-}
-
-function AuditPage() { const query=useQuery({queryKey:['audit'],queryFn:()=>api<Array<Record<string,unknown>>>('/audit')});return <><PageTitle eyebrow="ASSURANCE" title="Audit trail" description="Append-only record of key security and workflow events." action={<button className="secondary-btn" onClick={()=>void downloadCsv("/audit/export", "ivm-audit.csv")}>Download CSV <ArrowDownRight size={14}/></button>}/><section className="panel table-panel"><div className="table-scroll"><table><thead><tr><th>When</th><th>Actor</th><th>Action</th><th>Entity</th><th>Details</th></tr></thead><tbody>{(query.data??[]).map(row=><tr key={String(row.id)}><td>{new Date(String(row.timestamp)).toLocaleString()}</td><td>{String(row.actor_user_id??'system').slice(0,12)}</td><td>{String(row.action)}</td><td>{String(row.entity_type)}</td><td>{JSON.stringify(row.new_value??{})}</td></tr>)}</tbody></table></div></section></> }
-
-function AdminPage() { const sla=useQuery({queryKey:['sla'],queryFn:()=>api<Array<Record<string,unknown>>>('/config/sla')});const scoring=useQuery({queryKey:['scoring'],queryFn:()=>api<Record<string,unknown>>('/config/scoring')});const qc=useQueryClient();const recalc=useMutation({mutationFn:()=>api('/risk/recalculate',{method:'POST'}),onSuccess:()=>qc.invalidateQueries()});const jobs=useMutation({mutationFn:()=>api<Record<string,number>>('/jobs/run',{method:'POST'}),onSuccess:()=>qc.invalidateQueries({queryKey:['escalations']})});const escalations=useQuery({queryKey:['escalations'],queryFn:()=>api<Array<Record<string,unknown>>>('/escalations')});return <><PageTitle eyebrow="PLATFORM SETTINGS" title="Administration" description="Manage scoring posture, SLAs, users, and scheduled operations."/><div className="admin-grid"><section className="panel"><span className="panel-kicker">RISK MODEL</span><h2>Active scoring weights</h2><p className="muted">Version {String(scoring.data?.version??'—')} · transparent, configurable factor contributions</p>{Object.entries((scoring.data?.weights??{}) as Record<string,number>).map(([name,value])=><div className="weight-row" key={name}><span>{name.replace('_',' ')}</span><div className="weight-track"><i style={{width:`${Number(value)*100}%`}}/></div><strong>{Math.round(Number(value)*100)}%</strong></div>)}<button className="secondary-btn" onClick={()=>recalc.mutate()}>{recalc.isPending?'Recalculating…':'Run risk rescore'} <Activity size={15}/></button></section><section className="panel"><span className="panel-kicker">SERVICE LEVELS</span><h2>Remediation targets</h2>{(sla.data??[]).map(row=><div className="sla-row" key={String(row.risk_band)}><RiskBadge band={String(row.risk_band)}/><strong>{String(row.sla_days)} days</strong><small>Escalation at {String(row.escalation_level_1_days)} / {String(row.escalation_level_2_days)} days</small></div>)}</section><section className="panel admin-note"><span className="panel-kicker">SCHEDULED JOBS</span><h2>Review SLA and exception deadlines</h2><p>Run the demo scheduler now to create overdue escalations and expire any approved risk exceptions.</p><button className="secondary-btn" onClick={()=>jobs.mutate()} disabled={jobs.isPending}>{jobs.isPending?'Running jobs…':'Run scheduler jobs now'} <Activity size={15}/></button>{jobs.data&&<p className="success-note">Escalations created: {jobs.data.escalations_created} · Exceptions expired: {jobs.data.exceptions_expired}</p>}<div className="path-list"><strong>Recent escalations</strong>{(escalations.data??[]).slice(0,5).map(item=><div className="path-item" key={String(item.id)}><span className="path-risk">L{String(item.level)}</span><span><strong>{String(item.reason)}</strong><small>Task {String(item.task_id).slice(0,10)}</small></span></div>)}</div></section></div>{Boolean(recalc.data)&&<p className="success-note">Risk recalculated successfully.</p>}</> }
 
 export default App

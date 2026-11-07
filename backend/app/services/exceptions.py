@@ -2,6 +2,8 @@
 
 from datetime import datetime, timedelta, timezone
 
+from app.services.audit import record_audit
+from app.core.timeutil import as_utc
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -13,9 +15,7 @@ from app.models.entities import (
     SlaPolicy,
 )
 
-
-def _aware(value: datetime) -> datetime:
-    return value.replace(tzinfo=timezone.utc) if value.tzinfo is None else value
+_aware = as_utc
 
 
 def expire_exceptions(db: Session) -> int:
@@ -51,14 +51,13 @@ def expire_exceptions(db: Session) -> int:
                     task.status = "open"
                     task.closed_at = None
                     task.sla_due_date = now + timedelta(days=days)
-            db.add(
-                AuditLog(
-                    actor_user_id=None,
-                    action="exception_expired",
-                    entity_type="risk_exception",
-                    entity_id=item.id,
-                    new_value={"status": "expired", "finding_reopened": bool(finding)},
-                )
+            record_audit(
+                db,
+                None,
+                "exception_expired",
+                "risk_exception",
+                item.id,
+                new={"status": "expired", "finding_reopened": bool(finding)},
             )
             changed += 1
             continue
@@ -70,17 +69,16 @@ def expire_exceptions(db: Session) -> int:
                 .where(AuditLog.entity_id == item.id, AuditLog.action == action)
                 .limit(1)
             ):
-                db.add(
-                    AuditLog(
-                        actor_user_id=None,
-                        action=action,
-                        entity_type="risk_exception",
-                        entity_id=item.id,
-                        new_value={
-                            "days_until_expiry": max(0, round(days_left, 1)),
-                            "finding_id": str(item.finding_id),
-                        },
-                    )
+                record_audit(
+                    db,
+                    None,
+                    action,
+                    "risk_exception",
+                    item.id,
+                    new={
+                        "days_until_expiry": max(0, round(days_left, 1)),
+                        "finding_id": str(item.finding_id),
+                    },
                 )
                 changed += 1
     db.commit()

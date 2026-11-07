@@ -1,25 +1,19 @@
-# Demo Script — “From 2,500 Noisy Findings to 12 Prioritized Actions”
+# Demonstration Script (≈ 12 minutes)
 
-The seeded fixture set is approximately 2,500 raw source rows. The dashboard and import totals calculate the deduplicated counts from the generated records; the phrase “12 prioritized actions” is the presentation target for the walkthrough, not a fixed database total.
+Prerequisite: `LOGIN_RATE_LIMIT=100 ./scripts/dev.sh`, browser at http://127.0.0.1:5173. All passwords `DemoPass!234`.
+A captioned recording of this flow is `docs/demo/ivm-demo.webm` (regenerate with `node e2e/demo/record-demo.mjs`).
 
-## Ten-minute run
-
-**0:00–1:00 — Set the scene.** Sign in as `user2@demo.bank`. Explain that all data is synthetic and no scanner or bank connection exists. Point out the posture KPIs and effort-saved estimate.
-
-**1:00–2:30 — Show noisy sources.** Open Data Imports. Identify scanner CSV, CSPM JSON, pentest JSON, and container/Kubernetes JSON. Select scanner export and import it. Explain new, duplicate, and malformed-row counts; each original row remains traceable.
-
-**2:30–4:00 — Explain the priority.** Open Findings and select a top high/critical finding. Walk through severity, business criticality, internet exposure, threat intelligence, and attack-path points. Compare with an internal lower-tier asset.
-
-**4:00–5:30 — Show attack paths.** Open Attack Paths, recalculate, and point out an internet entry, intermediate assets, and crown-jewel targets. Explain how a modeled route raises finding priority.
-
-**5:30–6:45 — Assign and remediate.** Sign in as `user8@demo.bank`, open Remediation, set a task in progress, then close one with synthetic evidence. Optionally create a simulated JIRA ticket.
-
-**6:45–8:00 — SLA escalation.** Sign in as manager `user4@demo.bank`, open Administration, run scheduler jobs, and inspect escalation levels and reason for the seeded overdue example.
-
-**8:00–9:15 — Govern exception.** As analyst request a time-bound exception with controls. Sign in separately as `user6@demo.bank` (security architect), approve, then inspect accepted status and audit log. Demonstrate self-approval is blocked if time permits.
-
-**9:15–10:00 — Ask the assistant.** Ask “Which findings should we prioritize first?” Show the rule-based answer and disclaimer. End at the executive dashboard and cite the six-minute triage-time assumption.
-
-## Reset and backup
-
-For a clean demo, run `docker compose down -v` and `docker compose up --build`. For evidence, record the commit, command, and synthetic-only screenshot paths in the evidence template.
+| Time | Account | Steps | Talking points (rubric) |
+|---|---|---|---|
+| 0:00 | — | Title slide | Problem: volume, duplicates, no context, unclear ownership (business alignment) |
+| 1:00 | user11 (CISO) | Overview: KPIs, trend, BU risk, internet-facing assets, crown-jewel paths, heatmap | Role-specific executive view; section-13 dashboard items |
+| 2:30 | user11 | Reports & insights: success-criteria table, remediation plan, forecast; download Executive report | SC-1..12 measured live; recommendation engine; board summary |
+| 4:00 | user2 (analyst) | Findings → filter Critical → open top finding | Eight explainable factors, threat intel, attack-path base → final |
+| 5:00 | user2 | Attack paths: pick a route | Exposure chains raise priority (SC-9) |
+| 5:45 | user2 | AI assistant: "Critical findings in Treasury", "what about Retail Banking?", "What should we fix first?" | NLQ, follow-ups, sources, audit |
+| 7:00 | user2 | Data imports → EASM → run; view failed rows | Correlation (13 merged), survivorship, recoverable failures |
+| 8:00 | user1 (admin) | Asset inventory → register asset → edit: crown jewel + internet exposed → save; retry EASM failed rows | UC-1/2, rescoring, reliability |
+| 9:00 | user4 (manager) | Remediation → open task drawer: owner reason, breach risk, timeline → Create Jira ticket | UC-8/9/10, SC-11 |
+| 10:00 | user4 / user2 | Exceptions: user2 requests, user4 approves; download review pack | Segregation of duties, evidence (UC-11) |
+| 11:00 | user5 (auditor) | Audit trail → filter → Verify integrity | Tamper-evident audit, auditability NFR |
+| 11:30 | — | Quality slide: 113/12/13 tests, 85% coverage, 0 vulnerabilities, p95 0.51 s | Testing and secure engineering evidence |

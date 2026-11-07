@@ -17,3 +17,9 @@ infra/tls-certs/*.crt
 *.sqlite3
 playwright-report/
 test-results/
+.coverage
+*.egg-info/
+*.tsbuildinfo
+docs/demo/.raw/
+.DS_Store
+backend/data/synthetic/*.bak
