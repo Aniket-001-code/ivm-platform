@@ -5,7 +5,7 @@ import csv
 import io
 from fastapi.responses import Response
 from datetime import datetime, timedelta, timezone
-from uuid import UUID
+from uuid import UUID, uuid4
 
 import jwt
 from fastapi import HTTPException, Request
@@ -75,6 +75,7 @@ def _token(user: User, kind: str = "access") -> str:
             "sub": str(user.id),
             "role": user.role,
             "type": kind,
+            "jti": uuid4().hex,  # unique per token, so rotated tokens never repeat
             "exp": datetime.now(timezone.utc) + lifetime,
         },
         settings.secret_key,

@@ -16,4 +16,4 @@ A captioned recording of this flow is `docs/demo/ivm-demo.webm` (regenerate with
 | 9:00 | user4 (manager) | Remediation → open task drawer: owner reason, breach risk, timeline → Create Jira ticket | UC-8/9/10, SC-11 |
 | 10:00 | user4 / user2 | Exceptions: user2 requests, user4 approves; download review pack | Segregation of duties, evidence (UC-11) |
 | 11:00 | user5 (auditor) | Audit trail → filter → Verify integrity | Tamper-evident audit, auditability NFR |
-| 11:30 | — | Quality slide: 113/12/13 tests, 85% coverage, 0 vulnerabilities, p95 0.51 s | Testing and secure engineering evidence |
+| 11:30 | — | Quality slide: 113/12/13 tests, 86% coverage, 0 vulnerabilities, p95 0.51 s | Testing and secure engineering evidence |

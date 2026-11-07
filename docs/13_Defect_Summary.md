@@ -22,7 +22,7 @@ automated test or by evidence in `docs/evidence/`.
 | DEF-015 | Owners matched a non-existent role | Medium | Frontend | Legacy alias → `usesOwnTaskQueue` | `access.test.ts` |
 | DEF-016 | Hard-coded date; factor bars scaled wrongly | Low | Frontend | Static text / wrong denominator → computed | Visual review |
 | DEF-017 | Menu showed pages that returned 403 | Medium | Frontend | Role lists vs permissions → permission-driven nav | `App.test.tsx`, E2E CISO test |
-| DEF-018 | Flaky E2E reading stale table | Low | Test | Race on navigation → wait for heading | 13/13 E2E stable |
+| DEF-018 | Flaky E2E reading stale table | Low | Test | Race on navigation → wait for heading | 13/14 E2E stable |
 | DEF-019 | Re-score erased attack-path influence | High | Risk engine | No path context in rescore → `services/scoring.py` | `test_rescoring_preserves_attack_path_influence` |
 | DEF-020 | Imported findings missed exploit maturity | High | Risk engine | Partial intel dict → shared `intel_for` | `test_threat_feed_parses_booleans_and_rescores_affected_findings` |
 | DEF-021 | All IP addresses matched the same asset | High | Ingestion | `asset_key` truncated at first dot → IP/URL aware | `test_asset_keys_keep_ip_addresses_and_parse_urls` |

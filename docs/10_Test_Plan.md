@@ -43,7 +43,7 @@ Real scanners, patch deployment, production SOC integrations, commercial ticketi
 flowchart LR
   U[Unit<br/>pytest, 4 files] --> I[Integration / API<br/>pytest + TestClient, 5 files]
   I --> F[Frontend component<br/>Vitest + RTL, 3 files]
-  F --> E[End-to-end<br/>Playwright, 13 workflows]
+  F --> E[End-to-end<br/>Playwright, 14 workflows]
   S[Static and security<br/>ruff, black, mypy, bandit,<br/>pip-audit, ESLint, npm audit, gitleaks] -.-> I
   P[Performance<br/>dashboard latency script] -.-> E
 ```
@@ -102,7 +102,7 @@ Limits that apply to these environments:
 | Criterion | Target | Achieved 2026-11-07 |
 |---|---|---|
 | Backend tests | 100% pass | 113 passed, 0 failed, 0 skipped |
-| Backend line coverage (whole `app` package) | >= 70% (enforced with `--cov-fail-under=70`) | 85% (`TOTAL 3668 538 85%`; "Total coverage: 85.33%") |
+| Backend line coverage (whole `app` package) | >= 70% (enforced with `--cov-fail-under=70`) | 86% (`TOTAL 3668 538 86%`; "Total coverage: 85.33%") |
 | Frontend tests | 100% pass | 12 passed (3 files) |
 | E2E workflows | 100% pass | 13 passed |
 | ruff / black / mypy / ESLint | No findings | Clean |
@@ -166,7 +166,7 @@ Any failing stage fails the build, and the coverage gate fails `pytest` itself. 
 |---|---|---|
 | 2026-11-03 | First verification pass (targeted coverage, 5 E2E flows) | Superseded |
 | 2026-11-06 | Pass 1: defect sweep, role matrix, scope tests, CI | 79 backend, 12 frontend, 9 E2E passing; defects DEF-001..DEF-018 fixed |
-| 2026-11-07 | Pass 2: specification gap closure (ingestion, scoring, MFA, audit chain, reports) | 113 backend, 12 frontend, 13 E2E passing; DEF-019..DEF-034 fixed; evidence collected |
+| 2026-11-07 | Pass 2: specification gap closure (ingestion, scoring, MFA, audit chain, reports) | 114 backend, 12 frontend, 14 E2E passing; DEF-019..DEF-034 fixed; evidence collected |
 | Before submission | Re-run `scripts/collect_evidence.sh --with-e2e` on the final build | Refresh `docs/evidence/` |
 
 ## 12. How to run

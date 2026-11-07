@@ -778,3 +778,25 @@ def test_attack_graph_exports_for_graph_databases(world):
         and "<graphml" in graphml.text
         and "asset-a" in graphml.text
     )
+
+
+def test_refresh_token_is_httponly_cookie_and_rotates(world):
+    client = world["client"]
+    user, password = _password_user(world, role="security_analyst")
+    login = client.post(
+        "/api/v1/auth/login", json={"email": user.email, "password": password}
+    )
+    cookie = login.headers["set-cookie"]
+    assert (
+        "ivm_refresh=" in cookie
+        and "HttpOnly" in cookie
+        and "SameSite=strict" in cookie
+    )
+    first = client.post("/api/v1/auth/refresh")  # cookie only, no body
+    assert first.status_code == 200
+    old = login.json()["refresh_token"]
+    assert (
+        client.post("/api/v1/auth/refresh", json={"refresh_token": old}).status_code
+        == 401
+    )
+    common._rate_events.clear()

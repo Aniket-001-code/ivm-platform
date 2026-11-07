@@ -1,0 +1,13 @@
+$ ./.venv/bin/python scripts/load_benchmark.py --users 25 --requests 600
+# collected 2026-11-07T07:23:16Z
+concurrent users=25 requests=600 elapsed=9.1s
+throughput=65.6 req/s errors=0
+latency p50=0.233s p95=1.475s max=1.754s
+  /assets                          mean=0.217s
+  /attack-paths                    mean=0.186s
+  /dashboards/analyst              mean=0.325s
+  /dashboards/trend                mean=0.236s
+  /findings                        mean=0.245s
+  /reports/remediation-plan        mean=1.176s
+  /tasks                           mean=0.344s
+# exit code: 0

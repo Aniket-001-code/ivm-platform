@@ -1,12 +1,12 @@
 $ ./.venv/bin/python -m pytest -v --cov=app --cov-report=term --cov-fail-under=70 --junitxml=./docs/evidence/backend-junit.xml
-# collected 2026-11-07T02:33:42Z
+# collected 2026-11-07T07:22:40Z
 ============================= test session starts ==============================
 platform darwin -- Python 3.12.16, pytest-9.0.3, pluggy-1.7.0 -- ./.venv/bin/python
 cachedir: .pytest_cache
 rootdir: ./backend
 configfile: pyproject.toml
 plugins: platformdirs-4.14.5, cov-6.0.0, anyio-4.16.0, Faker-33.3.1
-collecting ... collected 113 items
+collecting ... collected 114 items
 
 tests/integration/test_api_auth.py::test_login_protected_inventory_and_default_deny PASSED [  0%]
 tests/integration/test_role_matrix.py::test_every_role_gets_exactly_its_permissions[auditor] PASSED [  1%]
@@ -24,7 +24,7 @@ tests/integration/test_role_matrix.py::test_login_payload_carries_permissions PA
 tests/integration/test_role_matrix.py::test_business_unit_manager_sees_only_own_unit_everywhere PASSED [ 12%]
 tests/integration/test_role_matrix.py::test_out_of_scope_findings_are_hidden_from_ai_and_exception_requests PASSED [ 13%]
 tests/integration/test_role_matrix.py::test_system_administrator_sees_only_assets_with_assigned_tasks PASSED [ 14%]
-tests/integration/test_role_matrix.py::test_auditor_dashboard_and_exception_page_agree PASSED [ 15%]
+tests/integration/test_role_matrix.py::test_auditor_dashboard_and_exception_page_agree PASSED [ 14%]
 tests/integration/test_role_matrix.py::test_ai_answers_name_their_sources_and_respect_scope PASSED [ 15%]
 tests/integration/test_role_matrix.py::test_finding_list_paging_sorting_and_total_header PASSED [ 16%]
 tests/integration/test_role_matrix.py::test_csv_exports_neutralise_formula_injection PASSED [ 17%]
@@ -32,70 +32,71 @@ tests/integration/test_role_matrix.py::test_config_changes_are_audited PASSED [ 
 tests/integration/test_role_matrix.py::test_locked_account_is_refused_not_crashed PASSED [ 19%]
 tests/integration/test_role_matrix.py::test_overdue_tasks_filter_in_sql PASSED [ 20%]
 tests/integration/test_role_matrix.py::test_user_updates_validate_roles_and_protect_self PASSED [ 21%]
-tests/integration/test_role_matrix.py::test_finding_status_is_validated PASSED [ 22%]
-tests/integration/test_seeded_smoke.py::test_seed_matches_documented_dataset PASSED [ 23%]
+tests/integration/test_role_matrix.py::test_finding_status_is_validated PASSED [ 21%]
+tests/integration/test_seeded_smoke.py::test_seed_matches_documented_dataset PASSED [ 22%]
 tests/integration/test_seeded_smoke.py::test_read_endpoints_respond_on_seeded_data[user1@demo.bank-paths0] PASSED [ 23%]
 tests/integration/test_seeded_smoke.py::test_read_endpoints_respond_on_seeded_data[user2@demo.bank-paths1] PASSED [ 24%]
 tests/integration/test_seeded_smoke.py::test_read_endpoints_respond_on_seeded_data[user4@demo.bank-paths2] PASSED [ 25%]
 tests/integration/test_seeded_smoke.py::test_read_endpoints_respond_on_seeded_data[user5@demo.bank-paths3] PASSED [ 26%]
 tests/integration/test_seeded_smoke.py::test_read_endpoints_respond_on_seeded_data[user8@demo.bank-paths4] PASSED [ 27%]
 tests/integration/test_seeded_smoke.py::test_detail_endpoints_and_what_if_on_seeded_data PASSED [ 28%]
-tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Which assets are internet exposed?-asset_inventory] PASSED [ 29%]
-tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Any exceptions expiring?-exception_status] PASSED [ 30%]
+tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Which assets are internet exposed?-asset_inventory] PASSED [ 28%]
+tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Any exceptions expiring?-exception_status] PASSED [ 29%]
 tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Show attack paths to crown jewels-attack_paths] PASSED [ 30%]
 tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Which findings are actively exploited?-threat_exposure] PASSED [ 31%]
 tests/integration/test_seeded_smoke.py::test_assistant_intents_on_seeded_data[Hello-portfolio_summary] PASSED [ 32%]
 tests/integration/test_spec_features.py::test_asset_keys_keep_ip_addresses_and_parse_urls PASSED [ 33%]
 tests/integration/test_spec_features.py::test_survivorship_keeps_strongest_evidence_and_unions_sources PASSED [ 34%]
 tests/integration/test_spec_features.py::test_failed_rows_are_kept_and_recoverable_after_asset_registration PASSED [ 35%]
-tests/integration/test_spec_features.py::test_closed_finding_is_reopened_when_detected_again PASSED [ 36%]
-tests/integration/test_spec_features.py::test_threat_feed_parses_booleans_and_rescores_affected_findings PASSED [ 37%]
-tests/integration/test_spec_features.py::test_rescoring_preserves_attack_path_influence PASSED [ 38%]
+tests/integration/test_spec_features.py::test_closed_finding_is_reopened_when_detected_again PASSED [ 35%]
+tests/integration/test_spec_features.py::test_threat_feed_parses_booleans_and_rescores_affected_findings PASSED [ 36%]
+tests/integration/test_spec_features.py::test_rescoring_preserves_attack_path_influence PASSED [ 37%]
 tests/integration/test_spec_features.py::test_attack_path_impact_reports_rank_and_band_changes PASSED [ 38%]
 tests/integration/test_spec_features.py::test_asset_registration_validates_and_audits PASSED [ 39%]
 tests/integration/test_spec_features.py::test_criticality_change_rescores_findings_and_is_audited PASSED [ 40%]
 tests/integration/test_spec_features.py::test_bulk_asset_import_reports_row_errors PASSED [ 41%]
 tests/integration/test_spec_features.py::test_ownership_rules_match_names_tags_and_groups PASSED [ 42%]
-tests/integration/test_spec_features.py::test_unowned_asset_falls_back_to_business_unit_manager PASSED [ 43%]
-tests/integration/test_spec_features.py::test_reassignment_requires_task_manage_and_is_audited PASSED [ 44%]
-tests/integration/test_spec_features.py::test_closing_a_task_closes_its_finding PASSED [ 45%]
-tests/integration/test_spec_features.py::test_escalation_thresholds_follow_sla_policy PASSED [ 46%]
+tests/integration/test_spec_features.py::test_unowned_asset_falls_back_to_business_unit_manager PASSED [ 42%]
+tests/integration/test_spec_features.py::test_reassignment_requires_task_manage_and_is_audited PASSED [ 43%]
+tests/integration/test_spec_features.py::test_closing_a_task_closes_its_finding PASSED [ 44%]
+tests/integration/test_spec_features.py::test_escalation_thresholds_follow_sla_policy PASSED [ 45%]
 tests/integration/test_spec_features.py::test_escalation_acknowledgement_and_personal_inbox PASSED [ 46%]
 tests/integration/test_spec_features.py::test_sla_report_and_breach_forecast PASSED [ 47%]
 tests/integration/test_spec_features.py::test_ticket_lifecycle_and_signed_webhook PASSED [ 48%]
 tests/integration/test_spec_features.py::test_exception_review_pack_json_and_html PASSED [ 49%]
 tests/integration/test_spec_features.py::test_mfa_enrollment_login_and_rotation PASSED [ 50%]
-tests/integration/test_spec_features.py::test_mfa_applies_to_every_role_that_enables_it PASSED [ 51%]
-tests/integration/test_spec_features.py::test_password_change_enforces_policy_and_revokes_sessions PASSED [ 52%]
-tests/integration/test_spec_features.py::test_audit_chain_detects_tampering_and_triggers_block_edits PASSED [ 53%]
+tests/integration/test_spec_features.py::test_mfa_applies_to_every_role_that_enables_it PASSED [ 50%]
+tests/integration/test_spec_features.py::test_password_change_enforces_policy_and_revokes_sessions PASSED [ 51%]
+tests/integration/test_spec_features.py::test_audit_chain_detects_tampering_and_triggers_block_edits PASSED [ 52%]
 tests/integration/test_spec_features.py::test_audit_verify_endpoint PASSED [ 53%]
 tests/integration/test_spec_features.py::test_weak_secret_is_rejected_outside_development PASSED [ 54%]
 tests/integration/test_spec_features.py::test_reports_endpoints_respond PASSED [ 55%]
 tests/integration/test_spec_features.py::test_assistant_understands_entities_and_follow_ups PASSED [ 56%]
 tests/integration/test_spec_features.py::test_ownership_accuracy_uses_dataset_ground_truth PASSED [ 57%]
-tests/integration/test_spec_features.py::test_asset_rows_unaffected PASSED [ 58%]
-tests/integration/test_spec_features.py::test_attack_graph_exports_for_graph_databases PASSED [ 59%]
+tests/integration/test_spec_features.py::test_asset_rows_unaffected PASSED [ 57%]
+tests/integration/test_spec_features.py::test_attack_graph_exports_for_graph_databases PASSED [ 58%]
+tests/integration/test_spec_features.py::test_refresh_token_is_httponly_cookie_and_rotates PASSED [ 59%]
 tests/integration/test_workflows.py::test_import_normalize_score_and_create_task PASSED [ 60%]
 tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[cspm-record0] PASSED [ 61%]
-tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[pentest-record1] PASSED [ 61%]
-tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[container-record2] PASSED [ 62%]
-tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[identity-record3] PASSED [ 63%]
+tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[pentest-record1] PASSED [ 62%]
+tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[container-record2] PASSED [ 63%]
+tests/integration/test_workflows.py::test_each_source_normalizes_to_a_finding[identity-record3] PASSED [ 64%]
 tests/integration/test_workflows.py::test_same_asset_cve_deduplicates_and_keeps_both_sources PASSED [ 64%]
 tests/integration/test_workflows.py::test_asset_owner_fallback_and_ordered_ownership_rule PASSED [ 65%]
 tests/integration/test_workflows.py::test_attack_path_connects_entry_to_crown_jewel_and_feedback PASSED [ 66%]
 tests/integration/test_workflows.py::test_sla_escalation_levels_are_idempotent PASSED [ 67%]
 tests/integration/test_workflows.py::test_exception_self_approval_blocked_and_approved_finding_accepted PASSED [ 68%]
 tests/integration/test_workflows.py::test_exception_expiry_reopens_finding PASSED [ 69%]
-tests/integration/test_workflows.py::test_role_guard_denies_unauthorized_user PASSED [ 69%]
-tests/unit/test_ai_assistant.py::test_finding_context_returns_selected_finding_and_risk_drivers PASSED [ 70%]
+tests/integration/test_workflows.py::test_role_guard_denies_unauthorized_user PASSED [ 70%]
+tests/unit/test_ai_assistant.py::test_finding_context_returns_selected_finding_and_risk_drivers PASSED [ 71%]
 tests/unit/test_forecasting.py::test_linear_forecast_recovers_slope_and_projects PASSED [ 71%]
 tests/unit/test_forecasting.py::test_linear_forecast_handles_short_series PASSED [ 72%]
 tests/unit/test_forecasting.py::test_breach_likelihood_is_explainable_and_ordered PASSED [ 73%]
 tests/unit/test_forecasting.py::test_breached_and_closed_tasks PASSED    [ 74%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[10-1-True] PASSED [ 75%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[9.8-1-True] PASSED [ 76%]
-tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[9-2-True] PASSED [ 76%]
-tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[8-1-False] PASSED [ 77%]
+tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[9-2-True] PASSED [ 77%]
+tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[8-1-False] PASSED [ 78%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[7-3-True] PASSED [ 78%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[6-3-False] PASSED [ 79%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[5-2-False] PASSED [ 80%]
@@ -103,7 +104,7 @@ tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[3-4-False] PASSED [ 82%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[2-5-False] PASSED [ 83%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[1-5-False] PASSED [ 84%]
-tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[0-5-False] PASSED [ 84%]
+tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[0-5-False] PASSED [ 85%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[8-5-True] PASSED [ 85%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[5-1-True] PASSED [ 86%]
 tests/unit/test_risk_engine.py::test_risk_score_is_bounded_and_has_spec_factors[9.5-1-True] PASSED [ 87%]
@@ -141,11 +142,11 @@ app/api/v1/router.py                    5      0   100%
 app/api/v1/routes/__init__.py           0      0   100%
 app/api/v1/routes/ai.py                40      5    88%
 app/api/v1/routes/assets.py           212     32    85%
-app/api/v1/routes/attack_paths.py      99      7    93%
+app/api/v1/routes/attack_paths.py     102      7    93%
 app/api/v1/routes/audit.py             41      4    90%
-app/api/v1/routes/auth.py             155     37    76%
+app/api/v1/routes/auth.py             164     26    84%
 app/api/v1/routes/config.py            82     18    78%
-app/api/v1/routes/dashboards.py        66      5    92%
+app/api/v1/routes/dashboards.py        71      6    92%
 app/api/v1/routes/exceptions.py       148     41    72%
 app/api/v1/routes/findings.py          70      6    91%
 app/api/v1/routes/imports.py           47     16    66%
@@ -166,7 +167,7 @@ app/core/timeutil.py                    6      1    83%
 app/db/__init__.py                      0      0   100%
 app/db/base.py                          3      0   100%
 app/db/seed.py                        180      2    99%
-app/db/session.py                       5      0   100%
+app/db/session.py                      15      7    53%
 app/jobs/__init__.py                    0      0   100%
 app/jobs/scheduler.py                  22     11    50%
 app/main.py                            62     15    76%
@@ -180,9 +181,9 @@ app/models/remediation.py              68      0   100%
 app/models/vulnerabilities.py          90      0   100%
 app/services/__init__.py                0      0   100%
 app/services/ai_assistant.py          258     81    69%
-app/services/analytics.py             162      1    99%
+app/services/analytics.py             199      2    99%
 app/services/attack_path.py            87      8    91%
-app/services/audit.py                  52      4    92%
+app/services/audit.py                  54      4    93%
 app/services/exceptions.py             40      7    82%
 app/services/forecasting.py            88      2    98%
 app/services/ingestion.py             154      8    95%
@@ -194,8 +195,8 @@ app/services/risk_engine.py            42      0   100%
 app/services/scoring.py                48      2    96%
 app/services/sla.py                    54      6    89%
 -------------------------------------------------------
-TOTAL                                3668    538    85%
+TOTAL                                3734    536    86%
 
-Required test coverage of 70% reached. Total coverage: 85.33%
-======================= 113 passed, 1 warning in 24.19s ========================
+Required test coverage of 70% reached. Total coverage: 85.65%
+======================= 114 passed, 1 warning in 23.33s ========================
 # exit code: 0

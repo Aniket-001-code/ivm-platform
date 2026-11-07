@@ -33,4 +33,4 @@ See `KNOWN_ISSUES.md` for the remaining limitations.
   password change, hash-chained append-only audit, forecasting (breach likelihood, trend), remediation sequencing,
   exception review packs, executive board report, success-criteria scorecard, Kubernetes manifests, graph export.
 - Deliverables: all docs 01–20, evidence, demo video, presentation deck.
-- Tests: backend 113 (85% coverage), frontend 12, Playwright 13 — all passing; 34 defects closed (`docs/13_Defect_Summary.md`).
+- Tests: backend 114 (86% coverage), frontend 12, Playwright 14 — all passing; 34 defects closed (`docs/13_Defect_Summary.md`).

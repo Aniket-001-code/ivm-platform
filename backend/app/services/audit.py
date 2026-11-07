@@ -103,6 +103,10 @@ def record_audit(
     row.row_hash = compute_hash(previous, row)
     db.add(row)
     db.info[_HEAD_KEY] = (row.sequence, row.row_hash)
+    # Every state change is audited, so this is the single place to drop cached dashboards.
+    from app.services.analytics import clear_cache
+
+    clear_cache()
     return row
 
 
