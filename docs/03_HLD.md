@@ -1,21 +1,75 @@
 # High-Level Design
 
-## Components
+See `02_Solution_Architecture.md` for the component view and `04_LLD.md` for module internals.
 
-The React client is organized around dashboards, registers, details, and workflow pages. Typed fetch wrappers attach the access token in memory and report API errors in the UI. FastAPI routers validate request payloads and resolve the user through a JWT dependency. Services implement normalization, risk scoring, attack-path analysis, scheduling, and AI fallback behavior. SQLAlchemy models define persistence. Alembic migrations create and evolve the database. The seed loader inserts business units, services, users, assets, connections, a local CVE catalog, imports, score history, and remediation tasks into an empty database.
+## Subsystems
 
-## Data flow
+| Subsystem | Responsibility | Main code |
+|---|---|---|
+| Identity & access | Login, MFA, token rotation, 9 roles × 28 permissions, row-level scope | `app/api/v1/routes/auth.py`, `core/rbac.py`, `core/scope.py`, `core/deps.py` |
+| Asset & ownership | Inventory, criticality context, business units/services, owners | `routes/assets.py`, `services/ownership.py` |
+| Ingestion & correlation | Parse six sources, normalise, match assets, de-duplicate, survivorship, retry | `services/ingestion.py`, `services/normalization.py`, `routes/imports.py` |
+| Threat intelligence | CVE catalog, KEV/EPSS/exploit/ransomware signals, feed import with rescoring | `routes/system.py` (threat-intel), `services/scoring.py` |
+| Risk engine | Eight-factor score, bands, versioned weights, what-if, single rescore path | `services/risk_engine.py`, `services/scoring.py`, `routes/risk.py`, `routes/config.py` |
+| Attack paths | Asset graph, entry→crown-jewel paths, path influence, graph export | `services/attack_path.py`, `routes/attack_paths.py` |
+| Remediation workflow | Tasks, SLA dates, status machine, evidence, reassignment, escalation, tickets | `services/remediation.py`, `services/sla.py`, `routes/tasks.py`, `routes/ticketing.py` |
+| Exceptions | Request, review (segregation of duties), revoke, expiry, review packs | `routes/exceptions.py`, `services/exceptions.py` |
+| Analytics & reporting | Role dashboards, trend, heatmap, MTTR, SLA, forecasts, SC scorecard, board report | `services/analytics.py`, `services/forecasting.py`, `services/reports.py` |
+| AI assistant | Entity/intent NLQ, recommendations, explanations, executive summary | `services/ai_assistant.py`, `routes/ai.py` |
+| Audit | Hash-chained, append-only trail with verification | `services/audit.py`, `routes/audit.py` |
+| Scheduler | SLA checks every 15 min, exception expiry hourly | `jobs/scheduler.py` |
 
-Raw import rows are retained in `raw_findings`. Normalized findings point to an asset and optionally a catalog CVE. A fingerprint based on asset UUID and CVE (or title when no CVE exists) merges duplicates. `finding_sources` retains each source record. The risk engine combines CVSS, asset criticality, exposure, and threat-intelligence values. Attack-path recalculation discovers directed routes from exposed assets to crown jewels and adds a path signal. High/critical findings receive tasks. Scheduled jobs inspect tasks and approved exceptions.
+## Main data flow
 
-## Availability and failure behavior
+```mermaid
+flowchart LR
+  U[Upload CSV/JSON] --> P[Parse & validate] --> N[Normalise + match asset]
+  N -->|row fails| R[(raw_findings: failed, retryable)]
+  N --> C{Fingerprint exists?}
+  C -->|yes| S[Survivorship merge / reopen] --> X
+  C -->|no| F[New finding] --> X[Rescore: threat intel + path influence]
+  X --> T[Task + owner + SLA date]
+  T --> E[Scheduler: overdue → escalation L1/L2/L3]
+  X --> D[Dashboards · reports · AI]
+  T --> D
+```
 
-PostgreSQL health checks gate API startup. A migration failure prevents the backend command from reaching Uvicorn. The AI fallback catches provider errors and returns a rule-based answer. API exceptions are structured and request IDs are returned in headers. Scheduled jobs run within the backend process, so multiple backend replicas would require leader election or an external job service before scaling.
+## Key sequences
 
-## Security design
+```mermaid
+sequenceDiagram
+  participant A as Analyst / Owner
+  participant M as Manager / Architect
+  participant API
+  participant DB
+  A->>API: POST /exceptions (justification, controls, expiry)
+  API->>DB: insert pending + audit (hash-chained)
+  M->>API: POST /exceptions/{id}/approve
+  API->>API: reject if approver == requester; long-term needs architect
+  API->>DB: approved, finding risk_accepted, audit
+  Note over API,DB: scheduler expires it later and reopens the finding and SLA
+```
 
-Passwords are bcrypt-hashed. JWT access tokens last 15 minutes and refresh tokens are one-use rotated via a stored SHA-256 token hash. Role dependencies deny unauthorized access. MFA TOTP secrets are Fernet-encrypted using a key derived from `SECRET_KEY`. API calls log security-sensitive events. Browser access tokens remain in memory; the demo currently returns the refresh token in the login JSON response, a prototype tradeoff. Production should place refresh tokens only in Secure, HttpOnly, SameSite cookies and enforce HTTPS.
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant API
+  participant AI as ai_assistant
+  participant C as Claude (optional)
+  U->>API: POST /ai/ask {question, history}
+  API->>AI: role, business unit, user id
+  AI->>AI: extract CVE / unit / asset / band, detect intent (+ follow-up context)
+  AI->>AI: role-scoped SQL, build answer + sources
+  opt ANTHROPIC_API_KEY set
+    AI->>C: question + aggregate context only
+  end
+  API->>API: write ai_query_logs + audit
+  API-->>U: answer, rows, sources, disclaimer
+```
 
-## Scale and performance
+## Role model
 
-Indexes support common filters. Dashboard queries aggregate in SQL. The seed target is about 2,500 raw reports, 300 assets, and about 2,000 correlated findings. Current API response lists are capped to keep the demonstration responsive. The performance test plan measures the dashboard under this seeded volume; deployment hardware and caching should be tuned for real workloads.
+Platform admin (configuration, users), security analyst (triage, imports), vulnerability manager (SLA, temporary
+exceptions, scheduler, asset criticality), security architect (attack paths, long-term exceptions), IT asset owner and
+system administrator (own tasks), business-unit manager (unit scope), executive/CISO (portfolio and reports), auditor
+(read-only evidence). Visibility follows `core/scope.py`; actions follow `core/rbac.py`.

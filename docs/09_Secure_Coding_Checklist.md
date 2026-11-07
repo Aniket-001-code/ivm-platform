@@ -1,39 +1,43 @@
 # Secure Coding Checklist
 
-## Authentication and authorization
+`[x]` done and verified in code; `[~]` partial (see note); `[ ]` not done.
 
-- [x] Hash passwords with bcrypt; do not log secrets.
-- [x] Enforce password policy on administrative account creation.
-- [x] Lock accounts after repeated failed authentication.
-- [x] Use signed short-lived access tokens and rotate refresh tokens.
-- [x] Encrypt TOTP secret at rest; MFA enforcement is configurable for privileged roles.
-- [x] Protect business API routes with authenticated-user dependencies.
-- [ ] Complete business-unit row-level scope before production.
-- [x] Reject exception self-approval and disallow invalid state transitions.
+## Authentication and sessions
+- [x] Passwords hashed with bcrypt; policy ≥ 12 chars, mixed case, digit, symbol (`routes/auth.py::password_problem`)
+- [x] Account lockout and login rate limiting; unknown emails take the same time as known ones
+- [x] TOTP MFA; rotation/disable need a current code; secrets encrypted at rest (`core/security.py`)
+- [x] Refresh tokens rotated and stored hashed; revoked on logout, password change, deactivation
+- [~] Refresh token held in `sessionStorage` (HttpOnly cookie recommended)
 
-## Data and input
+## Authorization
+- [x] Central default-deny permission check for every authenticated route (`core/deps.py`)
+- [x] Row-level scope from one module (`core/scope.py`); out-of-scope → 404
+- [x] Segregation of duties on exceptions and self-administration
+- [x] Role × endpoint regression tests
 
-- [x] Validate request body and path types with Pydantic/FastAPI.
-- [x] Limit uploads to 10 MB; accept CSV/JSON extensions only.
-- [x] Handle malformed rows as batch errors without exposing stack traces.
-- [x] Use parameterized ORM queries; do not concatenate SQL input.
-- [x] Render untrusted strings as React text, not HTML.
-- [x] Preserve import provenance and finding fingerprints.
-- [ ] Add production-grade MIME sniffing and antivirus scanning if user-uploaded files are exposed beyond the demo.
+## Input and output
+- [x] Pydantic validation; enumerations for statuses, roles, asset types, environments
+- [x] Upload limits (10 MB, CSV/JSON only), per-row isolation, no code execution on import
+- [x] SQL only through SQLAlchemy parameterised queries; no string-built SQL with user input
+- [x] CSV formula-injection neutralisation; HTML reports escape values; React escapes UI output
+- [x] XML generated (GraphML) but never parsed from user input
 
-## Secrets, transport, and dependencies
+## Data protection and secrets
+- [x] Synthetic data only; no personal or customer data
+- [x] Secrets from environment; `.env` ignored; weak `SECRET_KEY` rejected outside development
+- [x] Webhooks verified with HMAC-SHA256 and constant-time comparison
+- [x] AI sends only aggregates to the optional external model
 
-- [x] Read credentials/API keys from environment; use dummy-only `.env.example` values.
-- [x] Ignore local `.env` and generated self-signed key files.
-- [x] Provide local TLS reverse-proxy profile and security headers.
-- [x] Pin direct Python and frontend dependencies.
-- [x] Add pip-audit, npm audit, Bandit, and gitleaks CI steps.
-- [ ] Use managed secret storage, real TLS certificates, database encryption, and dependency update policy in production.
+## Logging, audit and errors
+- [x] Structured JSON logs with request ids; no secrets or tokens logged
+- [x] Hash-chained, append-only audit trail with verification endpoint
+- [x] Generic error responses; details only in server logs
 
-## Logs and AI
+## Dependencies and pipeline
+- [x] Pinned versions; `npm ci` with lockfile
+- [x] bandit 0 issues, pip-audit 0 known vulnerabilities, npm audit 0 (`docs/evidence/`)
+- [x] CI gates: ruff, black, mypy, pytest + 70% coverage, Vitest, ESLint, build, Playwright, pip-audit, npm audit, gitleaks, docker build (`.github/workflows/ci.yml`)
+- [x] Containers run as non-root; Kubernetes restricted pod security and default-deny network policies
 
-- [x] Include a request ID in API responses and structured logs.
-- [x] Audit login, import, risk, task, exception, and AI actions.
-- [x] Do not expose update/delete routes for audit rows.
-- [x] Keep AI output labeled, rate-limited, role-aware, and offline-capable.
-- [x] Avoid sending PII; this seeded environment contains only fictional records.
+## Review
+- [x] Peer-review checklist in `CONTRIBUTING.md`; every new endpoint must state its permission and audit behaviour

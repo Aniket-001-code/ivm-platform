@@ -1,0 +1,16 @@
+$ npm run build
+# collected 2026-11-07T02:34:20Z
+
+> ivm-frontend@0.1.0 build
+> tsc -b && vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 1654 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.42 kB │ gzip:   0.29 kB
+dist/assets/index-Bf37ced7.css   38.27 kB │ gzip:   9.52 kB
+dist/assets/index-k8W0K-Fr.js   359.33 kB │ gzip: 107.61 kB
+✓ built in 866ms
+# exit code: 0

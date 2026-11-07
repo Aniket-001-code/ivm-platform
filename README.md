@@ -16,6 +16,16 @@ Open [http://localhost:8080](http://localhost:8080) for the application and [htt
 
 Stop with Ctrl+C. Remove local records with `docker compose down -v`; this deletes the named database volume.
 
+### Open it without Docker on macOS or Linux
+
+Requirements: Node.js 20+ and either [uv](https://docs.astral.sh/uv/) or Python 3.11–3.13.
+
+```bash
+./scripts/dev.sh
+```
+
+The script creates `.env` (random `SECRET_KEY`, local SQLite file), installs backend and frontend dependencies on first run, applies migrations, and starts the API on port 8000 and the web app on [http://127.0.0.1:5173](http://127.0.0.1:5173). Stop both with Ctrl+C.
+
 ### Open it without Docker (Windows development mode)
 
 Do not double-click `frontend/index.html`; it is a Vite entry file and will appear blank when opened as a `file://` URL. Start the API and Vite development server instead. Use Python 3.11–3.13 and Node.js 20 or newer.
@@ -59,7 +69,7 @@ All accounts use the synthetic-only password `DemoPass!234`.
 | `user11@demo.bank` | Executive CISO | Portfolio risk overview |
 | `user12@demo.bank` | Business unit manager | BU-scoped work and escalations |
 
-The default login form is prefilled with `user2@demo.bank`. Change the address to switch roles. For local demo access, MFA enforcement is off by default; privileged accounts can enroll TOTP through the API. Set `MFA_REQUIRED=true` only after privileged users are enrolled.
+The default login form is prefilled with `user2@demo.bank`. Change the address to switch roles. Each role sees only the menu entries and data its permissions allow, and gets its own dashboard (executive, analyst, manager, or auditor view). For local demo access, MFA enforcement is off by default; privileged accounts can enroll TOTP through the API. Set `MFA_REQUIRED=true` only after privileged users are enrolled.
 
 ## Synthetic dataset
 
@@ -75,7 +85,8 @@ Run it locally with `python backend/scripts/generate_synthetic_data.py`. It may 
 4. Sign in as a remediation owner to update an assigned task; closure requires evidence.
 5. Sign in as a manager and run scheduler jobs to demonstrate overdue escalation.
 6. Request an exception as one user and approve/reject as a different approver.
-7. Ask the offline-first AI assistant to prioritize findings or summarize overdue work.
+7. Ask the offline-first AI assistant to prioritize findings, summarize overdue work, list exploited findings, expiring exceptions or attack paths. Every answer lists the source tables and row counts it used.
+8. As an administrator, edit scoring weights (with an impact preview), SLA targets, ownership rules, and user roles; every change is written to the audit trail.
 
 The executive effort estimate assumes six minutes of manual triage per raw record that does not remain a distinct action. This is an explicit demo assumption, not a measured production savings claim.
 
@@ -87,31 +98,56 @@ The default app uses HTTP on localhost. For local TLS testing, install OpenSSL a
 
 ## Test and quality commands
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e "backend[dev]"
-Push-Location backend
-..\.venv\Scripts\python.exe -m pytest --cov=app.services.risk_engine --cov=app.services.normalization --cov-fail-under=70
-Pop-Location
-Push-Location frontend
-npm ci
-npm test
-npm run lint
-npm run build
-Pop-Location
+macOS/Linux (after `./scripts/dev.sh` has created `.venv`):
+
+```bash
+cd backend
+../.venv/bin/ruff check app tests && ../.venv/bin/black --check app tests && ../.venv/bin/mypy app
+../.venv/bin/python -m pytest --cov=app --cov-fail-under=70     # 113 tests, ~85% whole-backend coverage
+cd ../frontend
+npm test && npm run lint && npm run build                        # 12 unit tests
 ```
 
-Security scans: `bandit -r backend/app`, `pip-audit`, `npm audit --audit-level=high`, and `gitleaks detect`. To run Playwright after Compose is up, install `npx playwright install chromium` in the project root, then run `npx playwright test`.
+Browser tests (13 workflows) run against a running stack. Raise the login rate limit for the API process during the run, because the suite signs in more than ten times a minute:
+
+```bash
+LOGIN_RATE_LIMIT=100 ./scripts/dev.sh          # in one terminal
+npm ci && npx playwright install chromium      # once, from the repository root
+PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 npx playwright test
+```
+
+Windows PowerShell equivalents use `.\.venv\Scripts\python.exe` in place of `../.venv/bin/python`. Without `PLAYWRIGHT_BASE_URL`, Playwright targets the Docker Compose app on port 8080.
+
+Security scans: `bandit -r backend/app`, `pip-audit --skip-editable`, `npm audit --audit-level=high`, and `gitleaks detect`. `.github/workflows/ci.yml` runs all of the above plus a Docker build.
 
 ## Repository map
 
-- `backend/app`: FastAPI routers, models, services, database, scheduled jobs.
+- `backend/app/api/v1/routes/`: one FastAPI router per domain (auth, findings, assets, exceptions, …); `common.py` holds shared helpers.
+- `backend/app/models/`: ORM entities grouped by domain; `entities.py` re-exports them.
+- `backend/app/core/scope.py`: the single rule set for which assets each role can see (used by the API, dashboards, and AI).
+- `backend/app/services`: risk engine, ingestion, attack paths, SLA, exceptions, analytics, AI assistant.
 - `backend/scripts`: deterministic fixture generation and PostgreSQL backup/restore scripts.
-- `frontend/src`: React routes, reusable layouts, risk register, charts, and workflows.
-- `e2e`: five browser-level workflow scenarios.
+- `frontend/src/pages/`: one file per screen; `access.ts` maps permissions to navigation and route guards; `api/client.ts` handles token refresh, paging, and CSV downloads.
+- `scripts/dev.sh`: one-command local start for macOS/Linux.
+- `e2e`: 13 browser-level workflow scenarios; `e2e/demo/record-demo.mjs` records the demo video.
+- `deploy/k8s`: Kubernetes reference manifests; `scripts/collect_evidence.sh` regenerates `docs/evidence/`.
 - `docs`: business, architecture, model, API, security, test, user/admin, demo, and traceability deliverables.
 - `.github/workflows/ci.yml`: lint, tests, dependency/security scans, frontend build, Docker build.
 
+## Deliverables
+
+| Deliverable | Location |
+|---|---|
+| BRD, architecture, HLD, LLD, data model, API spec | `docs/01`–`06` (05/06 generated from code: `scripts/generate_reference_docs.py`) |
+| Threat model, secure design review, secure coding checklist | `docs/07`–`09` |
+| Test plan, test cases, test evidence, defect summary | `docs/10`–`13`, raw evidence in `docs/evidence/` |
+| User manual, admin guide, final report, demo script | `docs/14`–`17` |
+| Presentation | `docs/presentation/IVM_Final_Presentation.pptx` (outline `docs/18_Presentation.md`) |
+| Project plan, traceability matrix | `docs/19_Project_Plan.md`, `docs/20_Requirements_Traceability_Matrix.md` |
+| Demonstration video | `docs/demo/ivm-demo.webm` |
+
+All twelve success criteria are measured live on **Reports & insights** (`GET /api/v1/reports/success-criteria`).
+
 ## Known limitations
 
-This is an educational prototype. It is not certified for production banking use. Business-unit row scoping needs a stakeholder-approved policy; refresh tokens should move to Secure HttpOnly cookies; audit rows need database/external immutability controls; a multi-replica deployment needs a distributed scheduler; and security findings from dependency scans require review and updates. Dashboard latency depends on machine capacity and has a measurement script rather than a guarantee.
+This is an educational prototype. It is not certified for production banking use. Business-unit row scoping needs a stakeholder-approved policy; refresh tokens are kept in browser session storage and should move to Secure HttpOnly cookies; audit rows need database/external immutability controls; a multi-replica deployment needs a distributed scheduler; and security findings from dependency scans require review and updates. Dashboard latency depends on machine capacity and has a measurement script rather than a guarantee.
