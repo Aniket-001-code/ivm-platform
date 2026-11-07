@@ -1,0 +1,6 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic demo values only"
+paths = ['''\.env\.example$''']

@@ -1,0 +1,101 @@
+account,asset,issue,severity
+svc-demo-000,host001.bank.local,excessive privilege,Medium
+svc-demo-001,host002.bank.local,stale admin account,Medium
+svc-demo-002,host003.bank.local,MFA not enabled,High
+svc-demo-003,host004.bank.local,stale admin account,Medium
+svc-demo-004,host005.bank.local,stale admin account,High
+svc-demo-005,host006.bank.local,excessive privilege,Medium
+svc-demo-006,host007.bank.local,stale admin account,High
+svc-demo-007,host008.bank.local,MFA not enabled,Medium
+svc-demo-008,host009.bank.local,excessive privilege,Medium
+svc-demo-009,host010.bank.local,excessive privilege,Medium
+svc-demo-010,host011.bank.local,MFA not enabled,Medium
+svc-demo-011,host012.bank.local,MFA not enabled,High
+svc-demo-012,host013.bank.local,stale admin account,Medium
+svc-demo-013,host014.bank.local,MFA not enabled,Medium
+svc-demo-014,host015.bank.local,stale admin account,Medium
+svc-demo-015,host016.bank.local,stale admin account,Medium
+svc-demo-016,host017.bank.local,MFA not enabled,High
+svc-demo-017,host018.bank.local,MFA not enabled,Medium
+svc-demo-018,host019.bank.local,excessive privilege,High
+svc-demo-019,host020.bank.local,excessive privilege,Medium
+svc-demo-020,host021.bank.local,excessive privilege,Medium
+svc-demo-021,host022.bank.local,excessive privilege,High
+svc-demo-022,host023.bank.local,stale admin account,High
+svc-demo-023,host024.bank.local,excessive privilege,Medium
+svc-demo-024,host025.bank.local,excessive privilege,High
+svc-demo-025,host026.bank.local,excessive privilege,High
+svc-demo-026,host027.bank.local,stale admin account,High
+svc-demo-027,host028.bank.local,excessive privilege,High
+svc-demo-028,host029.bank.local,MFA not enabled,High
+svc-demo-029,host030.bank.local,stale admin account,High
+svc-demo-030,host031.bank.local,stale admin account,Medium
+svc-demo-031,host032.bank.local,stale admin account,High
+svc-demo-032,host033.bank.local,excessive privilege,Medium
+svc-demo-033,host034.bank.local,stale admin account,Medium
+svc-demo-034,host035.bank.local,MFA not enabled,High
+svc-demo-035,host036.bank.local,MFA not enabled,High
+svc-demo-036,host037.bank.local,MFA not enabled,Medium
+svc-demo-037,host038.bank.local,stale admin account,Medium
+svc-demo-038,host039.bank.local,stale admin account,Medium
+svc-demo-039,host040.bank.local,MFA not enabled,Medium
+svc-demo-040,host041.bank.local,stale admin account,High
+svc-demo-041,host042.bank.local,stale admin account,High
+svc-demo-042,host043.bank.local,MFA not enabled,High
+svc-demo-043,host044.bank.local,stale admin account,Medium
+svc-demo-044,host045.bank.local,stale admin account,High
+svc-demo-045,host046.bank.local,MFA not enabled,Medium
+svc-demo-046,host047.bank.local,excessive privilege,High
+svc-demo-047,host048.bank.local,stale admin account,Medium
+svc-demo-048,host049.bank.local,stale admin account,High
+svc-demo-049,host050.bank.local,excessive privilege,High
+svc-demo-050,host051.bank.local,MFA not enabled,Medium
+svc-demo-051,host052.bank.local,stale admin account,Medium
+svc-demo-052,host053.bank.local,stale admin account,Medium
+svc-demo-053,host054.bank.local,MFA not enabled,Medium
+svc-demo-054,host055.bank.local,MFA not enabled,High
+svc-demo-055,host056.bank.local,stale admin account,High
+svc-demo-056,host057.bank.local,stale admin account,High
+svc-demo-057,host058.bank.local,MFA not enabled,Medium
+svc-demo-058,host059.bank.local,stale admin account,Medium
+svc-demo-059,host060.bank.local,stale admin account,Medium
+svc-demo-060,host061.bank.local,MFA not enabled,Medium
+svc-demo-061,host062.bank.local,stale admin account,Medium
+svc-demo-062,host063.bank.local,stale admin account,Medium
+svc-demo-063,host064.bank.local,excessive privilege,High
+svc-demo-064,host065.bank.local,stale admin account,Medium
+svc-demo-065,host066.bank.local,excessive privilege,High
+svc-demo-066,host067.bank.local,stale admin account,High
+svc-demo-067,host068.bank.local,MFA not enabled,Medium
+svc-demo-068,host069.bank.local,MFA not enabled,High
+svc-demo-069,host070.bank.local,excessive privilege,High
+svc-demo-070,host071.bank.local,stale admin account,Medium
+svc-demo-071,host072.bank.local,excessive privilege,High
+svc-demo-072,host073.bank.local,stale admin account,Medium
+svc-demo-073,host074.bank.local,excessive privilege,Medium
+svc-demo-074,host075.bank.local,stale admin account,High
+svc-demo-075,host076.bank.local,MFA not enabled,Medium
+svc-demo-076,host077.bank.local,excessive privilege,High
+svc-demo-077,host078.bank.local,stale admin account,High
+svc-demo-078,host079.bank.local,MFA not enabled,Medium
+svc-demo-079,host080.bank.local,excessive privilege,Medium
+svc-demo-080,host081.bank.local,excessive privilege,Medium
+svc-demo-081,host082.bank.local,MFA not enabled,High
+svc-demo-082,host083.bank.local,excessive privilege,Medium
+svc-demo-083,host084.bank.local,stale admin account,High
+svc-demo-084,host085.bank.local,excessive privilege,High
+svc-demo-085,host086.bank.local,MFA not enabled,High
+svc-demo-086,host087.bank.local,MFA not enabled,High
+svc-demo-087,host088.bank.local,stale admin account,Medium
+svc-demo-088,host089.bank.local,MFA not enabled,High
+svc-demo-089,host090.bank.local,excessive privilege,Medium
+svc-demo-090,host091.bank.local,excessive privilege,Medium
+svc-demo-091,host092.bank.local,excessive privilege,Medium
+svc-demo-092,host093.bank.local,excessive privilege,Medium
+svc-demo-093,host094.bank.local,MFA not enabled,High
+svc-demo-094,host095.bank.local,excessive privilege,Medium
+svc-demo-095,host096.bank.local,MFA not enabled,High
+svc-demo-096,host097.bank.local,MFA not enabled,Medium
+svc-demo-097,host098.bank.local,stale admin account,High
+svc-demo-098,host099.bank.local,excessive privilege,High
+svc-demo-099,host100.bank.local,excessive privilege,Medium

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ivm-platform"
+version = "0.1.0"
+description = "Synthetic intelligent vulnerability management platform"
+requires-python = ">=3.11,<3.14"
+dependencies = ["fastapi==0.162.0", "uvicorn[standard]==0.34.0", "pydantic-settings==2.7.1", "SQLAlchemy==2.0.36", "alembic==1.14.0", "psycopg[binary]==3.2.3", "python-json-logger==3.2.1", "PyJWT==2.15.1", "bcrypt==4.2.1", "pyotp==2.9.0", "networkx==3.4.2", "Faker==33.3.1", "python-multipart==0.0.33", "APScheduler==3.10.4", "cryptography==50.0.2", "anthropic==0.42.0"]
+
+[project.optional-dependencies]
+dev = ["pytest==9.0.3", "pytest-cov==6.0.0", "httpx==0.28.1", "ruff==0.8.4", "mypy==1.13.0", "black==26.10.1", "bandit==1.8.0", "pip-audit==2.7.3"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+ignore_missing_imports = true

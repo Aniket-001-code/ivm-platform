@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Retail Payments",
+    "business_unit": "Retail Banking",
+    "description": "Synthetic Retail Payments service"
+  },
+  {
+    "name": "Branch Banking",
+    "business_unit": "Retail Banking",
+    "description": "Synthetic Branch Banking service"
+  },
+  {
+    "name": "Customer Identity",
+    "business_unit": "Retail Banking",
+    "description": "Synthetic Customer Identity service"
+  },
+  {
+    "name": "Corporate Portal",
+    "business_unit": "Corporate Banking",
+    "description": "Synthetic Corporate Portal service"
+  },
+  {
+    "name": "Trade Finance",
+    "business_unit": "Corporate Banking",
+    "description": "Synthetic Trade Finance service"
+  },
+  {
+    "name": "Treasury Trading",
+    "business_unit": "Treasury",
+    "description": "Synthetic Treasury Trading service"
+  },
+  {
+    "name": "Liquidity",
+    "business_unit": "Treasury",
+    "description": "Synthetic Liquidity service"
+  },
+  {
+    "name": "Card Authorization",
+    "business_unit": "Cards and Payments",
+    "description": "Synthetic Card Authorization service"
+  },
+  {
+    "name": "Settlement",
+    "business_unit": "Cards and Payments",
+    "description": "Synthetic Settlement service"
+  },
+  {
+    "name": "Fraud Platform",
+    "business_unit": "Cards and Payments",
+    "description": "Synthetic Fraud Platform service"
+  },
+  {
+    "name": "Mobile Banking",
+    "business_unit": "Digital Channels",
+    "description": "Synthetic Mobile Banking service"
+  },
+  {
+    "name": "Online Banking",
+    "business_unit": "Digital Channels",
+    "description": "Synthetic Online Banking service"
+  }
+]

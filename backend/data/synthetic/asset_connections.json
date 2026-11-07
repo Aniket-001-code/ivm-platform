@@ -1,0 +1,734 @@
+[
+  {
+    "source": 5,
+    "target": 1,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 1,
+    "target": 33,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 16,
+    "target": 5,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 5,
+    "target": 20,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 30,
+    "target": 11,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 11,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 36,
+    "target": 22,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 22,
+    "target": 48,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 48,
+    "target": 29,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 29,
+    "target": 141,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 51,
+    "target": 34,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 34,
+    "target": 60,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 53,
+    "target": 40,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 40,
+    "target": 183,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 59,
+    "target": 50,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 50,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 75,
+    "target": 55,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 55,
+    "target": 240,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 82,
+    "target": 63,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 63,
+    "target": 91,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 84,
+    "target": 71,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 71,
+    "target": 271,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 85,
+    "target": 77,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 77,
+    "target": 115,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 86,
+    "target": 87,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 87,
+    "target": 291,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 88,
+    "target": 95,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 95,
+    "target": 139,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 89,
+    "target": 99,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 99,
+    "target": 33,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 103,
+    "target": 106,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 106,
+    "target": 156,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 107,
+    "target": 109,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 109,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 113,
+    "target": 112,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 112,
+    "target": 167,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 139,
+    "target": 122,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 122,
+    "target": 141,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 140,
+    "target": 126,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 126,
+    "target": 177,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 143,
+    "target": 129,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 129,
+    "target": 183,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 146,
+    "target": 138,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 138,
+    "target": 184,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 151,
+    "target": 143,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 143,
+    "target": 240,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 153,
+    "target": 146,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 146,
+    "target": 195,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 158,
+    "target": 154,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 154,
+    "target": 271,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 159,
+    "target": 159,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 159,
+    "target": 215,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 160,
+    "target": 168,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 168,
+    "target": 291,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 164,
+    "target": 174,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 174,
+    "target": 225,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 167,
+    "target": 179,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 179,
+    "target": 33,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 172,
+    "target": 185,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 185,
+    "target": 229,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 175,
+    "target": 189,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 189,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 180,
+    "target": 194,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 194,
+    "target": 238,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 183,
+    "target": 203,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 203,
+    "target": 141,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 187,
+    "target": 207,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 207,
+    "target": 253,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 196,
+    "target": 216,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 216,
+    "target": 183,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 201,
+    "target": 222,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 222,
+    "target": 257,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 214,
+    "target": 230,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 230,
+    "target": 240,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 215,
+    "target": 234,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 234,
+    "target": 265,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 217,
+    "target": 239,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 239,
+    "target": 271,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 218,
+    "target": 244,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 244,
+    "target": 274,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 219,
+    "target": 249,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 249,
+    "target": 291,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 227,
+    "target": 255,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 255,
+    "target": 20,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 230,
+    "target": 262,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 262,
+    "target": 33,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 238,
+    "target": 271,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 271,
+    "target": 48,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 245,
+    "target": 277,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 277,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 250,
+    "target": 283,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 283,
+    "target": 60,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 268,
+    "target": 287,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 287,
+    "target": 141,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 279,
+    "target": 290,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 290,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 281,
+    "target": 295,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 295,
+    "target": 183,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 282,
+    "target": 298,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 298,
+    "target": 91,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 295,
+    "target": 1,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 1,
+    "target": 240,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 299,
+    "target": 5,
+    "connection_type": "network",
+    "port_or_protocol": "tcp/443"
+  },
+  {
+    "source": 5,
+    "target": 115,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 1,
+    "target": 19,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 9,
+    "target": 82,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 25,
+    "target": 150,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 34,
+    "target": 184,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 46,
+    "target": 227,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 56,
+    "target": 257,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 71,
+    "target": 36,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 85,
+    "target": 91,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 96,
+    "target": 163,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 106,
+    "target": 195,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 111,
+    "target": 231,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 123,
+    "target": 265,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 129,
+    "target": 57,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 142,
+    "target": 115,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 148,
+    "target": 170,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 159,
+    "target": 215,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 172,
+    "target": 250,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  },
+  {
+    "source": 182,
+    "target": 274,
+    "connection_type": "data_flow",
+    "port_or_protocol": "tcp/5432"
+  }
+]

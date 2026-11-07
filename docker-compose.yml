@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ivm}
+      POSTGRES_USER: ${POSTGRES_USER:-ivm}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ivm_local_only}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ivm} -d ${POSTGRES_DB:-ivm}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-ivm}:${POSTGRES_PASSWORD:-ivm_local_only}@db:5432/${POSTGRES_DB:-ivm}
+      APP_ENV: ${APP_ENV:-development}
+      SECRET_KEY: ${SECRET_KEY:-change-this-demo-secret-before-deployment}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-haiku-4-5-20251001}
+      MFA_REQUIRED: ${MFA_REQUIRED:-false}
+    ports: ["8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  frontend:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  reverse-proxy:
+    image: nginx:1.27-alpine
+    profiles: ["tls"]
+    ports: ["8443:443"]
+    volumes:
+      - ./infra/tls/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./infra/tls-certs:/etc/nginx/certs:ro
+    depends_on:
+      - backend
+      - frontend
+volumes:
+  postgres_data:

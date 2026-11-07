@@ -1,0 +1,5402 @@
+[
+  {
+    "resource_id": "host020.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0000",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host027.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0001",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host034.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0002",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host041.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0003",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host048.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0004",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host055.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0005",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host062.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0006",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host069.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0007",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host076.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0008",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host083.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0009",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host090.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0010",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host097.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0011",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host104.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0012",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host111.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0013",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host118.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0014",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host125.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0015",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host132.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0016",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host139.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0017",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host146.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0018",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host153.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0019",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host160.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0020",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host167.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0021",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host174.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0022",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host181.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0023",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host188.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0024",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host195.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0025",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host202.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0026",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host209.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0027",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host216.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0028",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host223.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0029",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host230.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0030",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host237.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0031",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host244.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0032",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host251.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0033",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host258.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0034",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host265.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0035",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host272.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0036",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host279.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0037",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host286.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0038",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host293.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0039",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host300.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0040",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host007.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0041",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host014.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0042",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host021.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0043",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host028.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0044",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host035.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0045",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host042.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0046",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host049.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0047",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host056.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0048",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host063.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0049",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host070.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0050",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host077.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0051",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host084.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0052",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host091.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0053",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host098.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0054",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host105.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0055",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host112.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0056",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host119.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0057",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host126.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0058",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host133.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0059",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host140.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0060",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host147.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0061",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host154.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0062",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host161.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0063",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host168.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0064",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host175.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0065",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host182.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0066",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host189.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0067",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host196.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0068",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host203.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0069",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host210.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0070",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host217.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0071",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host224.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0072",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host231.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0073",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host238.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0074",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host245.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0075",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host252.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0076",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host259.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0077",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host266.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0078",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host273.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0079",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host280.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0080",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host287.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0081",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host294.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0082",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host001.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0083",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host008.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0084",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host015.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0085",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host022.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0086",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host029.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0087",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host036.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0088",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host043.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0089",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host050.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0090",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host057.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0091",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host064.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0092",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host071.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0093",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host078.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0094",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host085.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0095",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host092.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0096",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host099.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0097",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host106.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0098",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host113.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0099",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host120.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0100",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host127.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0101",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host134.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0102",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host141.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0103",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host148.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0104",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host155.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0105",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host162.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0106",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host169.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0107",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host176.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0108",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host183.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0109",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host190.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0110",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host197.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0111",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host204.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0112",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host211.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0113",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host218.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0114",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host225.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0115",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host232.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0116",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host239.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0117",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host246.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0118",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host253.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0119",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host260.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0120",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host267.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0121",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host274.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0122",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host281.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0123",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host288.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0124",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host295.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0125",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host002.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0126",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host009.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0127",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host016.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0128",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host023.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0129",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host030.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0130",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host037.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0131",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host044.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0132",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host051.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0133",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host058.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0134",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host065.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0135",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host072.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0136",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host079.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0137",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host086.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0138",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host093.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0139",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host100.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0140",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host107.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0141",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host114.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0142",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host121.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0143",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host128.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0144",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host135.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0145",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host142.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0146",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host149.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0147",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host156.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0148",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host163.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0149",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host170.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0150",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host177.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0151",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host184.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0152",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host191.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0153",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host198.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0154",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host205.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0155",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host212.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0156",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host219.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0157",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host226.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0158",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host233.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0159",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host240.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0160",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host247.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0161",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host254.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0162",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host261.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0163",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host268.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0164",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host275.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0165",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host282.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0166",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host289.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0167",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host296.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0168",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host003.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0169",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host010.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0170",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host017.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0171",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host024.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0172",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host031.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0173",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host038.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0174",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host045.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0175",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host052.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0176",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host059.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0177",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host066.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0178",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host073.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0179",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host080.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0180",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host087.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0181",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host094.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0182",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host101.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0183",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host108.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0184",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host115.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0185",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host122.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0186",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host129.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0187",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host136.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0188",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host143.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0189",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host150.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0190",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host157.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0191",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host164.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0192",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host171.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0193",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host178.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0194",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host185.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0195",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host192.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0196",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host199.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0197",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host206.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0198",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host213.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0199",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host220.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0200",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host227.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0201",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host234.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0202",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host241.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0203",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host248.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0204",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host255.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0205",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host262.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0206",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host269.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0207",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host276.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0208",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host283.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0209",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host290.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0210",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host297.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0211",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host004.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0212",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host011.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0213",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host018.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0214",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host025.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0215",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host032.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0216",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host039.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0217",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host046.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0218",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host053.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0219",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host060.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0220",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host067.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0221",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host074.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0222",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host081.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0223",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host088.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0224",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host095.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0225",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host102.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0226",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host109.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0227",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host116.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0228",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host123.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0229",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host130.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0230",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host137.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0231",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host144.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0232",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host151.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0233",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host158.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0234",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host165.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0235",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host172.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0236",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host179.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0237",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host186.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0238",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host193.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0239",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host200.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0240",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host207.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0241",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host214.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0242",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host221.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0243",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host228.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0244",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host235.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0245",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host242.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0246",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host249.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0247",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host256.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0248",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host263.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0249",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host270.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0250",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host277.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0251",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host284.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0252",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host291.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0253",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host298.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0254",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host005.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0255",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host012.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0256",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host019.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0257",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host026.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0258",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host033.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0259",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host040.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0260",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host047.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0261",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host054.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0262",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host061.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0263",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host068.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0264",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host075.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0265",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host082.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0266",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host089.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0267",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host096.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0268",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host103.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0269",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host110.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0270",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host117.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0271",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host124.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0272",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host131.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0273",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host138.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0274",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host145.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0275",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host152.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0276",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host159.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0277",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host166.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0278",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host173.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0279",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host180.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0280",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host187.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0281",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host194.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0282",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host201.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0283",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host208.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0284",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host215.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0285",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host222.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0286",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host229.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0287",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host236.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0288",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host243.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0289",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host250.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0290",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host257.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0291",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host264.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0292",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host271.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0293",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host278.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0294",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host285.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0295",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host292.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0296",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host299.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0297",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host006.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0298",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host013.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0299",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host020.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0300",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host027.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0301",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host034.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0302",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host041.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0303",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host048.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0304",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host055.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0305",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host062.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0306",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host069.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0307",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host076.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0308",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host083.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0309",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host090.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0310",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host097.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0311",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host104.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0312",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host111.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0313",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host118.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0314",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host125.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0315",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host132.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0316",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host139.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0317",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host146.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0318",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host153.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0319",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host160.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0320",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host167.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0321",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host174.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0322",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host181.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0323",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host188.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0324",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host195.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0325",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host202.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0326",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host209.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0327",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host216.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0328",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host223.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0329",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host230.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0330",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host237.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0331",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host244.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0332",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host251.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0333",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host258.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0334",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host265.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0335",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host272.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0336",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host279.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0337",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host286.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0338",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host293.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0339",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host300.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0340",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host007.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0341",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host014.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0342",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host021.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0343",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host028.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0344",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host035.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0345",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host042.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0346",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host049.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0347",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host056.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0348",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host063.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0349",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host070.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0350",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host077.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0351",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host084.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0352",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host091.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0353",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host098.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0354",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host105.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0355",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host112.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0356",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host119.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0357",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host126.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0358",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host133.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0359",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host140.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0360",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host147.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0361",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host154.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0362",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host161.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0363",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host168.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0364",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host175.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0365",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host182.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0366",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host189.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0367",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host196.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0368",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host203.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0369",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host210.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0370",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host217.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0371",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host224.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0372",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host231.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0373",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host238.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0374",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host245.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0375",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host252.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0376",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host259.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0377",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host266.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0378",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host273.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0379",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host280.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0380",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host287.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0381",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host294.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0382",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host001.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0383",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host008.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0384",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host015.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0385",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host022.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0386",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host029.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0387",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host036.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0388",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host043.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0389",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host050.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0390",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host057.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0391",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host064.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0392",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host071.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0393",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host078.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0394",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host085.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0395",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host092.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0396",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host099.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0397",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host106.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0398",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host113.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0399",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host120.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0400",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host127.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0401",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host134.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0402",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host141.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0403",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host148.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0404",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host155.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0405",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host162.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0406",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host169.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0407",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host176.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0408",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host183.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0409",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host190.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0410",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host197.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0411",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host204.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0412",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host211.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0413",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host218.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0414",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host225.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0415",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host232.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0416",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host239.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0417",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host246.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0418",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host253.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0419",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host260.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0420",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host267.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0421",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host274.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0422",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host281.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0423",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host288.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0424",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host295.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0425",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host002.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0426",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host009.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0427",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host016.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0428",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host023.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0429",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host030.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0430",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host037.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0431",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host044.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0432",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host051.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0433",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host058.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0434",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host065.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0435",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host072.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0436",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host079.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0437",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host086.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0438",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host093.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0439",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host100.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0440",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host107.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0441",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host114.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0442",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host121.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0443",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host128.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0444",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host135.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0445",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host142.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0446",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host149.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0447",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host156.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0448",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host163.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0449",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host170.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0450",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host177.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0451",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host184.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0452",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host191.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0453",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host198.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0454",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host205.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0455",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host212.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0456",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host219.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0457",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host226.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0458",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host233.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0459",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host240.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0460",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host247.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0461",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host254.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0462",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host261.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0463",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host268.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0464",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host275.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0465",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host282.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0466",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host289.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0467",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host296.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0468",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host003.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0469",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host010.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0470",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host017.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0471",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host024.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0472",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host031.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0473",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host038.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0474",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host045.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0475",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host052.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0476",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host059.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0477",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host066.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0478",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host073.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0479",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host080.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0480",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host087.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0481",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host094.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0482",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host101.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0483",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host108.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0484",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host115.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0485",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host122.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0486",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host129.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0487",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host136.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0488",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host143.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0489",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host150.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0490",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host157.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0491",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host164.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0492",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host171.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0493",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host178.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0494",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host185.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0495",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host192.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0496",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host199.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0497",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host206.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0498",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host213.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0499",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host220.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0500",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host227.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0501",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host234.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0502",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host241.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0503",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host248.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0504",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host255.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0505",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host262.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0506",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host269.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0507",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host276.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0508",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host283.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0509",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host290.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0510",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host297.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0511",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host004.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0512",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host011.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0513",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host018.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0514",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host025.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0515",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host032.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0516",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host039.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0517",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host046.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0518",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host053.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0519",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host060.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0520",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host067.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0521",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host074.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0522",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host081.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0523",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host088.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0524",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host095.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0525",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host102.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0526",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host109.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0527",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host116.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0528",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host123.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0529",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host130.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0530",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host137.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0531",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host144.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0532",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host151.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0533",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host158.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0534",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host165.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0535",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host172.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0536",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host179.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0537",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host186.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0538",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host193.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0539",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host200.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0540",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host207.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0541",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host214.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0542",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host221.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0543",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host228.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0544",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host235.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0545",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host242.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0546",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host249.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0547",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host256.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0548",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host263.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0549",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host270.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0550",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host277.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0551",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host284.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0552",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host291.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0553",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host298.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0554",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host005.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0555",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host012.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0556",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host019.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0557",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host026.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0558",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host033.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0559",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host040.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0560",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host047.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0561",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host054.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0562",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host061.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0563",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host068.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0564",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host075.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0565",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host082.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0566",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host089.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0567",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host096.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0568",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host103.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0569",
+    "rule_title": "Security group permits broad access",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host110.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0570",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host117.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0571",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host124.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0572",
+    "rule_title": "Storage is publicly readable",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host131.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0573",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host138.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0574",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host145.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0575",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host152.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0576",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host159.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0577",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host166.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0578",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host173.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0579",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host180.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0580",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host187.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0581",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host194.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0582",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host201.bank.local",
+    "resource_type": "network_device",
+    "rule_id": "CSPM-0583",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host208.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0584",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host215.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0585",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host222.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0586",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host229.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0587",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host236.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0588",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host243.bank.local",
+    "resource_type": "cloud_resource",
+    "rule_id": "CSPM-0589",
+    "rule_title": "Storage is publicly readable",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host250.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0590",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host257.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0591",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host264.bank.local",
+    "resource_type": "database",
+    "rule_id": "CSPM-0592",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host271.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0593",
+    "rule_title": "Security group permits broad access",
+    "severity": "critical",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host278.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0594",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host285.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0595",
+    "rule_title": "Storage is publicly readable",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host292.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0596",
+    "rule_title": "Storage is publicly readable",
+    "severity": "high",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host299.bank.local",
+    "resource_type": "server",
+    "rule_id": "CSPM-0597",
+    "rule_title": "Encryption at rest is disabled",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host006.bank.local",
+    "resource_type": "container",
+    "rule_id": "CSPM-0598",
+    "rule_title": "Security group permits broad access",
+    "severity": "medium",
+    "region": "ap-south-1",
+    "status": "open"
+  },
+  {
+    "resource_id": "host013.bank.local",
+    "resource_type": "application",
+    "rule_id": "CSPM-0599",
+    "rule_title": "Security group permits broad access",
+    "severity": "low",
+    "region": "ap-south-1",
+    "status": "open"
+  }
+]
