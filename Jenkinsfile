@@ -8,8 +8,8 @@ pipeline {
     }
 
     environment {
-        PATH+TOOLS = 'C:\\Python313;C:\\Python313\\Scripts;C:\\Program Files\\nodejs;C:\\Program Files\\Git\\cmd'
-    }
+    PATH = "C:/Python313;C:/Python313/Scripts;C:/Program Files/nodejs;C:/Program Files/Git/cmd;${env.PATH}"
+}
 
     stages {
 
