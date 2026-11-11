@@ -1,1 +1,0 @@
-Jenkins automatic CI trigger test 
